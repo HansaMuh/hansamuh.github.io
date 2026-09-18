@@ -1,6 +1,7 @@
 import BlurFade from "@/components/magicui/blur-fade";
 import { ProjectCard } from "@/components/project-card";
 import { DATA } from "@/data/resume";
+import { ICONS } from "@/data/icons";
 
 const BLUR_FADE_DELAY = 0.04;
 
@@ -47,7 +48,10 @@ export default function ProjectsSection() {
                                 tags={project.technologies}
                                 image={project.image}
                                 video={project.video}
-                                links={project.links}
+                                links={project.links.map((link) => {
+                                    const LinkIcon = ICONS[link.icon];
+                                    return { ...link, icon: <LinkIcon className="size-3" /> };
+                                })}
                             />
                         </BlurFade>
                     ))}

@@ -8,7 +8,7 @@ Built with next.js, [shadcn/ui](https://ui.shadcn.com/), and [magic ui](https://
 
 # Features
 
-- Setup only takes a few minutes by editing the [single config file](./src/data/resume.tsx)
+- Setup only takes a few minutes by editing the [single config file](./src/data/resume.json)
 - Built using Next.js 14, React, Typescript, Shadcn/UI, TailwindCSS, Framer Motion, Magic UI
 - Includes a blog
 - Responsive for different devices
@@ -31,16 +31,16 @@ Built with next.js, [shadcn/ui](https://ui.shadcn.com/), and [magic ui](https://
 3. Install dependencies:
 
    ```bash
-   pnpm install
+   npm install
    ```
 
 4. Start the local Server:
 
    ```bash
-   pnpm dev
+   npm run dev
    ```
 
-5. Open the [Config file](./src/data/resume.tsx) and make changes
+5. Open the [Config file](./src/data/resume.json) and make changes
 
 # License
 

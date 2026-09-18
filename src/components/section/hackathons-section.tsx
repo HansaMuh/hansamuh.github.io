@@ -2,6 +2,7 @@
 import { Badge } from "@/components/ui/badge";
 import Link from "next/link";
 import { DATA } from "@/data/resume";
+import { ICONS } from "@/data/icons";
 import { Timeline, TimelineItem, TimelineConnectItem } from "@/components/timeline";
 
 export default function HackathonsSection() {
@@ -56,7 +57,9 @@ export default function HackathonsSection() {
                 )}
                 {hackathon.links && hackathon.links.length > 0 && (
                   <div className="mt-1 flex flex-row flex-wrap items-start gap-2">
-                    {hackathon.links.map((link, idx) => (
+                    {hackathon.links.map((link, idx) => {
+                      const LinkIcon = ICONS[link.icon];
+                      return (
                       <Link
                         href={link.href}
                         key={idx}
@@ -64,11 +67,12 @@ export default function HackathonsSection() {
                         rel="noopener noreferrer"
                       >
                         <Badge className="flex items-center gap-1.5 text-xs bg-primary text-primary-foreground">
-                          {link.icon}
+                          <LinkIcon className="h-4 w-4" />
                           {link.title}
                         </Badge>
                       </Link>
-                    ))}
+                      );
+                    })}
                   </div>
                 )}
               </div>
