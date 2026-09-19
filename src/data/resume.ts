@@ -6,6 +6,7 @@ const icon = z.enum(ICON_NAMES);
 
 const resumeSchema = z.object({
   name: z.string(),
+  nickname: z.string(),
   initials: z.string(),
   url: z.url(),
   location: z.string(),
@@ -50,7 +51,7 @@ const resumeSchema = z.object({
       start: z.string(),
       end: z.string(),
     }),
-  ),
+  ).default([]),
   projects: z.array(
     z.object({
       title: z.string(),
@@ -76,7 +77,7 @@ const resumeSchema = z.object({
       icon: z.string().optional(),
       links: z.array(z.object({ title: z.string(), href: z.string(), icon })),
     }),
-  ),
+  ).default([]),
 });
 
 export type Resume = z.infer<typeof resumeSchema>;
