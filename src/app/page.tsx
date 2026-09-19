@@ -18,13 +18,15 @@ export default function Page() {
       <section id="hero">
         <div className="mx-auto w-full space-y-8">
           <div className="gap-2 gap-y-6 flex flex-col md:flex-row justify-between">
-            <div className="gap-2 flex flex-col order-2 md:order-1">
-              <BlurFadeText
-                delay={BLUR_FADE_DELAY}
-                className="text-3xl font-semibold tracking-tighter sm:text-4xl lg:text-5xl"
-                yOffset={8}
-                text={`Hi, I'm ${DATA.nickname}`}
-              />
+            <div className="gap-3 flex flex-col order-2 md:order-1">
+              <BlurFade delay={BLUR_FADE_DELAY} yOffset={8}>
+                {/* The one emphasized word fades like the work it describes. */}
+                <h1 className="text-3xl font-semibold tracking-tighter sm:text-4xl lg:text-5xl">
+                  I make tedious work
+                  <br />
+                  quietly <em className="text-muted-foreground">disappear</em>.
+                </h1>
+              </BlurFade>
               <BlurFadeText
                 className="text-muted-foreground max-w-[600px] md:text-lg lg:text-xl"
                 delay={BLUR_FADE_DELAY}
@@ -38,12 +40,10 @@ export default function Page() {
               </Avatar>
             </BlurFade>
           </div>
+          <BlurFade delay={BLUR_FADE_DELAY * 2}>
+            <WebsitesSection />
+          </BlurFade>
         </div>
-      </section>
-      <section id="websites" aria-label="Websites" className="-mt-6">
-        <BlurFade delay={BLUR_FADE_DELAY * 2}>
-          <WebsitesSection />
-        </BlurFade>
       </section>
       <section id="about">
         <div className="flex min-h-0 flex-col gap-y-4">
@@ -72,7 +72,7 @@ export default function Page() {
       <section id="tech-stack">
         <div className="flex min-h-0 flex-col gap-y-4">
           <BlurFade delay={BLUR_FADE_DELAY * 9}>
-            <h2 className="text-xl font-bold">Technology Stack</h2>
+            <h2 className="text-xl font-bold">Tech Stack</h2>
           </BlurFade>
           <div className="flex flex-wrap gap-2">
             {DATA.skills.map((skill, id) => {

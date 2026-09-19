@@ -88,7 +88,7 @@ export default function RootLayout({
               />
             </div>
             <Navbar navbar={DATA.navbar} />
-            <div className="relative z-10 max-w-3xl mx-auto pt-28 pb-24 sm:pt-32 px-6">
+            <div className="relative z-10 max-w-3xl mx-auto pt-28 sm:pt-32 px-6">
               {children}
               <Footer />
             </div>

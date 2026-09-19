@@ -21,11 +21,13 @@ export default function ContactSection() {
       </div>
       <div className="relative flex flex-col items-center gap-4 text-center">
         <h2 className="text-3xl font-bold tracking-tighter sm:text-5xl">
-          Let’s talk.
+          Got something tedious?
+          <br />
+          Let’s make it <em className="text-muted-foreground">disappear</em>.
         </h2>
         <p className="mx-auto max-w-lg text-muted-foreground text-balance">
-          Open to software engineering roles and collaborations. The quickest
-          way to reach me is email:{" "}
+          I’m open to software engineering roles and collaborations. Email is
+          the quickest way to reach me:{" "}
           <Link
             href={`mailto:${DATA.contact.email}`}
             className="text-blue-700 hover:underline underline-offset-4 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 rounded-sm"

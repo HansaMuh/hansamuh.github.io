@@ -11,8 +11,19 @@ import {
 } from "@/components/ui/tooltip";
 import type { Resume } from "@/data/resume";
 import { ICONS } from "@/data/icons";
+import { scrollToSection, smoothScrollTo } from "@/lib/smooth-scroll";
 
 type NavItem = Resume["navbar"]["top"][number];
+
+// "#top" has no element behind it: it means the very top of the page.
+function handleNavClick(event: React.MouseEvent<HTMLAnchorElement>, href: string) {
+  const target = href === "#top" ? null : document.querySelector<HTMLElement>(href);
+  if (href !== "#top" && !target) return;
+  event.preventDefault();
+  if (target) scrollToSection(target);
+  else smoothScrollTo(0);
+  history.pushState(null, "", href === "#top" ? window.location.pathname : href);
+}
 
 function NavLink({ item }: { item: NavItem }) {
   const ItemIcon = ICONS[item.icon];
@@ -21,6 +32,7 @@ function NavLink({ item }: { item: NavItem }) {
       <TooltipTrigger asChild>
         <a
           href={item.href}
+          onClick={(event) => handleNavClick(event, item.href)}
           aria-label={item.label}
           className="rounded-full focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2"
         >

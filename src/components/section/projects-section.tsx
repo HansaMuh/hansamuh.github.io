@@ -23,11 +23,10 @@ export default function ProjectsSection() {
                     />
                 </div>
                 <div className="flex flex-col gap-y-3 items-center justify-center">
-                    <h2 className="text-3xl font-bold tracking-tighter sm:text-4xl">Check out my latest work</h2>
+                    <h2 className="text-3xl font-bold tracking-tighter sm:text-4xl">Things I’ve built along the way.</h2>
                     <p className="text-muted-foreground md:text-lg/relaxed lg:text-base/relaxed xl:text-lg/relaxed text-balance text-center">
-                        I&apos;ve worked on a variety of projects, from simple
-                        websites to complex web applications. Here are a few of my
-                        favorites.
+                        Thesis research, team builds and the tools I made for a
+                        game community.
                     </p>
                 </div>
             </div>

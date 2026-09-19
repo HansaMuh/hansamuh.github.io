@@ -3,6 +3,7 @@
 import { ChevronDown } from "lucide-react";
 import { useEffect, useState } from "react";
 import { cn } from "@/lib/utils";
+import { scrollToSection } from "@/lib/smooth-scroll";
 
 // Anything closer to the top than this is treated as "already reached",
 // which covers the fixed menu and the sections' scroll margin.
@@ -42,7 +43,10 @@ export function ScrollDownButton() {
       aria-label="Scroll to next section"
       aria-hidden={hidden}
       tabIndex={hidden ? -1 : 0}
-      onClick={() => getNextSection()?.scrollIntoView()}
+      onClick={() => {
+        const next = getNextSection();
+        if (next) scrollToSection(next);
+      }}
       className={cn(
         "fixed bottom-6 left-1/2 z-30 flex size-11 -translate-x-1/2 items-center justify-center rounded-full border bg-card/90 text-muted-foreground shadow-[0_0_10px_3px] shadow-primary/5 backdrop-blur transition-[opacity,color] duration-300 hover:text-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2",
         hidden && "pointer-events-none opacity-0"

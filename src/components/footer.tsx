@@ -3,18 +3,18 @@ const linkClass =
 
 export default function Footer() {
   return (
-    <footer className="mt-16 border-t border-border pt-6 text-center text-xs text-muted-foreground">
+    <footer className="mt-12 border-t border-border py-3 text-center text-xs text-muted-foreground">
       <p>
-        Built on the{" "}
+        Built on{" "}
         <a
           href="https://github.com/dillionverma/portfolio"
           target="_blank"
           rel="noopener noreferrer"
           className={linkClass}
         >
-          portfolio template
+          Dillion Verma’s portfolio template
         </a>{" "}
-        by Dillion Verma and the{" "}
+        and the{" "}
         <a
           href="https://magicui.design"
           target="_blank"
@@ -23,7 +23,7 @@ export default function Footer() {
         >
           Magic UI
         </a>{" "}
-        team. Thank you for making this site possible.
+        team’s components. Thank you!
       </p>
     </footer>
   );

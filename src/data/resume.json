@@ -5,8 +5,8 @@
   "url": "https://hansamuh.github.io",
   "location": "Jakarta, Indonesia",
   "locationLink": "https://www.google.com/maps/place/Jakarta",
-  "description": "I’m Raihan, a software engineer building full-stack apps, back-office tools and a bit of automation on the side.",
-  "summary": "Hi! I’m Muhammad Raihan Saputra, though most people call me by my middle name, Raihan. I’m a software engineer who enjoys building software and thinking about how it should be put together.\n\nI recently finished my Bachelor of Computer Science at [BINUS University](https://binus.ac.id), specializing in Software Engineering, with a 3.66 GPA. Before graduating, I spent a year as an Application Developer Intern at Bank Central Asia (February 2025 to February 2026), building back-office tools for asset and budget management. In 2023, my team also finished in the Top 14 of the Marketeers Innovation Challenge, a national business case competition.\n\nI work across full-stack and backend engineering, and I like automating the tedious parts. I care most about solutions that are practical, and I do my best work in hands-on teams.\n\nLooking for someone to build with? Email me at [muh.raihan.saputra@protonmail.com](mailto:muh.raihan.saputra@protonmail.com). Let’s connect! =)",
+  "description": "I’m Raihan, a software engineer who builds full-stack apps and back-office tools, and automates the boring parts on the side.",
+  "summary": "I studied Computer Science at [BINUS University](https://binus.ac.id), majoring in Software Engineering, and graduated in 2026 with a 3.66 GPA. The software I like building most takes a chore off someone’s desk.\n\nA year at Bank Central Asia, a bachelor’s thesis and a few tools for a game community taught me to turn messy requirements into tools people rely on. I do my best work in hands-on teams, and in 2023 mine reached the Top 14 of the Marketeers Innovation Challenge.\n\nBINUS University · 2026 · Jakarta, Indonesia",
   "avatarUrl": "",
   "skills": [
     { "name": "C#", "icon": "csharp" },
@@ -28,13 +28,13 @@
   ],
   "navbar": {
     "top": [
-      { "href": "#hero", "icon": "home", "label": "Home" },
-      { "href": "#websites", "icon": "link", "label": "Websites" }
+      { "href": "#top", "icon": "home", "label": "Home" },
+      { "href": "#hero", "icon": "link", "label": "Websites" }
     ],
     "sections": [
       { "href": "#about", "icon": "user", "label": "About Me" },
       { "href": "#work", "icon": "briefcase", "label": "Work Experience" },
-      { "href": "#tech-stack", "icon": "layers", "label": "Technology Stack" },
+      { "href": "#tech-stack", "icon": "layers", "label": "Tech Stack" },
       { "href": "#projects", "icon": "folder", "label": "My Projects" },
       { "href": "#certifications", "icon": "award", "label": "Certifications" },
       { "href": "#contact", "icon": "mail", "label": "Contact Me" }
@@ -74,7 +74,7 @@
       "logoUrl": "/logos/bca.svg",
       "start": "February 2025",
       "end": "February 2026",
-      "description": "Built back-office tools for asset and budget management in an Agile team, used by 100+ employees across divisions, with OutSystems, JavaScript and Microsoft SQL Server. Shipped a Batch Update feature that imports 200+ asset records from one Excel file in about 24 seconds with transactional rollback, and a Cash Advance Management dashboard that enforces spending limits and audit trails across a 6-stage approval workflow."
+      "description": "Built back-office tools for asset and budget management in OutSystems, JavaScript and Microsoft SQL Server, used by 100+ employees across divisions. Shipped a batch update that imports 200+ asset records from one Excel file in about 24 seconds, and a cash advance dashboard that enforces spending limits across a 6-stage approval flow."
     }
   ],
   "projects": [
@@ -83,7 +83,7 @@
       "href": "https://github.com/HansaMuh/SEMA",
       "dates": "April 2026 - July 2026",
       "active": false,
-      "description": "A mobile-first web app that turns household electricity readings into bill projections and recommendations, so households can estimate their postpaid bill before the cycle closes. Built for my bachelor’s thesis on decision support systems and evaluated with 76 users.",
+      "description": "A mobile-first way for households to see their postpaid electricity bill coming before the cycle closes. My bachelor’s thesis, evaluated with 76 users.",
       "technologies": [
         { "name": "React", "icon": "react" },
         { "name": "TypeScript", "icon": "typescript" },
@@ -104,15 +104,14 @@
       "href": "https://github.com/GentleGanku/Mystrose",
       "dates": "August 2023 - November 2025",
       "active": false,
-      "description": "A desktop client for automating gameplay in AdventureQuest Worlds, built around a visual block-based scripting language and the interpreter I wrote for it.",
+      "description": "A desktop client that lets AdventureQuest Worlds players automate gameplay with visual script blocks, run by an interpreter I wrote.",
       "technologies": [
         { "name": "C#", "icon": "csharp" },
         { "name": ".NET", "icon": "dotnet" },
         { "name": "WPF", "icon": "windows" }
       ],
       "links": [
-        { "type": "Source", "href": "https://github.com/GentleGanku/Mystrose", "icon": "github" },
-        { "type": "Demo", "href": "https://bit.ly/MystroseDemo", "icon": "globe" }
+        { "type": "Source", "href": "https://github.com/GentleGanku/Mystrose", "icon": "github" }
       ],
       "image": "",
       "video": ""
@@ -122,14 +121,13 @@
       "href": "https://github.com/wilbertyg/Signtro",
       "dates": "September 2024 - November 2024",
       "active": false,
-      "description": "A web app for learning sign language through courses and a computer-vision gesture guide. I built the course interface and content flow, and integrated the gesture recognition module.",
+      "description": "Sign language lessons with a camera-based gesture guide. My part: the course interface, the content flow and the gesture recognition hookup.",
       "technologies": [
         { "name": "React", "icon": "react" },
         { "name": "TypeScript", "icon": "typescript" }
       ],
       "links": [
-        { "type": "Source", "href": "https://github.com/wilbertyg/Signtro", "icon": "github" },
-        { "type": "Preview", "href": "https://bit.ly/SigntroPreviewVideo", "icon": "globe" }
+        { "type": "Source", "href": "https://github.com/wilbertyg/Signtro", "icon": "github" }
       ],
       "image": "",
       "video": ""
@@ -139,14 +137,13 @@
       "href": "https://github.com/GentleGanku/MapReader",
       "dates": "January 2023 - September 2024",
       "active": false,
-      "description": "A tool that extracts map data from AdventureQuest Worlds, recovering hard-to-reach cell and pad labels in seconds and exporting them for Mystrose and other community tools.",
+      "description": "Pulls hard-to-reach cell and pad labels out of AdventureQuest Worlds maps in seconds, ready for Mystrose and other community tools.",
       "technologies": [
         { "name": "ActionScript 3", "icon": "flash" },
         { "name": "Flash", "icon": "flash" }
       ],
       "links": [
-        { "type": "Source", "href": "https://github.com/GentleGanku/MapReader", "icon": "github" },
-        { "type": "Demo", "href": "https://bit.ly/MapReaderDemo", "icon": "globe" }
+        { "type": "Source", "href": "https://github.com/GentleGanku/MapReader", "icon": "github" }
       ],
       "image": "",
       "video": ""
@@ -157,9 +154,9 @@
       "name": "TOEFL ITP",
       "issuer": "ETS",
       "href": "https://drive.proton.me/urls/Z87YBSH5YG#UJKXHcds1YUg",
-      "logoUrl": "",
+      "logoUrl": "/logos/ets.png",
       "date": "November 2025",
-      "description": "Scored CEFR B2 (Upper Intermediate) on the TOEFL ITP."
+      "description": "Scored at CEFR B2 (Upper Intermediate)."
     }
   ]
 }
