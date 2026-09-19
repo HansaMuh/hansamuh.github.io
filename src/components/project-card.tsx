@@ -30,7 +30,7 @@ interface Props {
   href?: string;
   description: string;
   dates: string;
-  tags: readonly string[];
+  tags: readonly { name: string; icon: React.ReactNode }[];
   link?: string;
   image?: string;
   video?: string;
@@ -67,6 +67,9 @@ export function ProjectCard({
           target="_blank"
           rel="noopener noreferrer"
           className="block"
+          // Same destination as the title's arrow link, so keep it out of the tab order.
+          tabIndex={-1}
+          aria-hidden
         >
           {video ? (
             <video
@@ -128,11 +131,12 @@ export function ProjectCard({
           <div className="flex flex-wrap gap-1 mt-auto">
             {tags.map((tag) => (
               <Badge
-                key={tag}
-                className="text-[11px] font-medium border border-border h-6 w-fit px-2"
+                key={tag.name}
+                className="text-[11px] font-medium border border-border h-6 w-fit px-2 gap-1.5"
                 variant="outline"
               >
-                {tag}
+                {tag.icon}
+                {tag.name}
               </Badge>
             ))}
           </div>

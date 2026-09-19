@@ -9,6 +9,7 @@ interface DockProps {
   children: ReactNode;
   magnification?: number;
   distance?: number;
+  baseSize?: number;
 }
 
 interface DockIconProps {
@@ -27,15 +28,16 @@ interface DockContextValue {
   mouseX: MotionValue<number>;
   magnification: number;
   distance: number;
+  baseSize: number;
 }
 
 const DockContext = createContext<DockContextValue | null>(null);
 
-const Dock = ({ className, children, magnification = DEFAULT_MAGNIFICATION, distance = DEFAULT_DISTANCE }: DockProps) => {
+const Dock = ({ className, children, magnification = DEFAULT_MAGNIFICATION, distance = DEFAULT_DISTANCE, baseSize = BASE_SIZE }: DockProps) => {
   const mouseX = useMotionValue(Infinity);
 
   return (
-    <DockContext.Provider value={{ mouseX, magnification, distance }}>
+    <DockContext.Provider value={{ mouseX, magnification, distance, baseSize }}>
       <motion.div
         onMouseMove={(e) => mouseX.set(e.pageX)}
         onMouseLeave={() => mouseX.set(Infinity)}
@@ -55,7 +57,8 @@ const DockIcon = ({ className, children }: DockIconProps) => {
     throw new Error("DockIcon must be used within a Dock component");
   }
 
-  const { mouseX, magnification, distance } = context;
+  const { mouseX, magnification, distance, baseSize } = context;
+  const baseIconSize = baseSize * (BASE_ICON_SIZE / BASE_SIZE);
 
   const distanceCalc = useTransform(mouseX, (val: number) => {
     const bounds = ref.current?.getBoundingClientRect() ?? { x: 0, width: 0 };
@@ -63,11 +66,11 @@ const DockIcon = ({ className, children }: DockIconProps) => {
   });
 
   const containerSize = useSpring(
-    useTransform(distanceCalc, [-distance, 0, distance], [BASE_SIZE, magnification, BASE_SIZE]),
+    useTransform(distanceCalc, [-distance, 0, distance], [baseSize, magnification, baseSize]),
     SPRING
   );
   const iconSize = useSpring(
-    useTransform(distanceCalc, [-distance, 0, distance], [BASE_ICON_SIZE, magnification * ICON_SIZE_RATIO, BASE_ICON_SIZE]),
+    useTransform(distanceCalc, [-distance, 0, distance], [baseIconSize, magnification * ICON_SIZE_RATIO, baseIconSize]),
     SPRING
   );
 

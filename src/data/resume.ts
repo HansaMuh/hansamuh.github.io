@@ -3,6 +3,9 @@ import { ICON_NAMES } from "@/data/icons";
 import resume from "@/data/resume.json";
 
 const icon = z.enum(ICON_NAMES);
+const technology = z.object({ name: z.string(), icon });
+// Menu links point at section ids on the home page, e.g. "#about".
+const navItem = z.object({ href: z.string().startsWith("#"), icon, label: z.string() });
 
 const resumeSchema = z.object({
   name: z.string(),
@@ -14,8 +17,8 @@ const resumeSchema = z.object({
   description: z.string(),
   summary: z.string(),
   avatarUrl: z.string(),
-  skills: z.array(z.object({ name: z.string(), icon: icon.optional() })),
-  navbar: z.array(z.object({ href: z.string(), icon, label: z.string() })),
+  skills: z.array(technology),
+  navbar: z.object({ top: z.array(navItem), sections: z.array(navItem) }),
   contact: z.object({
     email: z.string(),
     tel: z.string(),
@@ -25,7 +28,7 @@ const resumeSchema = z.object({
         name: z.string(),
         url: z.string(),
         icon,
-        navbar: z.boolean(),
+        websites: z.boolean(),
       }),
     ),
   }),
@@ -59,12 +62,22 @@ const resumeSchema = z.object({
       dates: z.string(),
       active: z.boolean(),
       description: z.string(),
-      technologies: z.array(z.string()),
+      technologies: z.array(technology),
       links: z.array(z.object({ type: z.string(), href: z.string(), icon })),
       image: z.string(),
       video: z.string(),
     }),
   ),
+  certifications: z.array(
+    z.object({
+      name: z.string(),
+      issuer: z.string(),
+      href: z.string(),
+      logoUrl: z.string(),
+      date: z.string(),
+      description: z.string(),
+    }),
+  ).default([]),
   hackathons: z.array(
     z.object({
       title: z.string(),

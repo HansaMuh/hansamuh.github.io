@@ -11,33 +11,35 @@
   "skills": [
     { "name": "C#", "icon": "csharp" },
     { "name": "TypeScript", "icon": "typescript" },
-    { "name": "JavaScript" },
-    { "name": "SQL" },
+    { "name": "JavaScript", "icon": "javascript" },
+    { "name": "SQL", "icon": "sql" },
     { "name": "Java", "icon": "java" },
-    { "name": ".NET" },
+    { "name": ".NET", "icon": "dotnet" },
     { "name": "React", "icon": "react" },
-    { "name": "ASP.NET Core" },
-    { "name": "EF Core" },
-    { "name": "WPF" },
-    { "name": "MySQL" },
-    { "name": "Microsoft SQL Server" },
-    { "name": "Git" },
-    { "name": "GitHub Actions" },
-    { "name": "Microsoft Azure" },
-    { "name": "Playwright" }
+    { "name": "ASP.NET Core", "icon": "dotnet" },
+    { "name": "EF Core", "icon": "dotnet" },
+    { "name": "WPF", "icon": "windows" },
+    { "name": "MySQL", "icon": "mysql" },
+    { "name": "Microsoft SQL Server", "icon": "sqlserver" },
+    { "name": "Git", "icon": "git" },
+    { "name": "GitHub Actions", "icon": "githubactions" },
+    { "name": "Microsoft Azure", "icon": "azure" },
+    { "name": "Playwright", "icon": "playwright" }
   ],
-  "navbar": [
-    {
-      "href": "/",
-      "icon": "home",
-      "label": "Home"
-    },
-    {
-      "href": "/blog",
-      "icon": "notebook",
-      "label": "Blog"
-    }
-  ],
+  "navbar": {
+    "top": [
+      { "href": "#hero", "icon": "home", "label": "Home" },
+      { "href": "#websites", "icon": "link", "label": "Websites" }
+    ],
+    "sections": [
+      { "href": "#about", "icon": "user", "label": "About Me" },
+      { "href": "#work", "icon": "briefcase", "label": "Work Experience" },
+      { "href": "#tech-stack", "icon": "layers", "label": "Technology Stack" },
+      { "href": "#projects", "icon": "folder", "label": "My Projects" },
+      { "href": "#certifications", "icon": "award", "label": "Certifications" },
+      { "href": "#contact", "icon": "mail", "label": "Contact Me" }
+    ]
+  },
   "contact": {
     "email": "muh.raihan.saputra@protonmail.com",
     "tel": "",
@@ -46,19 +48,19 @@
         "name": "GitHub",
         "url": "https://github.com/HansaMuh",
         "icon": "github",
-        "navbar": true
+        "websites": true
       },
       "LinkedIn": {
         "name": "LinkedIn",
         "url": "https://www.linkedin.com/in/muh-raihan-saputra",
         "icon": "linkedin",
-        "navbar": true
+        "websites": true
       },
       "email": {
         "name": "Email",
         "url": "mailto:muh.raihan.saputra@protonmail.com",
         "icon": "email",
-        "navbar": true
+        "websites": true
       }
     }
   },
@@ -69,7 +71,7 @@
       "badges": [],
       "location": "Jakarta, Indonesia",
       "title": "Application Developer Intern",
-      "logoUrl": "",
+      "logoUrl": "/logos/bca.svg",
       "start": "February 2025",
       "end": "February 2026",
       "description": "Built back-office tools for asset and budget management in an Agile team, used by 100+ employees across divisions, with OutSystems, JavaScript and Microsoft SQL Server. Shipped a Batch Update feature that imports 200+ asset records from one Excel file in about 24 seconds with transactional rollback, and a Cash Advance Management dashboard that enforces spending limits and audit trails across a 6-stage approval workflow."
@@ -82,8 +84,16 @@
       "dates": "April 2026 - July 2026",
       "active": false,
       "description": "A mobile-first web app that turns household electricity readings into bill projections and recommendations, so households can estimate their postpaid bill before the cycle closes. Built for my bachelor’s thesis on decision support systems and evaluated with 76 users.",
-      "technologies": ["React", "TypeScript", "C#", ".NET", "MySQL", "Microsoft Azure", "Git"],
+      "technologies": [
+        { "name": "React", "icon": "react" },
+        { "name": "TypeScript", "icon": "typescript" },
+        { "name": "C#", "icon": "csharp" },
+        { "name": ".NET", "icon": "dotnet" },
+        { "name": "MySQL", "icon": "mysql" },
+        { "name": "Microsoft Azure", "icon": "azure" }
+      ],
       "links": [
+        { "type": "Website", "href": "https://sema.web.id/", "icon": "globe" },
         { "type": "Source", "href": "https://github.com/HansaMuh/SEMA", "icon": "github" }
       ],
       "image": "",
@@ -95,23 +105,14 @@
       "dates": "August 2023 - November 2025",
       "active": false,
       "description": "A desktop client for automating gameplay in AdventureQuest Worlds, built around a visual block-based scripting language and the interpreter I wrote for it.",
-      "technologies": ["C#", ".NET", "WPF", "Git"],
+      "technologies": [
+        { "name": "C#", "icon": "csharp" },
+        { "name": ".NET", "icon": "dotnet" },
+        { "name": "WPF", "icon": "windows" }
+      ],
       "links": [
         { "type": "Source", "href": "https://github.com/GentleGanku/Mystrose", "icon": "github" },
         { "type": "Demo", "href": "https://bit.ly/MystroseDemo", "icon": "globe" }
-      ],
-      "image": "",
-      "video": ""
-    },
-    {
-      "title": "CaLouselF",
-      "href": "https://github.com/HansaMuh/CaLouselF",
-      "dates": "December 2024",
-      "active": false,
-      "description": "A desktop marketplace for buying and selling second-hand clothes. I designed the database schema and wrote the backend for listings, transactions and offers.",
-      "technologies": ["Java", "MySQL", "Git"],
-      "links": [
-        { "type": "Source", "href": "https://github.com/HansaMuh/CaLouselF", "icon": "github" }
       ],
       "image": "",
       "video": ""
@@ -122,7 +123,10 @@
       "dates": "September 2024 - November 2024",
       "active": false,
       "description": "A web app for learning sign language through courses and a computer-vision gesture guide. I built the course interface and content flow, and integrated the gesture recognition module.",
-      "technologies": ["React", "TypeScript", "Git"],
+      "technologies": [
+        { "name": "React", "icon": "react" },
+        { "name": "TypeScript", "icon": "typescript" }
+      ],
       "links": [
         { "type": "Source", "href": "https://github.com/wilbertyg/Signtro", "icon": "github" },
         { "type": "Preview", "href": "https://bit.ly/SigntroPreviewVideo", "icon": "globe" }
@@ -136,13 +140,26 @@
       "dates": "January 2023 - September 2024",
       "active": false,
       "description": "A tool that extracts map data from AdventureQuest Worlds, recovering hard-to-reach cell and pad labels in seconds and exporting them for Mystrose and other community tools.",
-      "technologies": ["ActionScript 3", "Flash"],
+      "technologies": [
+        { "name": "ActionScript 3", "icon": "flash" },
+        { "name": "Flash", "icon": "flash" }
+      ],
       "links": [
         { "type": "Source", "href": "https://github.com/GentleGanku/MapReader", "icon": "github" },
         { "type": "Demo", "href": "https://bit.ly/MapReaderDemo", "icon": "globe" }
       ],
       "image": "",
       "video": ""
+    }
+  ],
+  "certifications": [
+    {
+      "name": "TOEFL ITP",
+      "issuer": "ETS",
+      "href": "https://drive.proton.me/urls/Z87YBSH5YG#UJKXHcds1YUg",
+      "logoUrl": "",
+      "date": "November 2025",
+      "description": "Scored CEFR B2 (Upper Intermediate) on the TOEFL ITP."
     }
   ]
 }

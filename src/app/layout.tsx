@@ -1,4 +1,6 @@
+import Footer from "@/components/footer";
 import Navbar from "@/components/navbar";
+import { ScrollDownButton } from "@/components/scroll-down-button";
 import { ThemeProvider } from "@/components/theme-provider";
 import { TooltipProvider } from "@/components/ui/tooltip";
 import { DATA } from "@/data/resume";
@@ -72,7 +74,7 @@ export default function RootLayout({
           geistMono.variable
         )}
       >
-        <ThemeProvider attribute="class" defaultTheme="light">
+        <ThemeProvider attribute="class" forcedTheme="light">
           <TooltipProvider delayDuration={0}>
             <div className="absolute inset-0 top-0 left-0 right-0 h-[100px] overflow-hidden z-0">
               <FlickeringGrid
@@ -85,10 +87,12 @@ export default function RootLayout({
                 }}
               />
             </div>
-            <div className="relative z-10 max-w-2xl mx-auto py-12 pb-24 sm:py-24 px-6">
+            <Navbar navbar={DATA.navbar} />
+            <div className="relative z-10 max-w-3xl mx-auto pt-28 pb-24 sm:pt-32 px-6">
               {children}
+              <Footer />
             </div>
-            <Navbar />
+            <ScrollDownButton />
           </TooltipProvider>
         </ThemeProvider>
       </body>

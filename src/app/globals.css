@@ -120,6 +120,18 @@
     @apply bg-background text-foreground;
   }
 
+  /* Menu links and the scroll-down button jump between sections. */
+  @media (prefers-reduced-motion: no-preference) {
+    html {
+      scroll-behavior: smooth;
+    }
+  }
+
+  /* Keeps section headings clear of the fixed top menu. */
+  main > section[id] {
+    scroll-margin-top: 6rem;
+  }
+
   /* Shiki dual theme support */
   .shiki,
   .shiki span {
