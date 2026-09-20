@@ -1,6 +1,8 @@
 import Footer from "@/components/footer";
 import Navbar from "@/components/navbar";
-import { ScrollDownButton } from "@/components/scroll-down-button";
+import { PageParticles } from "@/components/page-particles";
+import { ScrollProgress } from "@/components/magicui/scroll-progress";
+import { SmoothCursor } from "@/components/magicui/smooth-cursor";
 import { ThemeProvider } from "@/components/theme-provider";
 import { TooltipProvider } from "@/components/ui/tooltip";
 import { DATA } from "@/data/resume";
@@ -8,7 +10,6 @@ import { cn } from "@/lib/utils";
 import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
-import { FlickeringGrid } from "@/components/magicui/flickering-grid";
 
 const geist = Geist({
   subsets: ["latin"],
@@ -76,23 +77,14 @@ export default function RootLayout({
       >
         <ThemeProvider attribute="class" forcedTheme="light">
           <TooltipProvider delayDuration={0}>
-            <div className="absolute inset-0 top-0 left-0 right-0 h-[100px] overflow-hidden z-0">
-              <FlickeringGrid
-                className="h-full w-full"
-                squareSize={2}
-                gridGap={2}
-                style={{
-                  maskImage: "linear-gradient(to bottom, black, transparent)",
-                  WebkitMaskImage: "linear-gradient(to bottom, black, transparent)",
-                }}
-              />
-            </div>
+            <PageParticles />
+            <ScrollProgress className="h-0.5 bg-none bg-foreground" />
             <Navbar navbar={DATA.navbar} />
+            <SmoothCursor />
             <div className="relative z-10 max-w-3xl mx-auto pt-28 sm:pt-32 px-6">
               {children}
               <Footer />
             </div>
-            <ScrollDownButton />
           </TooltipProvider>
         </ThemeProvider>
       </body>

@@ -1,5 +1,6 @@
 "use client";
 
+import { useEffect, useState } from "react";
 import { Dock, DockIcon } from "@/components/magicui/dock";
 import { WibClock } from "@/components/wib-clock";
 import { Separator } from "@/components/ui/separator";
@@ -12,20 +13,92 @@ import {
 import type { Resume } from "@/data/resume";
 import { ICONS } from "@/data/icons";
 import { scrollToSection, smoothScrollTo } from "@/lib/smooth-scroll";
+import { cn } from "@/lib/utils";
 
 type NavItem = Resume["navbar"]["top"][number];
+
+// Tells the active-section tracker which section a menu click asked for.
+const NAV_TARGET_EVENT = "nav:target";
 
 // "#top" has no element behind it: it means the very top of the page.
 function handleNavClick(event: React.MouseEvent<HTMLAnchorElement>, href: string) {
   const target = href === "#top" ? null : document.querySelector<HTMLElement>(href);
   if (href !== "#top" && !target) return;
   event.preventDefault();
+  window.dispatchEvent(new CustomEvent(NAV_TARGET_EVENT, { detail: href }));
   if (target) scrollToSection(target);
   else smoothScrollTo(0);
   history.pushState(null, "", href === "#top" ? window.location.pathname : href);
 }
 
-function NavLink({ item }: { item: NavItem }) {
+// One item lights at a time: the topmost section that is fully visible between the
+// menu and the bottom of the screen. Sections taller than that space (My Projects on
+// most screens) count while they fill it, from the moment their top reaches the spot
+// a menu click scrolls them to. After a menu click the clicked section wins while it
+// is on screen, until the visitor scrolls on their own (wheel, touch or keys).
+function useActiveSection(hrefs: string[]) {
+  const [active, setActive] = useState<string | null>(null);
+
+  useEffect(() => {
+    let frame = 0;
+    let clicked: string | null = null;
+
+    const update = () => {
+      frame = 0;
+      const menu = document.querySelector('nav[aria-label="Main menu"] > div');
+      const top = menu ? menu.getBoundingClientRect().bottom : 0;
+      const bottom = window.innerHeight;
+
+      if (clicked) {
+        const box = document.querySelector(clicked)?.getBoundingClientRect();
+        if (box && box.top < bottom && box.bottom > top) return setActive(clicked);
+      }
+
+      const topmost = hrefs.find((href) => {
+        const section = document.querySelector<HTMLElement>(href);
+        if (!section) return false;
+        const box = section.getBoundingClientRect();
+        const landing = Math.max(top, parseFloat(getComputedStyle(section).scrollMarginTop) || 0);
+        const fits = box.top >= top - 1 && box.bottom <= bottom + 1;
+        const fills = box.top <= landing + 1 && box.bottom >= bottom;
+        return fits || fills;
+      });
+      setActive(topmost ?? null);
+    };
+    const schedule = () => {
+      if (!frame) frame = requestAnimationFrame(update);
+    };
+    const onTarget = (event: Event) => {
+      const href = (event as CustomEvent<string>).detail;
+      clicked = hrefs.includes(href) ? href : null;
+      schedule();
+    };
+    const release = () => {
+      clicked = null;
+    };
+
+    update();
+    window.addEventListener("scroll", schedule, { passive: true });
+    window.addEventListener("resize", schedule);
+    window.addEventListener(NAV_TARGET_EVENT, onTarget);
+    window.addEventListener("wheel", release, { passive: true });
+    window.addEventListener("touchstart", release, { passive: true });
+    window.addEventListener("keydown", release);
+    return () => {
+      cancelAnimationFrame(frame);
+      window.removeEventListener("scroll", schedule);
+      window.removeEventListener("resize", schedule);
+      window.removeEventListener(NAV_TARGET_EVENT, onTarget);
+      window.removeEventListener("wheel", release);
+      window.removeEventListener("touchstart", release);
+      window.removeEventListener("keydown", release);
+    };
+  }, [hrefs]);
+
+  return active;
+}
+
+function NavLink({ item, active = false }: { item: NavItem; active?: boolean }) {
   const ItemIcon = ICONS[item.icon];
   return (
     <Tooltip>
@@ -34,9 +107,17 @@ function NavLink({ item }: { item: NavItem }) {
           href={item.href}
           onClick={(event) => handleNavClick(event, item.href)}
           aria-label={item.label}
+          aria-current={active ? "location" : undefined}
           className="rounded-full focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2"
         >
-          <DockIcon className="rounded-full cursor-pointer size-full bg-background p-0 text-muted-foreground hover:text-foreground hover:bg-muted border border-border transition-colors">
+          <DockIcon
+            className={cn(
+              "rounded-full cursor-pointer size-full p-0 border transition-colors",
+              active
+                ? "bg-highlight text-highlight-foreground border-highlight"
+                : "bg-card text-muted-foreground hover:text-foreground hover:bg-muted border-border"
+            )}
+          >
             <ItemIcon className="size-full" />
           </DockIcon>
         </a>
@@ -60,6 +141,9 @@ function DockSeparator() {
 }
 
 export default function Navbar({ navbar }: { navbar: Resume["navbar"] }) {
+  const [sectionHrefs] = useState(() => navbar.sections.map((item) => item.href));
+  const active = useActiveSection(sectionHrefs);
+
   return (
     <nav
       aria-label="Main menu"
@@ -76,7 +160,7 @@ export default function Navbar({ navbar }: { navbar: Resume["navbar"] }) {
         ))}
         <DockSeparator />
         {navbar.sections.map((item) => (
-          <NavLink key={item.href} item={item} />
+          <NavLink key={item.href} item={item} active={item.href === active} />
         ))}
         <DockSeparator />
         <WibClock />

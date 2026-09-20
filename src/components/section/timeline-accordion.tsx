@@ -9,6 +9,7 @@ import {
 } from "@/components/ui/accordion";
 import { ChevronDown, ChevronRight } from "lucide-react";
 import { cn } from "@/lib/utils";
+import { ShineBorder } from "@/components/magicui/shine-border";
 
 export interface TimelineItem {
   id: string;
@@ -25,7 +26,7 @@ function LogoImage({ src, alt }: { src: string; alt: string }) {
 
   if (!src || imageError) {
     return (
-      <div className="size-8 md:size-10 p-1 border rounded-full shadow ring-2 ring-border bg-muted flex-none" />
+      <div className="size-8 md:size-10 p-1.5 border rounded-full shadow ring-2 ring-border bg-muted flex-none" />
     );
   }
 
@@ -33,7 +34,7 @@ function LogoImage({ src, alt }: { src: string; alt: string }) {
     <img
       src={src}
       alt={alt}
-      className="size-8 md:size-10 p-1 border rounded-full shadow ring-2 ring-border overflow-hidden object-contain bg-white flex-none"
+      className="size-8 md:size-10 p-1.5 border rounded-full shadow ring-2 ring-border overflow-hidden object-contain bg-white flex-none"
       onError={() => setImageError(true)}
     />
   );
@@ -47,8 +48,15 @@ export default function TimelineAccordion({ items }: { items: TimelineItem[] }) 
         <AccordionItem
           key={item.id}
           value={item.id}
-          className="w-full border-b-0 grid gap-2"
+          className="group/item relative w-full border-b-0 grid gap-2 rounded-xl p-3 -mx-3"
         >
+          {/* Outlines the entry that's open, so the expanded detail reads as one block. */}
+          <ShineBorder
+            borderWidth={1.5}
+            duration={10}
+            shineColor={["#0a0a0a", "#0078ff", "#f1e302"]}
+            className="hidden group-data-[state=open]/item:block"
+          />
           <AccordionTrigger className="hover:no-underline p-0 cursor-pointer transition-colors rounded-none group [&>svg]:hidden">
             <div className="flex items-center gap-x-3 justify-between w-full text-left">
               <div className="flex items-center gap-x-3 flex-1 min-w-0">

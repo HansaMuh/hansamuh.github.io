@@ -1,5 +1,6 @@
 import { DATA } from "@/data/resume";
 import { ICONS } from "@/data/icons";
+import { ShimmerButton } from "@/components/magicui/shimmer-button";
 
 export default function WebsitesSection() {
   const websites = Object.values(DATA.contact.social).filter((social) => social.websites);
@@ -11,15 +12,17 @@ export default function WebsitesSection() {
         const SocialIcon = ICONS[social.icon];
         return (
           <li key={social.url}>
-            <a
+            <ShimmerButton
               href={social.url}
               target={isExternal ? "_blank" : undefined}
               rel={isExternal ? "noopener noreferrer" : undefined}
-              className="flex h-11 items-center gap-2 rounded-xl border border-border bg-background px-4 text-sm font-medium text-foreground transition-colors hover:bg-muted focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2"
+              borderRadius="0.75rem"
+              shimmerDuration="2.5s"
+              className="h-11 gap-2 px-4 py-0 text-sm font-medium focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2"
             >
               <SocialIcon className="size-4" aria-hidden />
               {social.name}
-            </a>
+            </ShimmerButton>
           </li>
         );
       })}

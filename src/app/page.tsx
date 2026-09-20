@@ -9,6 +9,9 @@ import ContactSection from "@/components/section/contact-section";
 import ProjectsSection from "@/components/section/projects-section";
 import WebsitesSection from "@/components/section/websites-section";
 import WorkSection from "@/components/section/work-section";
+import { DisappearingWord } from "@/components/disappearing-word";
+import { Highlighter } from "@/components/magicui/highlighter";
+import { Marquee } from "@/components/magicui/marquee";
 
 const BLUR_FADE_DELAY = 0.04;
 
@@ -16,15 +19,14 @@ export default function Page() {
   return (
     <main className="min-h-dvh flex flex-col gap-14 relative">
       <section id="hero">
-        <div className="mx-auto w-full space-y-8">
+        <div className="mx-auto w-full space-y-4">
           <div className="gap-2 gap-y-6 flex flex-col md:flex-row justify-between">
             <div className="gap-3 flex flex-col order-2 md:order-1">
               <BlurFade delay={BLUR_FADE_DELAY} yOffset={8}>
-                {/* The one emphasized word fades like the work it describes. */}
                 <h1 className="text-3xl font-semibold tracking-tighter sm:text-4xl lg:text-5xl">
                   I make tedious work
                   <br />
-                  quietly <em className="text-muted-foreground">disappear</em>.
+                  quietly <DisappearingWord />.
                 </h1>
               </BlurFade>
               <BlurFadeText
@@ -52,7 +54,16 @@ export default function Page() {
           </BlurFade>
           <BlurFade delay={BLUR_FADE_DELAY * 4}>
             <div className="prose max-w-full text-pretty font-sans leading-relaxed text-muted-foreground dark:prose-invert">
-              <Markdown>
+              {/* *Emphasis* in the summary is drawn as a hand-marked underline. */}
+              <Markdown
+                components={{
+                  em: ({ children }) => (
+                    <Highlighter action="underline" color="#0a0a0a" strokeWidth={1.8} isView>
+                      {children}
+                    </Highlighter>
+                  ),
+                }}
+              >
                 {DATA.summary}
               </Markdown>
             </div>
@@ -74,19 +85,38 @@ export default function Page() {
           <BlurFade delay={BLUR_FADE_DELAY * 9}>
             <h2 className="text-xl font-bold">Tech Stack</h2>
           </BlurFade>
-          <div className="flex flex-wrap gap-2">
-            {DATA.skills.map((skill, id) => {
-              const SkillIcon = ICONS[skill.icon];
-              return (
-                <BlurFade key={skill.name} delay={BLUR_FADE_DELAY * 10 + id * 0.05}>
-                  <div className="border bg-background border-border ring-2 ring-border/20 rounded-xl h-8 w-fit px-4 flex items-center gap-2">
-                    <SkillIcon className="size-4 shrink-0" aria-hidden />
-                    <span className="text-foreground text-sm font-medium">{skill.name}</span>
-                  </div>
-                </BlurFade>
-              );
-            })}
-          </div>
+          <BlurFade delay={BLUR_FADE_DELAY * 10}>
+            {/* The marquee repeats every chip, so it's hidden from screen readers; this list isn't. */}
+            <ul className="sr-only">
+              {DATA.skills.map((skill) => (
+                <li key={skill.name}>{skill.name}</li>
+              ))}
+            </ul>
+            <div
+              aria-hidden
+              className="flex flex-col gap-1 [mask-image:linear-gradient(to_right,transparent,black_8%,black_92%,transparent)]"
+            >
+              {[
+                DATA.skills.slice(0, Math.ceil(DATA.skills.length / 2)),
+                DATA.skills.slice(Math.ceil(DATA.skills.length / 2)),
+              ].map((row, rowIndex) => (
+                <Marquee key={rowIndex} pauseOnHover reverse={rowIndex === 1} className="[--duration:35s] [--gap:0.5rem] p-1">
+                  {row.map((skill) => {
+                    const SkillIcon = ICONS[skill.icon];
+                    return (
+                      <div
+                        key={skill.name}
+                        className="border bg-background border-border ring-2 ring-border/20 rounded-xl h-8 w-fit px-4 flex items-center gap-2"
+                      >
+                        <SkillIcon className="size-4 shrink-0" />
+                        <span className="text-foreground text-sm font-medium whitespace-nowrap">{skill.name}</span>
+                      </div>
+                    );
+                  })}
+                </Marquee>
+              ))}
+            </div>
+          </BlurFade>
         </div>
       </section>
       <section id="projects">

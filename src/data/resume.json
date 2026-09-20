@@ -6,30 +6,29 @@
   "location": "Jakarta, Indonesia",
   "locationLink": "https://www.google.com/maps/place/Jakarta",
   "description": "I’m Raihan, a software engineer who builds full-stack apps and back-office tools, and automates the boring parts on the side.",
-  "summary": "I studied Computer Science at [BINUS University](https://binus.ac.id), majoring in Software Engineering, and graduated in 2026 with a 3.66 GPA. The software I like building most takes a chore off someone’s desk.\n\nA year at Bank Central Asia, a bachelor’s thesis and a few tools for a game community taught me to turn messy requirements into tools people rely on. I do my best work in hands-on teams, and in 2023 mine reached the Top 14 of the Marketeers Innovation Challenge.\n\nBINUS University · 2026 · Jakarta, Indonesia",
+  "summary": "I studied Computer Science at [BINUS University](https://binus.ac.id), majoring in Software Engineering, and graduated in 2026 with a 3.66 GPA. The software I like building most *takes a chore off someone’s desk*.\n\nA year at Bank Central Asia, a bachelor’s thesis and a few tools for a game community taught me to turn messy requirements into *tools people rely on*. I do my best work in hands-on teams, and in 2023 mine reached the Top 14 of the Marketeers Innovation Challenge.\n\nBINUS University · 2026 · Jakarta, Indonesia",
   "avatarUrl": "",
   "skills": [
     { "name": "C#", "icon": "csharp" },
     { "name": "TypeScript", "icon": "typescript" },
     { "name": "JavaScript", "icon": "javascript" },
-    { "name": "SQL", "icon": "sql" },
     { "name": "Java", "icon": "java" },
     { "name": ".NET", "icon": "dotnet" },
     { "name": "React", "icon": "react" },
     { "name": "ASP.NET Core", "icon": "dotnet" },
-    { "name": "EF Core", "icon": "dotnet" },
     { "name": "WPF", "icon": "windows" },
     { "name": "MySQL", "icon": "mysql" },
     { "name": "Microsoft SQL Server", "icon": "sqlserver" },
     { "name": "Git", "icon": "git" },
+    { "name": "GitHub", "icon": "githubbrand" },
     { "name": "GitHub Actions", "icon": "githubactions" },
     { "name": "Microsoft Azure", "icon": "azure" },
-    { "name": "Playwright", "icon": "playwright" }
+    { "name": "Playwright", "icon": "playwright" },
+    { "name": "Figma", "icon": "figma" }
   ],
   "navbar": {
     "top": [
-      { "href": "#top", "icon": "home", "label": "Home" },
-      { "href": "#hero", "icon": "link", "label": "Websites" }
+      { "href": "#top", "icon": "home", "label": "Home" }
     ],
     "sections": [
       { "href": "#about", "icon": "user", "label": "About Me" },
@@ -53,13 +52,13 @@
       "LinkedIn": {
         "name": "LinkedIn",
         "url": "https://www.linkedin.com/in/muh-raihan-saputra",
-        "icon": "linkedin",
+        "icon": "linkedinbrand",
         "websites": true
       },
       "email": {
         "name": "Email",
         "url": "mailto:muh.raihan.saputra@protonmail.com",
-        "icon": "email",
+        "icon": "protonmail",
         "websites": true
       }
     }

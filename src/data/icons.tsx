@@ -2,7 +2,6 @@ import type { ComponentType } from "react";
 import {
   AwardIcon,
   BriefcaseBusinessIcon,
-  DatabaseIcon,
   FolderGit2Icon,
   HouseIcon,
   LayersIcon,
@@ -32,6 +31,10 @@ import { GithubActions } from "@/components/ui/svgs/githubActions";
 import { Azure } from "@/components/ui/svgs/azure";
 import { Playwright } from "@/components/ui/svgs/playwright";
 import { Flash } from "@/components/ui/svgs/flash";
+import { GithubLight } from "@/components/ui/svgs/githubLight";
+import { Linkedin } from "@/components/ui/svgs/linkedin";
+import { Protonmail } from "@/components/ui/svgs/protonmail";
+import { Figma } from "@/components/ui/svgs/figma";
 
 // Keys are the values allowed in the "icon" fields of resume.json.
 export const ICONS = {
@@ -44,13 +47,17 @@ export const ICONS = {
   folder: FolderGit2Icon,
   award: AwardIcon,
   mail: MailIcon,
-  // Websites and links
+  // Websites and links (monochrome, follow the text color)
   globe: Icons.globe,
   email: Icons.email,
   github: Icons.github,
   linkedin: Icons.linkedin,
   x: Icons.x,
   youtube: Icons.youtube,
+  // Brand-colored marks
+  githubbrand: GithubLight,
+  linkedinbrand: Linkedin,
+  protonmail: Protonmail,
   // Technologies
   react: ReactLight,
   nextjs: NextjsIconDark,
@@ -59,8 +66,6 @@ export const ICONS = {
   nodejs: Nodejs,
   python: Python,
   golang: Golang,
-  // Generic SQL has no brand mark, so it gets a database glyph.
-  sql: DatabaseIcon,
   postgresql: Postgresql,
   mysql: MysqlIconLight,
   sqlserver: SqlServer,
@@ -75,6 +80,7 @@ export const ICONS = {
   azure: Azure,
   playwright: Playwright,
   flash: Flash,
+  figma: Figma,
 } satisfies Record<string, ComponentType<{ className?: string }>>;
 
 export type IconName = keyof typeof ICONS;
