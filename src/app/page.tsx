@@ -10,7 +10,6 @@ import ProjectsSection from "@/components/section/projects-section";
 import WebsitesSection from "@/components/section/websites-section";
 import WorkSection from "@/components/section/work-section";
 import { DisappearingWord } from "@/components/disappearing-word";
-import { Highlighter } from "@/components/magicui/highlighter";
 import { Marquee } from "@/components/magicui/marquee";
 
 const BLUR_FADE_DELAY = 0.04;
@@ -54,16 +53,7 @@ export default function Page() {
           </BlurFade>
           <BlurFade delay={BLUR_FADE_DELAY * 4}>
             <div className="prose max-w-full text-pretty font-sans leading-relaxed text-muted-foreground dark:prose-invert">
-              {/* *Emphasis* in the summary is drawn as a hand-marked underline. */}
-              <Markdown
-                components={{
-                  em: ({ children }) => (
-                    <Highlighter action="underline" color="#0a0a0a" strokeWidth={1.8} isView>
-                      {children}
-                    </Highlighter>
-                  ),
-                }}
-              >
+              <Markdown>
                 {DATA.summary}
               </Markdown>
             </div>

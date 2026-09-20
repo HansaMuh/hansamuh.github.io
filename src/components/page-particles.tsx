@@ -3,7 +3,7 @@
 import { useEffect, useState } from "react";
 import { Particles } from "@/components/magicui/particles";
 
-// Two layers because Particles draws one color: the site blue and the yellow accent.
+// Two layers because Particles draws one color: yellow in front, blue behind it.
 // Each layer links its own nearby dots (and the cursor) into a moving constellation.
 export function PageParticles() {
   const [enabled, setEnabled] = useState(false);
@@ -24,13 +24,14 @@ export function PageParticles() {
         className="absolute inset-0"
         quantity={140}
         size={1.1}
+        data-layer="main"
         staticity={30}
         ease={50}
         vx={0.12}
         vy={-0.08}
         linkDistance={110}
         twinkle
-        color="#0078ff"
+        color="#f1e302"
       />
       <Particles
         className="absolute inset-0"
@@ -42,7 +43,7 @@ export function PageParticles() {
         vy={-0.12}
         linkDistance={90}
         twinkle
-        color="#f1e302"
+        color="#0078ff"
       />
     </div>
   );

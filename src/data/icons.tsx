@@ -35,6 +35,7 @@ import { GithubLight } from "@/components/ui/svgs/githubLight";
 import { Linkedin } from "@/components/ui/svgs/linkedin";
 import { Protonmail } from "@/components/ui/svgs/protonmail";
 import { Figma } from "@/components/ui/svgs/figma";
+import { Instagram } from "@/components/ui/svgs/instagram";
 
 // Keys are the values allowed in the "icon" fields of resume.json.
 export const ICONS = {
@@ -52,6 +53,7 @@ export const ICONS = {
   email: Icons.email,
   github: Icons.github,
   linkedin: Icons.linkedin,
+  instagram: Instagram,
   x: Icons.x,
   youtube: Icons.youtube,
   // Brand-colored marks

@@ -115,8 +115,10 @@
   --border: oklch(0.922 0 0);
   --input: oklch(0.922 0 0);
   --ring: oklch(0.708 0 0);
-  /* Accent: active menu item, section pills, the emphasized headline word. Black for now. */
-  --highlight: #0a0a0a;
+  /* Accent: active menu item, section pills, website buttons, the emphasized headline
+     word. White on it is 4.6:1, which is why the blue is a shade darker than the
+     #0078ff in the particles. As text it is only used at heading size (3.6:1). */
+  --highlight: #0070f0;
   --highlight-foreground: #ffffff;
   --chart-1: oklch(0.646 0.222 41.116);
   --chart-2: oklch(0.6 0.118 184.704);
@@ -181,12 +183,6 @@
     html {
       scroll-behavior: smooth;
     }
-  }
-
-  /* SmoothCursor draws its own pointer while this class is on <html>. */
-  html.smooth-cursor,
-  html.smooth-cursor * {
-    cursor: none !important;
   }
 
   /* Keeps section headings clear of the fixed top menu. */

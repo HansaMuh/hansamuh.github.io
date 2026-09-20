@@ -2,7 +2,6 @@ import Footer from "@/components/footer";
 import Navbar from "@/components/navbar";
 import { PageParticles } from "@/components/page-particles";
 import { ScrollProgress } from "@/components/magicui/scroll-progress";
-import { SmoothCursor } from "@/components/magicui/smooth-cursor";
 import { ThemeProvider } from "@/components/theme-provider";
 import { TooltipProvider } from "@/components/ui/tooltip";
 import { DATA } from "@/data/resume";
@@ -80,7 +79,6 @@ export default function RootLayout({
             <PageParticles />
             <ScrollProgress className="h-0.5 bg-none bg-foreground" />
             <Navbar navbar={DATA.navbar} />
-            <SmoothCursor />
             <div className="relative z-10 max-w-3xl mx-auto pt-28 sm:pt-32 px-6">
               {children}
               <Footer />
