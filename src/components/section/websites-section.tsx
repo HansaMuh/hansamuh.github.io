@@ -26,16 +26,9 @@ export default function WebsitesSection({ social }: { social: Resume["contact"][
                   target={isExternal ? "_blank" : undefined}
                   rel={isExternal ? "noopener noreferrer" : undefined}
                   aria-label={item.name}
-                  className="group relative flex size-11 items-center justify-center overflow-hidden rounded-xl text-foreground transition-transform hover:-translate-y-0.5 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2"
+                  className="flex size-13 items-center justify-center rounded-xl text-highlight transition-transform hover:-translate-y-0.5 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2"
                 >
-                  <SocialIcon className="size-5" aria-hidden />
-                  {/* The shiny-text sweep, re-aimed at the glyph: a band of light crosses
-                      the icon and blends away against the page behind it. */}
-                  <span
-                    aria-hidden
-                    style={{ ["--shiny-width" as string]: "28px" }}
-                    className="animate-shiny-text pointer-events-none absolute inset-0 bg-linear-to-r from-transparent via-white/95 to-transparent bg-size-[var(--shiny-width)_100%] bg-no-repeat bg-position-[0_0] mix-blend-screen motion-reduce:hidden dark:via-black/85 dark:mix-blend-multiply"
-                  />
+                  <SocialIcon className="size-8" aria-hidden />
                 </a>
               </TooltipTrigger>
               <TooltipContent

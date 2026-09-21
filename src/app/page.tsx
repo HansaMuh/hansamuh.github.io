@@ -45,7 +45,7 @@ export default function Page() {
           <BlurFade delay={BLUR_FADE_DELAY * 2}>
             <WebsitesSection social={DATA.contact.social} />
           </BlurFade>
-          <div id="status">
+          <div id="status" className="mt-10">
             <BlurFade delay={BLUR_FADE_DELAY * 3}>
               <StatusSection status={DATA.status} />
             </BlurFade>

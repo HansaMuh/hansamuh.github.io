@@ -1,6 +1,6 @@
 /* eslint-disable @next/next/no-img-element */
 "use client";
-import { useState } from "react";
+import { useState, type ReactNode } from "react";
 import { Badge } from "@/components/ui/badge";
 
 export interface TimelineItem {
@@ -10,7 +10,7 @@ export interface TimelineItem {
   dates: string;
   logoUrl: string;
   description: string;
-  link?: { href: string; label: string };
+  link?: { href: string; label: string; icon?: ReactNode };
 }
 
 function LogoImage({ src, alt }: { src: string; alt: string }) {
@@ -61,9 +61,10 @@ export default function EntryList({ items }: { items: TimelineItem[] }) {
                 className="rounded-md focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2"
               >
                 <Badge
-                  className="flex items-center gap-1.5 text-xs bg-foreground text-background hover:bg-foreground/90"
+                  className="flex items-center gap-1.5 text-xs bg-highlight text-highlight-foreground hover:bg-highlight/90"
                   variant="default"
                 >
+                  {item.link.icon}
                   {item.link.label}
                 </Badge>
               </a>

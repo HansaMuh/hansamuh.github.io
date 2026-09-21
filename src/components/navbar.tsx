@@ -31,7 +31,8 @@ function handleNavClick(event: React.MouseEvent<HTMLAnchorElement>, href: string
   history.pushState(null, "", href === "#top" ? window.location.pathname : href);
 }
 
-// One item lights at a time: the topmost section that is fully visible between the
+// Home lights while the whole hero block (intro, website buttons, status) fits on
+// screen. Otherwise one item lights at a time: the topmost section fully visible between the
 // menu and the bottom of the screen. Sections taller than that space (My Projects on
 // most screens) count while they fill it, from the moment their top reaches the spot
 // a menu click scrolls them to. After a menu click the clicked section wins while it
@@ -52,6 +53,17 @@ function useActiveSection(hrefs: string[]) {
       if (clicked) {
         const box = document.querySelector(clicked)?.getBoundingClientRect();
         if (box && box.top < bottom && box.bottom > top) return setActive(clicked);
+      }
+
+      // Home: the hero fits on screen, or (on phones, where it never fits) it fills it.
+      const hero = document.querySelector<HTMLElement>("#hero");
+      if (hero) {
+        const box = hero.getBoundingClientRect();
+        const fits = box.top >= top - 1 && box.bottom <= bottom + 1;
+        // On phones the hero is taller than the screen, so it counts while its start
+        // is still above the fold and it covers everything below.
+        const fills = box.top > 0 && box.bottom >= bottom;
+        if (fits || fills) return setActive("#top");
       }
 
       const topmost = hrefs.find((href) => {
@@ -159,7 +171,7 @@ export default function Navbar({ navbar }: { navbar: Resume["navbar"] }) {
         className="pointer-events-auto relative h-15 p-2 w-max max-w-full items-start flex gap-2 border bg-card/90 backdrop-blur-3xl shadow-[0_0_10px_3px] shadow-primary/5 max-sm:overflow-x-auto max-sm:justify-start max-sm:[scrollbar-width:none]"
       >
         {navbar.top.map((item) => (
-          <NavLink key={item.href} item={item} />
+          <NavLink key={item.href} item={item} active={item.href === active} />
         ))}
         <DockSeparator />
         {navbar.sections.map((item) => (

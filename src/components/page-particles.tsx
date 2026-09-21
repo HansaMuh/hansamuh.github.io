@@ -7,8 +7,9 @@ import { Particles } from "@/components/magicui/particles";
 const BLUE = "#0078ff";
 const YELLOW = "#f1e302";
 
-// Two layers because Particles draws one color. Day leads with yellow, night with
-// blue; the keyed wrapper fades the new field in when the phase turns over.
+// Two layers because Particles draws one color. Day leads with blue, night with
+// yellow; the keyed wrapper fades the new field in when the phase turns over.
+// The white page washes dots out, so day runs a brighter opacity band than night.
 export function PageParticles() {
   const { resolvedTheme } = useTheme();
   const [enabled, setEnabled] = useState(false);
@@ -24,7 +25,8 @@ export function PageParticles() {
   if (!enabled) return null;
 
   const night = resolvedTheme === "dark";
-  const [front, back] = night ? [BLUE, YELLOW] : [YELLOW, BLUE];
+  const [front, back] = night ? [YELLOW, BLUE] : [BLUE, YELLOW];
+  const [minAlpha, maxAlpha] = night ? [0.15, 0.7] : [0.3, 0.95];
 
   return (
     <div
@@ -42,6 +44,8 @@ export function PageParticles() {
         vy={-0.08}
         linkDistance={110}
         twinkle
+        minAlpha={minAlpha}
+        maxAlpha={maxAlpha}
         color={front}
       />
       <Particles
@@ -54,6 +58,8 @@ export function PageParticles() {
         vy={-0.12}
         linkDistance={90}
         twinkle
+        minAlpha={minAlpha}
+        maxAlpha={maxAlpha}
         color={back}
       />
     </div>

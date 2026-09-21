@@ -49,6 +49,9 @@ interface ParticlesProps extends ComponentPropsWithoutRef<"div"> {
   linkDistance?: number
   /** Local addition: each particle slowly pulses brighter and dimmer. */
   twinkle?: boolean
+  /** Local addition: opacity band the particles settle into. */
+  minAlpha?: number
+  maxAlpha?: number
 }
 
 function hexToRgb(hex: string): number[] {
@@ -95,6 +98,8 @@ export const Particles: React.FC<ParticlesProps> = ({
   vy = 0,
   linkDistance = 0,
   twinkle = false,
+  minAlpha = 0.15,
+  maxAlpha = 0.7,
   ...props
 }) => {
   const canvasRef = useRef<HTMLCanvasElement>(null)
@@ -197,7 +202,7 @@ export const Particles: React.FC<ParticlesProps> = ({
     // Local change: one crisp radius (no random jitter) keeps dots from looking soft.
     const pSize = size
     const alpha = 0
-    const targetAlpha = parseFloat((Math.random() * 0.55 + 0.15).toFixed(2))
+    const targetAlpha = parseFloat((Math.random() * (maxAlpha - minAlpha) + minAlpha).toFixed(2))
     const dx = (Math.random() - 0.5) * 0.1
     const dy = (Math.random() - 0.5) * 0.1
     const magnetism = 0.1 + Math.random() * 4

@@ -1,5 +1,6 @@
 import type { Resume } from "@/data/resume";
 import EntryList from "@/components/section/entry-list";
+import { ICONS } from "@/data/icons";
 
 export default function CertificationsSection({
   certifications,
@@ -34,7 +35,11 @@ export default function CertificationsSection({
           logoUrl: item.logoUrl,
           description: item.description,
           link: item.href
-            ? { href: item.href, label: "View certificate" }
+            ? {
+                href: item.href,
+                label: "View certificate",
+                icon: <ICONS.globe className="size-3" />,
+              }
             : undefined,
         }))}
       />

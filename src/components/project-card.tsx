@@ -3,7 +3,6 @@
 import { Badge } from "@/components/ui/badge";
 import { Safari } from "@/components/magicui/safari";
 import { cn } from "@/lib/utils";
-import { MagicCard } from "@/components/magicui/magic-card";
 import {
   Tooltip,
   TooltipArrow,
@@ -46,15 +45,9 @@ export function ProjectCard({
   className,
 }: Props) {
   return (
-    <MagicCard
-      mode="orb"
-      glowFrom="#0078ff"
-      glowTo="#f1e302"
-      glowOpacity={0.3}
-      glowBlur={50}
-      glowSize={300}
+    <div
       className={cn(
-        "flex flex-col h-full rounded-xl border border-border bg-card text-card-foreground overflow-hidden",
+        "flex flex-col h-full rounded-xl border border-border bg-card text-card-foreground overflow-hidden hover:ring-2 hover:ring-muted transition-all duration-200",
         className
       )}
     >
@@ -82,7 +75,7 @@ export function ProjectCard({
                 onClick={(e) => e.stopPropagation()}
               >
                 <Badge
-                  className="flex items-center gap-1.5 text-xs bg-foreground text-background hover:bg-foreground/90"
+                  className="flex items-center gap-1.5 text-xs bg-highlight text-highlight-foreground hover:bg-highlight/90"
                   variant="default"
                 >
                   {link.icon}
@@ -112,7 +105,7 @@ export function ProjectCard({
                     <span
                       tabIndex={0}
                       aria-label={tag.name}
-                      className="flex size-5 items-center justify-center rounded-sm focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2"
+                      className="flex size-7 items-center justify-center rounded-sm focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2"
                     >
                       {tag.icon}
                     </span>
@@ -131,6 +124,6 @@ export function ProjectCard({
           </ul>
         )}
       </div>
-    </MagicCard>
+    </div>
   );
 }

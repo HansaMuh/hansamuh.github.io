@@ -2,35 +2,31 @@ import Markdown from "react-markdown";
 import type { Resume } from "@/data/resume";
 import { ICONS } from "@/data/icons";
 
-// Five short "right now" cards. The detail lines carry markdown links, so they are
-// rendered through react-markdown with the anchor styling this site uses elsewhere.
+// Five short "right now" lines as accent pills: icon left, detail right. The detail
+// carries markdown links, so it renders through react-markdown.
 export default function StatusSection({ status }: { status: Resume["status"] }) {
   if (status.length === 0) return null;
 
   return (
     <div className="flex flex-col gap-y-4">
-      <p className="flex items-center gap-2 text-sm font-medium text-foreground">
-        <span className="relative flex size-2">
+      <h2 className="flex items-center gap-2 text-xl font-bold">
+        <span className="relative flex size-2.5">
           <span className="absolute inline-flex size-full rounded-full bg-highlight opacity-60 motion-safe:animate-ping" />
-          <span className="relative inline-flex size-2 rounded-full bg-highlight" />
+          <span className="relative inline-flex size-2.5 rounded-full bg-highlight" />
         </span>
         My status? Right now, I’m currently:
-      </p>
-      <ul className="grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
+      </h2>
+      {/* Three across on wide screens; the short last row centres itself. */}
+      <ul className="flex flex-wrap justify-center gap-2">
         {status.map((item) => {
           const ItemIcon = ICONS[item.icon];
           return (
             <li
               key={item.label}
-              className="flex h-full flex-col gap-2 rounded-xl border border-border bg-card p-4"
+              className="flex w-full items-start gap-2 rounded-lg bg-highlight px-3 py-2 text-highlight-foreground sm:basis-[calc(50%-0.25rem)] lg:basis-[calc(33.333%-0.5rem)]"
             >
-              <span className="flex items-center gap-2">
-                <span className="flex size-7 shrink-0 items-center justify-center rounded-lg bg-highlight/12 text-highlight">
-                  <ItemIcon className="size-4" aria-hidden />
-                </span>
-                <span className="text-sm font-semibold text-card-foreground">{item.label}</span>
-              </span>
-              <div className="text-xs leading-relaxed text-muted-foreground [&_a]:font-medium [&_a]:text-foreground [&_a]:underline [&_a]:underline-offset-2">
+              <ItemIcon className="mt-0.5 size-4 shrink-0" aria-label={item.label} />
+              <div className="text-xs leading-relaxed [&_a]:font-semibold [&_a]:underline [&_a]:underline-offset-2">
                 <Markdown
                   components={{
                     p: ({ children }) => <p>{children}</p>,
