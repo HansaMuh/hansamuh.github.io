@@ -17,6 +17,9 @@ const resumeSchema = z.object({
   description: z.string(),
   summary: z.string(),
   avatarUrl: z.string(),
+  status: z.array(
+    z.object({ icon, label: z.string(), detail: z.string() }),
+  ).default([]),
   skills: z.array(technology),
   navbar: z.object({ top: z.array(navItem), sections: z.array(navItem) }),
   contact: z.object({

@@ -134,9 +134,12 @@ function NavLink({ item, active = false }: { item: NavItem; active?: boolean }) 
   );
 }
 
-function DockSeparator() {
+function DockSeparator({ className }: { className?: string }) {
   return (
-    <Separator orientation="vertical" className="h-2/3 my-auto w-px shrink-0 bg-border" />
+    <Separator
+      orientation="vertical"
+      className={cn("h-2/3 my-auto w-px shrink-0 bg-border", className)}
+    />
   );
 }
 
@@ -162,7 +165,8 @@ export default function Navbar({ navbar }: { navbar: Resume["navbar"] }) {
         {navbar.sections.map((item) => (
           <NavLink key={item.href} item={item} active={item.href === active} />
         ))}
-        <DockSeparator />
+        {/* The clock is desktop-only, so its divider goes with it. */}
+        <DockSeparator className="hidden sm:block" />
         <WibClock />
       </Dock>
     </nav>

@@ -34,7 +34,7 @@ export default function CertificationsSection({
           logoUrl: item.logoUrl,
           description: item.description,
           link: item.href
-            ? { href: item.href, label: `View the ${item.name} certificate` }
+            ? { href: item.href, label: "View certificate" }
             : undefined,
         }))}
       />

@@ -1,7 +1,7 @@
 /* eslint-disable @next/next/no-img-element */
 "use client";
 import { useState } from "react";
-import { CornerArrow } from "@/components/corner-arrow";
+import { Badge } from "@/components/ui/badge";
 
 export interface TimelineItem {
   id: string;
@@ -18,7 +18,7 @@ function LogoImage({ src, alt }: { src: string; alt: string }) {
 
   if (!src || imageError) {
     return (
-      <div className="size-8 md:size-10 p-1.5 border rounded-full shadow ring-2 ring-border bg-muted flex-none" />
+      <div className="size-8 md:size-10 p-1 border rounded-full shadow ring-2 ring-border bg-muted flex-none" />
     );
   }
 
@@ -26,7 +26,7 @@ function LogoImage({ src, alt }: { src: string; alt: string }) {
     <img
       src={src}
       alt={alt}
-      className="size-8 md:size-10 p-1.5 border rounded-full shadow ring-2 ring-border overflow-hidden object-contain bg-white flex-none"
+      className="size-8 md:size-10 p-1 border rounded-full shadow ring-2 ring-border overflow-hidden object-contain bg-white flex-none"
       onError={() => setImageError(true)}
     />
   );
@@ -47,14 +47,28 @@ export default function EntryList({ items }: { items: TimelineItem[] }) {
                 <div className="font-sans text-sm text-muted-foreground">{item.subtitle}</div>
               </div>
             </div>
-            <div className="flex items-center gap-3 flex-none">
-              <span className="text-xs tabular-nums text-muted-foreground text-right">
-                {item.dates}
-              </span>
-              {item.link && <CornerArrow href={item.link.href} label={item.link.label} />}
-            </div>
+            <span className="text-xs tabular-nums text-muted-foreground text-right flex-none">
+              {item.dates}
+            </span>
           </div>
-          <p className="ml-13 text-xs sm:text-sm text-muted-foreground">{item.description}</p>
+          <div className="ml-13 flex flex-col items-start gap-3">
+            <p className="text-xs sm:text-sm text-muted-foreground">{item.description}</p>
+            {item.link && (
+              <a
+                href={item.link.href}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="rounded-md focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2"
+              >
+                <Badge
+                  className="flex items-center gap-1.5 text-xs bg-foreground text-background hover:bg-foreground/90"
+                  variant="default"
+                >
+                  {item.link.label}
+                </Badge>
+              </a>
+            )}
+          </div>
         </li>
       ))}
     </ul>

@@ -5,8 +5,12 @@ import { DATA } from "@/data/resume";
 
 export default function ContactSection() {
   return (
-    <MagicCard
-      mode="orb"
+    <div className="relative">
+      <div className="absolute -top-4 left-1/2 z-20 -translate-x-1/2 rounded-xl bg-highlight px-4 py-1">
+        <span className="text-highlight-foreground text-sm font-medium">Contact Me</span>
+      </div>
+      <MagicCard
+        mode="orb"
       glowFrom="#0078ff"
       glowTo="#f1e302"
       glowOpacity={0.3}
@@ -14,9 +18,6 @@ export default function ContactSection() {
       glowSize={340}
       className="border rounded-xl p-10 relative bg-background"
     >
-      <div className="absolute -top-4 bg-highlight z-10 rounded-xl px-4 py-1 left-1/2 -translate-x-1/2">
-        <span className="text-highlight-foreground text-sm font-medium">Contact Me</span>
-      </div>
       <div className="relative flex flex-col items-center gap-4 text-center">
         <h2 className="text-3xl font-bold tracking-tighter sm:text-5xl">
           Got something tedious?
@@ -34,6 +35,7 @@ export default function ContactSection() {
           </Link>
         </p>
       </div>
-    </MagicCard>
+      </MagicCard>
+    </div>
   );
 }

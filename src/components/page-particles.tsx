@@ -34,7 +34,7 @@ export function PageParticles() {
     >
       <Particles
         className="absolute inset-0"
-        quantity={100}
+        quantity={140}
         size={1}
         staticity={30}
         ease={50}
@@ -46,7 +46,7 @@ export function PageParticles() {
       />
       <Particles
         className="absolute inset-0"
-        quantity={45}
+        quantity={60}
         size={1}
         staticity={30}
         ease={50}

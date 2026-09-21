@@ -8,6 +8,13 @@
   "description": "I’m Raihan, a software engineer who builds full-stack apps and back-office tools, and automates the boring parts on the side.",
   "summary": "I studied Computer Science at [BINUS University](https://binus.ac.id), majoring in Software Engineering, and graduated in 2026 with a 3.66 GPA. The software I like building most takes a chore off someone’s desk.\n\nA year at Bank Central Asia, a bachelor’s thesis and a few tools for a game community taught me to turn messy requirements into tools people rely on. I do my best work in hands-on teams, and in 2023 mine reached the Top 14 of the Marketeers Innovation Challenge.\n\nBINUS University · 2026 · Jakarta, Indonesia",
   "avatarUrl": "/me.png",
+  "status": [
+    { "icon": "code", "label": "Building", "detail": "Working on [Mystrose](https://github.com/GentleGanku/Mystrose), the modern scripting client for AdventureQuest Worlds!" },
+    { "icon": "graduation", "label": "Studying", "detail": "Completing the professional certificates from [Amazon](https://www.coursera.org/professional-certificates/amazon-junior-software-developer), [Meta](https://www.coursera.org/specializations/meta-full-stack-developer) and [Microsoft](https://www.coursera.org/professional-certificates/microsoft-full-stack-developer)!" },
+    { "icon": "briefcase2", "label": "Job hunting", "detail": "Looking for [software engineering jobs in Indonesia](https://www.linkedin.com/in/muh-raihan-saputra/)!" },
+    { "icon": "music", "label": "Listening", "detail": "Lofi radio from [Chillhop Music](https://www.youtube.com/@ChillhopMusic)!" },
+    { "icon": "gamepad", "label": "Playing", "detail": "The ultimate RPG game, [DragonFable](https://www.dragonfable.com/)! Hardcore, of course." }
+  ],
   "skills": [
     { "name": "C#", "icon": "csharp" },
     { "name": "TypeScript", "icon": "typescript" },
@@ -16,7 +23,7 @@
     { "name": ".NET", "icon": "dotnet" },
     { "name": "React", "icon": "react" },
     { "name": "ASP.NET Core", "icon": "dotnet" },
-    { "name": "WPF", "icon": "windows" },
+    { "name": "WPF", "icon": "xaml" },
     { "name": "MySQL", "icon": "mysql" },
     { "name": "Microsoft SQL Server", "icon": "sqlserver" },
     { "name": "Git", "icon": "git" },
@@ -35,8 +42,7 @@
       { "href": "#work", "icon": "briefcase", "label": "Work Experience" },
       { "href": "#tech-stack", "icon": "layers", "label": "Tech Stack" },
       { "href": "#projects", "icon": "folder", "label": "My Projects" },
-      { "href": "#certifications", "icon": "award", "label": "Certifications" },
-      { "href": "#contact", "icon": "mail", "label": "Contact Me" }
+      { "href": "#certifications", "icon": "award", "label": "Certifications" }
     ]
   },
   "contact": {
@@ -113,7 +119,7 @@
       "technologies": [
         { "name": "C#", "icon": "csharp" },
         { "name": ".NET", "icon": "dotnet" },
-        { "name": "WPF", "icon": "windows" }
+        { "name": "WPF", "icon": "xaml" }
       ],
       "links": [
         { "type": "Source", "href": "https://github.com/GentleGanku/Mystrose", "icon": "github" }

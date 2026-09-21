@@ -6,8 +6,8 @@ export default function WorkSection({ work }: { work: Resume["work"] }) {
     <EntryList
       items={work.map((item) => ({
         id: item.company,
-        title: item.company,
-        subtitle: item.title,
+        title: item.title,
+        subtitle: item.company,
         dates: `${item.start} - ${item.end ?? "Present"}`,
         logoUrl: item.logoUrl,
         description: item.description,

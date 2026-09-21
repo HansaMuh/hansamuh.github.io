@@ -2,6 +2,10 @@ import type { ComponentType } from "react";
 import {
   AwardIcon,
   BriefcaseBusinessIcon,
+  Code2Icon,
+  Gamepad2Icon,
+  GraduationCapIcon,
+  MusicIcon,
   FolderGit2Icon,
   HouseIcon,
   LayersIcon,
@@ -36,6 +40,7 @@ import { Linkedin } from "@/components/ui/svgs/linkedin";
 import { Protonmail } from "@/components/ui/svgs/protonmail";
 import { Figma } from "@/components/ui/svgs/figma";
 import { Instagram } from "@/components/ui/svgs/instagram";
+import { Xaml } from "@/components/ui/svgs/xaml";
 
 // Keys are the values allowed in the "icon" fields of resume.json.
 export const ICONS = {
@@ -48,6 +53,12 @@ export const ICONS = {
   folder: FolderGit2Icon,
   award: AwardIcon,
   mail: MailIcon,
+  // Status cards
+  code: Code2Icon,
+  graduation: GraduationCapIcon,
+  briefcase2: BriefcaseBusinessIcon,
+  music: MusicIcon,
+  gamepad: Gamepad2Icon,
   // Websites and links (monochrome, follow the text color)
   globe: Icons.globe,
   email: Icons.email,
@@ -77,6 +88,7 @@ export const ICONS = {
   csharp: Csharp,
   dotnet: Dotnet,
   windows: Windows,
+  xaml: Xaml,
   git: Git,
   githubactions: GithubActions,
   azure: Azure,

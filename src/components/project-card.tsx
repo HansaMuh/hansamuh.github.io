@@ -4,6 +4,12 @@ import { Badge } from "@/components/ui/badge";
 import { Safari } from "@/components/magicui/safari";
 import { cn } from "@/lib/utils";
 import { MagicCard } from "@/components/magicui/magic-card";
+import {
+  Tooltip,
+  TooltipArrow,
+  TooltipContent,
+  TooltipTrigger,
+} from "@/components/ui/tooltip";
 import Link from "next/link";
 import Markdown from "react-markdown";
 
@@ -96,19 +102,33 @@ export function ProjectCard({
         <div className="text-xs flex-1 prose max-w-full text-pretty font-sans leading-relaxed text-muted-foreground dark:prose-invert">
           <Markdown>{description}</Markdown>
         </div>
+        {/* Logos only; the name lives in the tooltip and the accessible label. */}
         {tags && tags.length > 0 && (
-          <div className="flex flex-wrap gap-1 mt-auto">
+          <ul className="flex flex-wrap items-center gap-3 mt-auto">
             {tags.map((tag) => (
-              <Badge
-                key={tag.name}
-                className="text-[11px] font-medium border border-border h-6 w-fit px-2 gap-1.5"
-                variant="outline"
-              >
-                {tag.icon}
-                {tag.name}
-              </Badge>
+              <li key={tag.name}>
+                <Tooltip>
+                  <TooltipTrigger asChild>
+                    <span
+                      tabIndex={0}
+                      aria-label={tag.name}
+                      className="flex size-5 items-center justify-center rounded-sm focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2"
+                    >
+                      {tag.icon}
+                    </span>
+                  </TooltipTrigger>
+                  <TooltipContent
+                    side="top"
+                    sideOffset={6}
+                    className="rounded-lg bg-primary text-primary-foreground px-3 py-1.5 text-xs"
+                  >
+                    <p>{tag.name}</p>
+                    <TooltipArrow className="fill-primary" />
+                  </TooltipContent>
+                </Tooltip>
+              </li>
             ))}
-          </div>
+          </ul>
         )}
       </div>
     </MagicCard>

@@ -197,7 +197,7 @@ export const Particles: React.FC<ParticlesProps> = ({
     // Local change: one crisp radius (no random jitter) keeps dots from looking soft.
     const pSize = size
     const alpha = 0
-    const targetAlpha = parseFloat((Math.random() * 0.35 + 0.1).toFixed(2))
+    const targetAlpha = parseFloat((Math.random() * 0.55 + 0.15).toFixed(2))
     const dx = (Math.random() - 0.5) * 0.1
     const dy = (Math.random() - 0.5) * 0.1
     const magnetism = 0.1 + Math.random() * 4
@@ -271,7 +271,7 @@ export const Particles: React.FC<ParticlesProps> = ({
         const dist = Math.hypot(points[i].x - points[j].x, points[i].y - points[j].y)
         if (dist >= linkDistance) continue
         const strength = (1 - dist / linkDistance) * Math.min(alphas[i], alphas[j])
-        ctx.strokeStyle = `rgba(${rgb.join(", ")}, ${strength * 0.55})`
+        ctx.strokeStyle = `rgba(${rgb.join(", ")}, ${strength * 0.8})`
         ctx.beginPath()
         ctx.moveTo(points[i].x, points[i].y)
         ctx.lineTo(points[j].x, points[j].y)
@@ -287,7 +287,7 @@ export const Particles: React.FC<ParticlesProps> = ({
     points.forEach((point, i) => {
       const dist = Math.hypot(point.x - cursor.x, point.y - cursor.y)
       if (dist >= reach) return
-      ctx.strokeStyle = `rgba(${rgb.join(", ")}, ${(1 - dist / reach) * alphas[i] * 0.7})`
+      ctx.strokeStyle = `rgba(${rgb.join(", ")}, ${(1 - dist / reach) * alphas[i]})`
       ctx.beginPath()
       ctx.moveTo(point.x, point.y)
       ctx.lineTo(cursor.x, cursor.y)

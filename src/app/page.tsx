@@ -7,6 +7,7 @@ import Markdown from "react-markdown";
 import CertificationsSection from "@/components/section/certifications-section";
 import ContactSection from "@/components/section/contact-section";
 import ProjectsSection from "@/components/section/projects-section";
+import StatusSection from "@/components/section/status-section";
 import WebsitesSection from "@/components/section/websites-section";
 import WorkSection from "@/components/section/work-section";
 import { DisappearingWord } from "@/components/disappearing-word";
@@ -42,8 +43,13 @@ export default function Page() {
             </BlurFade>
           </div>
           <BlurFade delay={BLUR_FADE_DELAY * 2}>
-            <WebsitesSection />
+            <WebsitesSection social={DATA.contact.social} />
           </BlurFade>
+          <div id="status">
+            <BlurFade delay={BLUR_FADE_DELAY * 3}>
+              <StatusSection status={DATA.status} />
+            </BlurFade>
+          </div>
         </div>
       </section>
       <section id="about">
