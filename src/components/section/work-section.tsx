@@ -1,9 +1,9 @@
 import type { Resume } from "@/data/resume";
-import TimelineAccordion from "@/components/section/timeline-accordion";
+import EntryList from "@/components/section/entry-list";
 
 export default function WorkSection({ work }: { work: Resume["work"] }) {
   return (
-    <TimelineAccordion
+    <EntryList
       items={work.map((item) => ({
         id: item.company,
         title: item.company,

@@ -136,9 +136,10 @@
 }
 
 .dark {
-  --background: oklch(0.18 0 0);
+  /* Night (18:00-05:59 WIB): black page, yellow accent. */
+  --background: #000000;
   --foreground: oklch(0.985 0 0);
-  --card: oklch(0.205 0 0);
+  --card: #0d0d0d;
   --card-foreground: oklch(0.985 0 0);
   --popover: oklch(0.205 0 0);
   --popover-foreground: oklch(0.985 0 0);
@@ -151,9 +152,11 @@
   --accent: oklch(0.269 0 0);
   --accent-foreground: oklch(0.985 0 0);
   --destructive: oklch(0.704 0.191 22.216);
-  --border: oklch(1 0 0 / 10%);
+  --border: rgb(255 255 255 / 0.14);
   --input: oklch(1 0 0 / 15%);
-  --ring: oklch(0.556 0 0);
+  --ring: oklch(0.708 0 0);
+  --highlight: #f1e302;
+  --highlight-foreground: #0a0a0a;
   --chart-1: oklch(0.488 0.243 264.376);
   --chart-2: oklch(0.696 0.17 162.48);
   --chart-3: oklch(0.769 0.188 70.08);
@@ -176,6 +179,22 @@
 
   body {
     @apply bg-background text-foreground;
+  }
+
+  /* The day/night switch cross-fades the page instead of snapping. The class only
+     sits on <html> for the length of the fade, so hover transitions stay as they are. */
+  @media (prefers-reduced-motion: no-preference) {
+    html.theme-switching,
+    html.theme-switching *,
+    html.theme-switching *::before,
+    html.theme-switching *::after {
+      transition:
+        background-color 700ms ease,
+        border-color 700ms ease,
+        color 700ms ease,
+        fill 700ms ease,
+        box-shadow 700ms ease !important;
+    }
   }
 
   /* Fallback for in-page anchors; menu clicks use src/lib/smooth-scroll.ts. */

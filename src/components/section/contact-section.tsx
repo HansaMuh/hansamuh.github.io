@@ -1,11 +1,19 @@
 import Link from "next/link";
-import { BorderBeam } from "@/components/magicui/border-beam";
+import { MagicCard } from "@/components/magicui/magic-card";
 import { DisappearingWord } from "@/components/disappearing-word";
 import { DATA } from "@/data/resume";
 
 export default function ContactSection() {
   return (
-    <div className="border rounded-xl p-10 relative bg-background">
+    <MagicCard
+      mode="orb"
+      glowFrom="#0078ff"
+      glowTo="#f1e302"
+      glowOpacity={0.3}
+      glowBlur={50}
+      glowSize={340}
+      className="border rounded-xl p-10 relative bg-background"
+    >
       <div className="absolute -top-4 bg-highlight z-10 rounded-xl px-4 py-1 left-1/2 -translate-x-1/2">
         <span className="text-highlight-foreground text-sm font-medium">Contact Me</span>
       </div>
@@ -26,8 +34,6 @@ export default function ContactSection() {
           </Link>
         </p>
       </div>
-      {/* The one moving edge on the page marks the place to act. */}
-      <BorderBeam size={120} duration={8} colorFrom="#0a0a0a" colorTo="#0078ff" />
-    </div>
+    </MagicCard>
   );
 }

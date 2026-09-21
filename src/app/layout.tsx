@@ -2,6 +2,7 @@ import Footer from "@/components/footer";
 import Navbar from "@/components/navbar";
 import { PageParticles } from "@/components/page-particles";
 import { ScrollProgress } from "@/components/magicui/scroll-progress";
+import { DayNight } from "@/components/day-night";
 import { ThemeProvider } from "@/components/theme-provider";
 import { TooltipProvider } from "@/components/ui/tooltip";
 import { DATA } from "@/data/resume";
@@ -67,6 +68,14 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" suppressHydrationWarning>
+      <head>
+        {/* Paints the right phase before first paint, so night never flashes white. */}
+        <script
+          dangerouslySetInnerHTML={{
+            __html: `(function(){try{var p=new URLSearchParams(location.search).get("phase");var night;if(p==="night"||p==="dark"){night=true}else if(p==="day"||p==="light"){night=false}else{var h=Number(new Intl.DateTimeFormat("en-GB",{timeZone:"Asia/Jakarta",hour:"2-digit",hour12:false}).format(new Date()));night=h<6||h>=18}document.documentElement.classList.toggle("dark",night);document.documentElement.style.colorScheme=night?"dark":"light";localStorage.setItem("theme",night?"dark":"light");}catch(e){}})();`,
+          }}
+        />
+      </head>
       <body
         className={cn(
           "min-h-screen bg-background font-sans antialiased relative",
@@ -74,7 +83,8 @@ export default function RootLayout({
           geistMono.variable
         )}
       >
-        <ThemeProvider attribute="class" forcedTheme="light">
+        <ThemeProvider attribute="class" defaultTheme="light" enableSystem={false}>
+          <DayNight />
           <TooltipProvider delayDuration={0}>
             <PageParticles />
             <ScrollProgress className="h-0.5 bg-none bg-foreground" />

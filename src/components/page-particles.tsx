@@ -1,11 +1,16 @@
 "use client";
 
 import { useEffect, useState } from "react";
+import { useTheme } from "next-themes";
 import { Particles } from "@/components/magicui/particles";
 
-// Two layers because Particles draws one color: yellow in front, blue behind it.
-// Each layer links its own nearby dots (and the cursor) into a moving constellation.
+const BLUE = "#0078ff";
+const YELLOW = "#f1e302";
+
+// Two layers because Particles draws one color. Day leads with yellow, night with
+// blue; the keyed wrapper fades the new field in when the phase turns over.
 export function PageParticles() {
+  const { resolvedTheme } = useTheme();
   const [enabled, setEnabled] = useState(false);
 
   useEffect(() => {
@@ -18,32 +23,38 @@ export function PageParticles() {
 
   if (!enabled) return null;
 
+  const night = resolvedTheme === "dark";
+  const [front, back] = night ? [BLUE, YELLOW] : [YELLOW, BLUE];
+
   return (
-    <div aria-hidden className="pointer-events-none fixed inset-0 z-0">
+    <div
+      key={night ? "night" : "day"}
+      aria-hidden
+      className="pointer-events-none fixed inset-0 z-0 animate-in fade-in duration-700"
+    >
       <Particles
         className="absolute inset-0"
-        quantity={140}
-        size={1.1}
-        data-layer="main"
+        quantity={100}
+        size={1}
         staticity={30}
         ease={50}
         vx={0.12}
         vy={-0.08}
         linkDistance={110}
         twinkle
-        color="#f1e302"
+        color={front}
       />
       <Particles
         className="absolute inset-0"
-        quantity={60}
-        size={1.4}
+        quantity={45}
+        size={1}
         staticity={30}
         ease={50}
         vx={-0.1}
         vy={-0.12}
         linkDistance={90}
         twinkle
-        color="#0078ff"
+        color={back}
       />
     </div>
   );

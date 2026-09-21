@@ -194,9 +194,10 @@ export const Particles: React.FC<ParticlesProps> = ({
     const y = Math.floor(Math.random() * canvasSize.current.h)
     const translateX = 0
     const translateY = 0
-    const pSize = Math.floor(Math.random() * 2) + size
+    // Local change: one crisp radius (no random jitter) keeps dots from looking soft.
+    const pSize = size
     const alpha = 0
-    const targetAlpha = parseFloat((Math.random() * 0.6 + 0.1).toFixed(1))
+    const targetAlpha = parseFloat((Math.random() * 0.35 + 0.1).toFixed(2))
     const dx = (Math.random() - 0.5) * 0.1
     const dy = (Math.random() - 0.5) * 0.1
     const magnetism = 0.1 + Math.random() * 4
@@ -226,7 +227,9 @@ export const Particles: React.FC<ParticlesProps> = ({
       const alpha = drawAlpha
       context.current.translate(translateX, translateY)
       context.current.beginPath()
-      context.current.arc(x, y, size, 0, 2 * Math.PI)
+      // Local change: whole device pixels, so the dots land sharp instead of blurred.
+      const snap = (value: number) => Math.round(value * dpr) / dpr
+      context.current.arc(snap(x), snap(y), size, 0, 2 * Math.PI)
       context.current.fillStyle = `rgba(${rgb.join(", ")}, ${alpha})`
       context.current.fill()
       context.current.setTransform(dpr, 0, 0, dpr, 0, 0)
@@ -257,18 +260,6 @@ export const Particles: React.FC<ParticlesProps> = ({
     }
   }
 
-  const remapValue = (
-    value: number,
-    start1: number,
-    end1: number,
-    start2: number,
-    end2: number
-  ): number => {
-    const remapped =
-      ((value - start1) * (end2 - start2)) / (end1 - start1) + start2
-    return remapped > 0 ? remapped : 0
-  }
-
   // Local addition: thin lines between nearby particles, and from particles to the cursor.
   const drawLinks = (alphas: number[]) => {
     const ctx = context.current
@@ -280,7 +271,7 @@ export const Particles: React.FC<ParticlesProps> = ({
         const dist = Math.hypot(points[i].x - points[j].x, points[i].y - points[j].y)
         if (dist >= linkDistance) continue
         const strength = (1 - dist / linkDistance) * Math.min(alphas[i], alphas[j])
-        ctx.strokeStyle = `rgba(${rgb.join(", ")}, ${strength * 0.8})`
+        ctx.strokeStyle = `rgba(${rgb.join(", ")}, ${strength * 0.55})`
         ctx.beginPath()
         ctx.moveTo(points[i].x, points[i].y)
         ctx.lineTo(points[j].x, points[j].y)
@@ -296,7 +287,7 @@ export const Particles: React.FC<ParticlesProps> = ({
     points.forEach((point, i) => {
       const dist = Math.hypot(point.x - cursor.x, point.y - cursor.y)
       if (dist >= reach) return
-      ctx.strokeStyle = `rgba(${rgb.join(", ")}, ${(1 - dist / reach) * alphas[i]})`
+      ctx.strokeStyle = `rgba(${rgb.join(", ")}, ${(1 - dist / reach) * alphas[i] * 0.7})`
       ctx.beginPath()
       ctx.moveTo(point.x, point.y)
       ctx.lineTo(cursor.x, cursor.y)
@@ -308,25 +299,8 @@ export const Particles: React.FC<ParticlesProps> = ({
     clearContext()
     const now = performance.now()
     circles.current.forEach((circle: Circle, i: number) => {
-      // Handle the alpha value
-      const edge = [
-        circle.x + circle.translateX - circle.size, // distance from left edge
-        canvasSize.current.w - circle.x - circle.translateX - circle.size, // distance from right edge
-        circle.y + circle.translateY - circle.size, // distance from top edge
-        canvasSize.current.h - circle.y - circle.translateY - circle.size, // distance from bottom edge
-      ]
-      const closestEdge = edge.reduce((a, b) => Math.min(a, b))
-      const remapClosestEdge = parseFloat(
-        remapValue(closestEdge, 0, 20, 0, 1).toFixed(2)
-      )
-      if (remapClosestEdge > 1) {
-        circle.alpha += 0.02
-        if (circle.alpha > circle.targetAlpha) {
-          circle.alpha = circle.targetAlpha
-        }
-      } else {
-        circle.alpha = circle.targetAlpha * remapClosestEdge
-      }
+      // Local change: no fade near the edges, so the field covers the whole screen.
+      circle.alpha = Math.min(circle.alpha + 0.02, circle.targetAlpha)
       circle.x += circle.dx + vx
       circle.y += circle.dy + vy
       circle.translateX +=

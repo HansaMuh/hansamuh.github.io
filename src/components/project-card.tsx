@@ -3,7 +3,7 @@
 import { Badge } from "@/components/ui/badge";
 import { Safari } from "@/components/magicui/safari";
 import { cn } from "@/lib/utils";
-import { ArrowUpRight } from "lucide-react";
+import { MagicCard } from "@/components/magicui/magic-card";
 import Link from "next/link";
 import Markdown from "react-markdown";
 
@@ -40,9 +40,15 @@ export function ProjectCard({
   className,
 }: Props) {
   return (
-    <div
+    <MagicCard
+      mode="orb"
+      glowFrom="#0078ff"
+      glowTo="#f1e302"
+      glowOpacity={0.3}
+      glowBlur={50}
+      glowSize={300}
       className={cn(
-        "flex flex-col h-full bg-card text-card-foreground border border-border rounded-xl overflow-hidden hover:ring-2 cursor-pointer hover:ring-muted transition-all duration-200",
+        "flex flex-col h-full rounded-xl border border-border bg-card text-card-foreground overflow-hidden",
         className
       )}
     >
@@ -70,7 +76,7 @@ export function ProjectCard({
                 onClick={(e) => e.stopPropagation()}
               >
                 <Badge
-                  className="flex items-center gap-1.5 text-xs bg-black text-white hover:bg-black/90"
+                  className="flex items-center gap-1.5 text-xs bg-foreground text-background hover:bg-foreground/90"
                   variant="default"
                 >
                   {link.icon}
@@ -82,20 +88,10 @@ export function ProjectCard({
         )}
       </div>
       <div className="p-6 flex flex-col gap-3 flex-1">
-        <div className="flex items-start justify-between gap-2">
-          <div className="flex flex-col gap-1">
-            <h3 className="font-semibold">{title}</h3>
-            <time className="text-xs text-muted-foreground">{dates}</time>
-          </div>
-          <Link
-            href={href || "#"}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="text-muted-foreground hover:text-foreground transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 rounded-sm"
-            aria-label={`Open ${title}`}
-          >
-            <ArrowUpRight className="h-4 w-4" aria-hidden />
-          </Link>
+        <div className="flex flex-col gap-1">
+          {/* No corner arrow here: the Website / Source badges already lead out. */}
+          <h3 className="font-semibold">{title}</h3>
+          <time className="text-xs text-muted-foreground">{dates}</time>
         </div>
         <div className="text-xs flex-1 prose max-w-full text-pretty font-sans leading-relaxed text-muted-foreground dark:prose-invert">
           <Markdown>{description}</Markdown>
@@ -115,6 +111,6 @@ export function ProjectCard({
           </div>
         )}
       </div>
-    </div>
+    </MagicCard>
   );
 }

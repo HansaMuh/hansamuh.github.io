@@ -35,7 +35,7 @@ export default function Page() {
               />
             </div>
             <BlurFade delay={BLUR_FADE_DELAY} className="order-1 md:order-2">
-              <Avatar className="size-24 md:size-32 border rounded-full shadow-lg ring-4 ring-muted">
+              <Avatar className="size-40 border rounded-full shadow-lg ring-4 ring-muted">
                 <AvatarImage alt={DATA.name} src={DATA.avatarUrl} />
                 <AvatarFallback>{DATA.initials}</AvatarFallback>
               </Avatar>
@@ -115,14 +115,9 @@ export default function Page() {
         </BlurFade>
       </section>
       <section id="certifications">
-        <div className="flex min-h-0 flex-col gap-y-6">
-          <BlurFade delay={BLUR_FADE_DELAY * 13}>
-            <h2 className="text-xl font-bold">Certifications</h2>
-          </BlurFade>
-          <BlurFade delay={BLUR_FADE_DELAY * 14}>
-            <CertificationsSection certifications={DATA.certifications} />
-          </BlurFade>
-        </div>
+        <BlurFade delay={BLUR_FADE_DELAY * 13}>
+          <CertificationsSection certifications={DATA.certifications} />
+        </BlurFade>
       </section>
       <section id="contact">
         <BlurFade delay={BLUR_FADE_DELAY * 16}>
