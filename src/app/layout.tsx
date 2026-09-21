@@ -1,7 +1,6 @@
 import Footer from "@/components/footer";
 import Navbar from "@/components/navbar";
-import { PageParticles } from "@/components/page-particles";
-import { ScrollProgress } from "@/components/magicui/scroll-progress";
+import { PageGrid } from "@/components/page-grid";
 import { DayNight } from "@/components/day-night";
 import { ThemeProvider } from "@/components/theme-provider";
 import { TooltipProvider } from "@/components/ui/tooltip";
@@ -86,10 +85,9 @@ export default function RootLayout({
         <ThemeProvider attribute="class" defaultTheme="light" enableSystem={false}>
           <DayNight />
           <TooltipProvider delayDuration={0}>
-            <PageParticles />
-            <ScrollProgress className="h-0.5 bg-none bg-foreground" />
+            <PageGrid />
             <Navbar navbar={DATA.navbar} />
-            <div className="relative z-10 max-w-3xl mx-auto pt-28 sm:pt-32 px-6">
+            <div className="relative z-10 max-w-3xl mx-auto pt-32 sm:pt-40 px-6">
               {children}
               <Footer />
             </div>

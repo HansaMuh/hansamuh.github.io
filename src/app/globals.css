@@ -110,16 +110,16 @@
   --secondary: oklch(0.97 0 0);
   --secondary-foreground: oklch(0.205 0 0);
   --muted: oklch(0.97 0 0);
-  --muted-foreground: oklch(0.556 0 0);
+  /* Text is one colour per phase: no grey tier anywhere on the page. */
+  --muted-foreground: oklch(0.145 0 0);
   --accent: oklch(0.97 0 0);
   --accent-foreground: oklch(0.205 0 0);
   --destructive: oklch(0.577 0.245 27.325);
   --border: oklch(0.922 0 0);
   --input: oklch(0.922 0 0);
   --ring: oklch(0.708 0 0);
-  /* Accent: active menu item, section pills, website buttons, the emphasized headline
-     word. White on it is 4.6:1, which is why the blue is a shade darker than the
-     #0078ff in the particles. As text it is only used at heading size (3.6:1). */
+  /* Accent, used as a fill only: blue by day, yellow by night. White on this blue
+     is 4.59:1, so it clears AA at any size. The flickering grid follows the pair. */
   --highlight: #0070f0;
   --highlight-foreground: #ffffff;
   --chart-1: oklch(0.646 0.222 41.116);
@@ -150,15 +150,16 @@
   --secondary: oklch(0.269 0 0);
   --secondary-foreground: oklch(0.985 0 0);
   --muted: oklch(0.269 0 0);
-  --muted-foreground: oklch(0.708 0 0);
+  --muted-foreground: oklch(0.985 0 0);
   --accent: oklch(0.269 0 0);
   --accent-foreground: oklch(0.985 0 0);
   --destructive: oklch(0.704 0.191 22.216);
   --border: rgb(255 255 255 / 0.14);
   --input: oklch(1 0 0 / 15%);
   --ring: oklch(0.708 0 0);
+  /* Black on this yellow is 14.8:1. */
   --highlight: #f1e302;
-  --highlight-foreground: #0a0a0a;
+  --highlight-foreground: #000000;
   --chart-1: oklch(0.488 0.243 264.376);
   --chart-2: oklch(0.696 0.17 162.48);
   --chart-3: oklch(0.769 0.188 70.08);
@@ -208,7 +209,7 @@
 
   /* Keeps section headings clear of the fixed top menu. */
   main > section[id] {
-    scroll-margin-top: 6rem;
+    scroll-margin-top: 7rem;
   }
 
   /* Shiki dual theme support */
@@ -258,10 +259,6 @@
 
   .prose h6 {
     @apply text-base! font-medium! tracking-tight! leading-tight!;
-  }
-
-  .prose a {
-    @apply text-primary underline underline-offset-4;
   }
 
   .prose blockquote {
@@ -324,4 +321,11 @@
     @apply border-b-0;
   }
 
+}
+
+/* The typography plugin ships its own link colour, a blue-grey, and it is the last grey
+   tier left on the page. This sits outside @layer base on purpose: layer order beats
+   specificity, so a rule inside base would lose to the plugin whatever its selector. */
+.prose a {
+  color: var(--foreground);
 }

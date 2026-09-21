@@ -35,12 +35,13 @@ import { GithubActions } from "@/components/ui/svgs/githubActions";
 import { Azure } from "@/components/ui/svgs/azure";
 import { Playwright } from "@/components/ui/svgs/playwright";
 import { Flash } from "@/components/ui/svgs/flash";
-import { GithubLight } from "@/components/ui/svgs/githubLight";
+import { GithubMark } from "@/components/ui/svgs/githubMark";
 import { Linkedin } from "@/components/ui/svgs/linkedin";
 import { Protonmail } from "@/components/ui/svgs/protonmail";
 import { Figma } from "@/components/ui/svgs/figma";
 import { Instagram } from "@/components/ui/svgs/instagram";
 import { Xaml } from "@/components/ui/svgs/xaml";
+import { Threads } from "@/components/ui/svgs/threads";
 
 // Keys are the values allowed in the "icon" fields of resume.json.
 export const ICONS = {
@@ -65,10 +66,11 @@ export const ICONS = {
   github: Icons.github,
   linkedin: Icons.linkedin,
   instagram: Instagram,
+  threads: Threads,
   x: Icons.x,
   youtube: Icons.youtube,
   // Brand-colored marks
-  githubbrand: GithubLight,
+  githubmark: GithubMark,
   linkedinbrand: Linkedin,
   protonmail: Protonmail,
   // Technologies

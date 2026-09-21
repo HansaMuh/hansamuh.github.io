@@ -75,7 +75,7 @@ export function ProjectCard({
                 onClick={(e) => e.stopPropagation()}
               >
                 <Badge
-                  className="flex items-center gap-1.5 text-xs bg-highlight text-highlight-foreground hover:bg-highlight/90"
+                  className="flex items-center gap-1.5 text-xs bg-foreground text-background hover:bg-foreground/90"
                   variant="default"
                 >
                   {link.icon}
@@ -97,7 +97,7 @@ export function ProjectCard({
         </div>
         {/* Logos only; the name lives in the tooltip and the accessible label. */}
         {tags && tags.length > 0 && (
-          <ul className="flex flex-wrap items-center gap-3 mt-auto">
+          <ul className="flex flex-wrap items-center gap-2.5 mt-auto">
             {tags.map((tag) => (
               <li key={tag.name}>
                 <Tooltip>
@@ -105,7 +105,7 @@ export function ProjectCard({
                     <span
                       tabIndex={0}
                       aria-label={tag.name}
-                      className="flex size-7 items-center justify-center rounded-sm focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2"
+                      className="flex size-9 items-center justify-center rounded-sm focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2"
                     >
                       {tag.icon}
                     </span>

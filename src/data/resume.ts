@@ -25,6 +25,8 @@ const resumeSchema = z.object({
   contact: z.object({
     email: z.string(),
     tel: z.string(),
+    // Shown as a QR plus a copyable link in the contact section.
+    share: z.object({ label: z.string(), url: z.string(), qr: z.string() }),
     social: z.record(
       z.string(),
       z.object({

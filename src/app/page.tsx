@@ -5,6 +5,7 @@ import { DATA } from "@/data/resume";
 import { ICONS } from "@/data/icons";
 import Markdown from "react-markdown";
 import CertificationsSection from "@/components/section/certifications-section";
+import SectionHeader from "@/components/section/section-header";
 import ContactSection from "@/components/section/contact-section";
 import ProjectsSection from "@/components/section/projects-section";
 import StatusSection from "@/components/section/status-section";
@@ -17,9 +18,12 @@ const BLUR_FADE_DELAY = 0.04;
 
 export default function Page() {
   return (
-    <main className="min-h-dvh flex flex-col gap-14 relative">
-      <section id="hero">
-        <div className="mx-auto w-full space-y-4">
+    <main className="min-h-dvh flex flex-col gap-28 relative">
+      <section
+        id="hero"
+        className="min-h-[calc(100dvh-8rem)] sm:min-h-[calc(100dvh-10rem)]"
+      >
+        <div className="mx-auto flex w-full flex-col">
           <div className="gap-2 gap-y-6 flex flex-col md:flex-row justify-between">
             <div className="gap-3 flex flex-col order-2 md:order-1">
               <BlurFade delay={BLUR_FADE_DELAY} yOffset={8}>
@@ -42,10 +46,10 @@ export default function Page() {
               </Avatar>
             </BlurFade>
           </div>
-          <BlurFade delay={BLUR_FADE_DELAY * 2}>
+          <BlurFade delay={BLUR_FADE_DELAY * 2} className="mt-10">
             <WebsitesSection social={DATA.contact.social} />
           </BlurFade>
-          <div id="status" className="mt-10">
+          <div id="status" className="mt-16">
             <BlurFade delay={BLUR_FADE_DELAY * 3}>
               <StatusSection status={DATA.status} />
             </BlurFade>
@@ -55,7 +59,7 @@ export default function Page() {
       <section id="about">
         <div className="flex min-h-0 flex-col gap-y-4">
           <BlurFade delay={BLUR_FADE_DELAY * 3}>
-            <h2 className="text-xl font-bold">About Me</h2>
+            <SectionHeader title="About Me" subtitle="The short version." />
           </BlurFade>
           <BlurFade delay={BLUR_FADE_DELAY * 4}>
             <div className="prose max-w-full text-pretty font-sans leading-relaxed text-muted-foreground dark:prose-invert">
@@ -69,7 +73,7 @@ export default function Page() {
       <section id="work">
         <div className="flex min-h-0 flex-col gap-y-6">
           <BlurFade delay={BLUR_FADE_DELAY * 5}>
-            <h2 className="text-xl font-bold">Work Experience</h2>
+            <SectionHeader title="Work Experience" subtitle="Where I’ve shipped so far." />
           </BlurFade>
           <BlurFade delay={BLUR_FADE_DELAY * 6}>
             <WorkSection work={DATA.work} />
@@ -79,7 +83,7 @@ export default function Page() {
       <section id="tech-stack">
         <div className="flex min-h-0 flex-col gap-y-4">
           <BlurFade delay={BLUR_FADE_DELAY * 9}>
-            <h2 className="text-xl font-bold">Tech Stack</h2>
+            <SectionHeader title="Tech Stack" subtitle="What I reach for." />
           </BlurFade>
           <BlurFade delay={BLUR_FADE_DELAY * 10}>
             {/* The marquee repeats every chip, so it's hidden from screen readers; this list isn't. */}

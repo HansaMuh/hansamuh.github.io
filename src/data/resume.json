@@ -9,50 +9,147 @@
   "summary": "I studied Computer Science at [BINUS University](https://binus.ac.id), majoring in Software Engineering, and graduated in 2026 with a 3.66 GPA. The software I like building most takes a chore off someone’s desk.\n\nA year at Bank Central Asia, a bachelor’s thesis and a few tools for a game community taught me to turn messy requirements into tools people rely on. I do my best work in hands-on teams, and in 2023 mine reached the Top 14 of the Marketeers Innovation Challenge.\n\nBINUS University · 2026 · Jakarta, Indonesia",
   "avatarUrl": "/me.png",
   "status": [
-    { "icon": "code", "label": "Building", "detail": "Working on [Mystrose](https://github.com/GentleGanku/Mystrose), the modern scripting client for AdventureQuest Worlds!" },
-    { "icon": "graduation", "label": "Studying", "detail": "Completing the professional certificates from [Amazon](https://www.coursera.org/professional-certificates/amazon-junior-software-developer), [Meta](https://www.coursera.org/specializations/meta-full-stack-developer) and [Microsoft](https://www.coursera.org/professional-certificates/microsoft-full-stack-developer)!" },
-    { "icon": "briefcase2", "label": "Job hunting", "detail": "Looking for [software engineering jobs in Indonesia](https://www.linkedin.com/in/muh-raihan-saputra/)!" },
-    { "icon": "music", "label": "Listening", "detail": "Lofi radio from [Chillhop Music](https://www.youtube.com/@ChillhopMusic)!" },
-    { "icon": "gamepad", "label": "Playing", "detail": "The ultimate RPG game, [DragonFable](https://www.dragonfable.com/)! Hardcore, of course." }
+    {
+      "icon": "code",
+      "label": "Building",
+      "detail": "Building [Mystrose](https://github.com/GentleGanku/Mystrose)"
+    },
+    {
+      "icon": "graduation",
+      "label": "Studying",
+      "detail": "Studying at [Amazon](https://www.coursera.org/professional-certificates/amazon-junior-software-developer), [Meta](https://www.coursera.org/specializations/meta-full-stack-developer) and [Microsoft](https://www.coursera.org/professional-certificates/microsoft-full-stack-developer)"
+    },
+    {
+      "icon": "briefcase2",
+      "label": "Job hunting",
+      "detail": "Job hunting in [Indonesia](https://www.linkedin.com/in/muh-raihan-saputra/)"
+    },
+    {
+      "icon": "music",
+      "label": "Listening",
+      "detail": "Lofi from [Chillhop](https://www.youtube.com/@ChillhopMusic)"
+    },
+    {
+      "icon": "gamepad",
+      "label": "Playing",
+      "detail": "Playing [DragonFable](https://www.dragonfable.com/)"
+    }
   ],
   "skills": [
-    { "name": "C#", "icon": "csharp" },
-    { "name": "TypeScript", "icon": "typescript" },
-    { "name": "JavaScript", "icon": "javascript" },
-    { "name": "Java", "icon": "java" },
-    { "name": ".NET", "icon": "dotnet" },
-    { "name": "React", "icon": "react" },
-    { "name": "ASP.NET Core", "icon": "dotnet" },
-    { "name": "WPF", "icon": "xaml" },
-    { "name": "MySQL", "icon": "mysql" },
-    { "name": "Microsoft SQL Server", "icon": "sqlserver" },
-    { "name": "Git", "icon": "git" },
-    { "name": "GitHub", "icon": "githubbrand" },
-    { "name": "GitHub Actions", "icon": "githubactions" },
-    { "name": "Microsoft Azure", "icon": "azure" },
-    { "name": "Playwright", "icon": "playwright" },
-    { "name": "Figma", "icon": "figma" }
+    {
+      "name": "C#",
+      "icon": "csharp"
+    },
+    {
+      "name": "TypeScript",
+      "icon": "typescript"
+    },
+    {
+      "name": "JavaScript",
+      "icon": "javascript"
+    },
+    {
+      "name": "Java",
+      "icon": "java"
+    },
+    {
+      "name": ".NET",
+      "icon": "dotnet"
+    },
+    {
+      "name": "React",
+      "icon": "react"
+    },
+    {
+      "name": "ASP.NET Core",
+      "icon": "dotnet"
+    },
+    {
+      "name": "WPF",
+      "icon": "xaml"
+    },
+    {
+      "name": "MySQL",
+      "icon": "mysql"
+    },
+    {
+      "name": "Microsoft SQL Server",
+      "icon": "sqlserver"
+    },
+    {
+      "name": "Git",
+      "icon": "git"
+    },
+    {
+      "name": "GitHub",
+      "icon": "githubmark"
+    },
+    {
+      "name": "GitHub Actions",
+      "icon": "githubactions"
+    },
+    {
+      "name": "Microsoft Azure",
+      "icon": "azure"
+    },
+    {
+      "name": "Playwright",
+      "icon": "playwright"
+    },
+    {
+      "name": "Figma",
+      "icon": "figma"
+    }
   ],
   "navbar": {
     "top": [
-      { "href": "#top", "icon": "home", "label": "Home" }
+      {
+        "href": "#top",
+        "icon": "home",
+        "label": "Home"
+      }
     ],
     "sections": [
-      { "href": "#about", "icon": "user", "label": "About Me" },
-      { "href": "#work", "icon": "briefcase", "label": "Work Experience" },
-      { "href": "#tech-stack", "icon": "layers", "label": "Tech Stack" },
-      { "href": "#projects", "icon": "folder", "label": "My Projects" },
-      { "href": "#certifications", "icon": "award", "label": "Certifications" }
+      {
+        "href": "#about",
+        "icon": "user",
+        "label": "About Me"
+      },
+      {
+        "href": "#work",
+        "icon": "briefcase",
+        "label": "Work Experience"
+      },
+      {
+        "href": "#tech-stack",
+        "icon": "layers",
+        "label": "Tech Stack"
+      },
+      {
+        "href": "#projects",
+        "icon": "folder",
+        "label": "My Projects"
+      },
+      {
+        "href": "#certifications",
+        "icon": "award",
+        "label": "Certifications"
+      }
     ]
   },
   "contact": {
     "email": "muh.raihan.saputra@protonmail.com",
     "tel": "",
+    "share": {
+      "label": "@mraihanspt",
+      "url": "https://www.threads.net/",
+      "qr": "/qr-threads.png"
+    },
     "social": {
       "GitHub": {
         "name": "GitHub",
         "url": "https://github.com/HansaMuh",
-        "icon": "github",
+        "icon": "githubmark",
         "websites": true
       },
       "LinkedIn": {
@@ -65,6 +162,12 @@
         "name": "Instagram",
         "url": "https://instagram.com/mraihanspt",
         "icon": "instagram",
+        "websites": true
+      },
+      "Threads": {
+        "name": "Threads",
+        "url": "https://www.threads.net/",
+        "icon": "threads",
         "websites": true
       },
       "email": {
@@ -96,16 +199,42 @@
       "active": false,
       "description": "A mobile-first way for households to see their postpaid electricity bill coming before the cycle closes. My bachelor’s thesis, evaluated with 76 users.",
       "technologies": [
-        { "name": "React", "icon": "react" },
-        { "name": "TypeScript", "icon": "typescript" },
-        { "name": "C#", "icon": "csharp" },
-        { "name": ".NET", "icon": "dotnet" },
-        { "name": "MySQL", "icon": "mysql" },
-        { "name": "Microsoft Azure", "icon": "azure" }
+        {
+          "name": "React",
+          "icon": "react"
+        },
+        {
+          "name": "TypeScript",
+          "icon": "typescript"
+        },
+        {
+          "name": "C#",
+          "icon": "csharp"
+        },
+        {
+          "name": ".NET",
+          "icon": "dotnet"
+        },
+        {
+          "name": "MySQL",
+          "icon": "mysql"
+        },
+        {
+          "name": "Microsoft Azure",
+          "icon": "azure"
+        }
       ],
       "links": [
-        { "type": "Website", "href": "https://sema.web.id/", "icon": "globe" },
-        { "type": "Source", "href": "https://github.com/HansaMuh/SEMA", "icon": "github" }
+        {
+          "type": "Website",
+          "href": "https://sema.web.id/",
+          "icon": "globe"
+        },
+        {
+          "type": "Source",
+          "href": "https://github.com/HansaMuh/SEMA",
+          "icon": "github"
+        }
       ],
       "image": "",
       "video": ""
@@ -117,12 +246,25 @@
       "active": false,
       "description": "A desktop client that lets AdventureQuest Worlds players automate gameplay with visual script blocks, run by an interpreter I wrote.",
       "technologies": [
-        { "name": "C#", "icon": "csharp" },
-        { "name": ".NET", "icon": "dotnet" },
-        { "name": "WPF", "icon": "xaml" }
+        {
+          "name": "C#",
+          "icon": "csharp"
+        },
+        {
+          "name": ".NET",
+          "icon": "dotnet"
+        },
+        {
+          "name": "WPF",
+          "icon": "xaml"
+        }
       ],
       "links": [
-        { "type": "Source", "href": "https://github.com/GentleGanku/Mystrose", "icon": "github" }
+        {
+          "type": "Source",
+          "href": "https://github.com/GentleGanku/Mystrose",
+          "icon": "github"
+        }
       ],
       "image": "",
       "video": ""
@@ -134,11 +276,21 @@
       "active": false,
       "description": "Sign language lessons with a camera-based gesture guide. My part: the course interface, the content flow and the gesture recognition hookup.",
       "technologies": [
-        { "name": "React", "icon": "react" },
-        { "name": "TypeScript", "icon": "typescript" }
+        {
+          "name": "React",
+          "icon": "react"
+        },
+        {
+          "name": "TypeScript",
+          "icon": "typescript"
+        }
       ],
       "links": [
-        { "type": "Source", "href": "https://github.com/wilbertyg/Signtro", "icon": "github" }
+        {
+          "type": "Source",
+          "href": "https://github.com/wilbertyg/Signtro",
+          "icon": "github"
+        }
       ],
       "image": "",
       "video": ""
@@ -150,11 +302,21 @@
       "active": false,
       "description": "Pulls hard-to-reach cell and pad labels out of AdventureQuest Worlds maps in seconds, ready for Mystrose and other community tools.",
       "technologies": [
-        { "name": "ActionScript 3", "icon": "flash" },
-        { "name": "Flash", "icon": "flash" }
+        {
+          "name": "ActionScript 3",
+          "icon": "flash"
+        },
+        {
+          "name": "Flash",
+          "icon": "flash"
+        }
       ],
       "links": [
-        { "type": "Source", "href": "https://github.com/GentleGanku/MapReader", "icon": "github" }
+        {
+          "type": "Source",
+          "href": "https://github.com/GentleGanku/MapReader",
+          "icon": "github"
+        }
       ],
       "image": "",
       "video": ""

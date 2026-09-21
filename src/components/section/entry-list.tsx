@@ -61,7 +61,7 @@ export default function EntryList({ items }: { items: TimelineItem[] }) {
                 className="rounded-md focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2"
               >
                 <Badge
-                  className="flex items-center gap-1.5 text-xs bg-highlight text-highlight-foreground hover:bg-highlight/90"
+                  className="flex items-center gap-1.5 text-xs bg-foreground text-background hover:bg-foreground/90"
                   variant="default"
                 >
                   {item.link.icon}

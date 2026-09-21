@@ -2,35 +2,15 @@ import BlurFade from "@/components/magicui/blur-fade";
 import { ProjectCard } from "@/components/project-card";
 import { DATA } from "@/data/resume";
 import { ICONS } from "@/data/icons";
+import SectionHeader from "@/components/section/section-header";
 
 const BLUR_FADE_DELAY = 0.04;
 
 export default function ProjectsSection() {
     return (
         <div className="flex min-h-0 flex-col gap-y-8">
-            <div className="flex flex-col gap-y-4 items-center justify-center">
-                <div className="flex items-center w-full">
-                    <div
-                        className="flex-1 h-px bg-linear-to-r from-transparent from-5% via-border via-95% to-transparent"
-
-                    />
-                    <div className="bg-highlight z-10 rounded-xl px-4 py-1">
-                        <span className="text-highlight-foreground text-sm font-medium">My Projects</span>
-                    </div>
-                    <div
-                        className="flex-1 h-px bg-linear-to-l from-transparent from-5% via-border via-95% to-transparent"
-
-                    />
-                </div>
-                <div className="flex flex-col gap-y-3 items-center justify-center">
-                    <h2 className="text-3xl font-bold tracking-tighter sm:text-4xl">Things I’ve built along the way.</h2>
-                    <p className="text-muted-foreground md:text-lg/relaxed lg:text-base/relaxed xl:text-lg/relaxed text-balance text-center">
-                        Thesis research, team builds and the tools I made for a
-                        game community.
-                    </p>
-                </div>
-            </div>
-            <div className="grid grid-cols-1 gap-3 sm:grid-cols-2 max-w-[800px] mx-auto auto-rows-fr">
+            <SectionHeader title="My Projects" subtitle="Things I’ve built along the way." />
+            <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 max-w-[800px] mx-auto auto-rows-fr">
                 {DATA.projects.map((project, id) => (
                     <BlurFade
                         key={project.title}
@@ -45,7 +25,7 @@ export default function ProjectsSection() {
                             dates={project.dates}
                             tags={project.technologies.map((tech) => {
                                 const TechIcon = ICONS[tech.icon];
-                                return { name: tech.name, icon: <TechIcon className="size-3.5" /> };
+                                return { name: tech.name, icon: <TechIcon className="size-7" /> };
                             })}
                             image={project.image}
                             video={project.video}

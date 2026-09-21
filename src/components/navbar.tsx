@@ -127,7 +127,7 @@ function NavLink({ item, active = false }: { item: NavItem; active?: boolean }) 
               "rounded-full cursor-pointer size-full p-0 border transition-colors",
               active
                 ? "bg-highlight text-highlight-foreground border-highlight"
-                : "bg-card text-muted-foreground hover:text-foreground hover:bg-muted border-border"
+                : "bg-card text-foreground hover:bg-muted border-border"
             )}
           >
             <ItemIcon className="size-full" />
@@ -162,7 +162,7 @@ export default function Navbar({ navbar }: { navbar: Resume["navbar"] }) {
   return (
     <nav
       aria-label="Main menu"
-      className="pointer-events-none fixed inset-x-0 top-4 z-30 flex justify-center px-4"
+      className="pointer-events-none fixed inset-x-0 top-8 z-30 flex justify-center px-4"
     >
       {/* Below sm the full menu is wider than the screen, so the pill scrolls sideways. */}
       <Dock

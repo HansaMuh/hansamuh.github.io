@@ -7,7 +7,7 @@ const LOWERCASE = "abcdefghijklmnopqrstuvwxyz".split("");
 // change, and screen readers get the plain word.
 export function DisappearingWord({ startOnView = false }: { startOnView?: boolean }) {
   return (
-    <em className="relative inline-block text-highlight">
+    <em className="relative inline-block text-foreground">
       <span className="sr-only">disappear</span>
       <span aria-hidden className="invisible">
         disappear
