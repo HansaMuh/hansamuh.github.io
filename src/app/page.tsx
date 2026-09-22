@@ -13,6 +13,7 @@ import WebsitesSection from "@/components/section/websites-section";
 import WorkSection from "@/components/section/work-section";
 import { DisappearingWord } from "@/components/disappearing-word";
 import { Marquee } from "@/components/magicui/marquee";
+import { HeroBanner } from "@/components/hero-banner";
 
 const BLUR_FADE_DELAY = 0.04;
 
@@ -21,9 +22,10 @@ export default function Page() {
     <main className="min-h-dvh flex flex-col gap-28 relative">
       <section
         id="hero"
-        className="min-h-[calc(100dvh-8rem)] sm:min-h-[calc(100dvh-10rem)]"
+        className="relative min-h-dvh text-white"
       >
-        <div className="mx-auto flex w-full flex-col">
+        <HeroBanner />
+        <div className="relative z-10 mx-auto flex w-full max-w-3xl flex-col px-6 pt-32 pb-40 sm:pt-40 sm:pb-48">
           <div className="gap-2 gap-y-6 flex flex-col md:flex-row justify-between">
             <div className="gap-3 flex flex-col order-2 md:order-1">
               <BlurFade delay={BLUR_FADE_DELAY} yOffset={8}>
@@ -34,13 +36,13 @@ export default function Page() {
                 </h1>
               </BlurFade>
               <BlurFadeText
-                className="text-muted-foreground max-w-[600px] md:text-lg lg:text-xl"
+                className="max-w-[600px] md:text-lg lg:text-xl"
                 delay={BLUR_FADE_DELAY}
                 text={DATA.description}
               />
             </div>
             <BlurFade delay={BLUR_FADE_DELAY} className="order-1 md:order-2">
-              <Avatar className="size-40 border rounded-full shadow-lg ring-4 ring-muted">
+              <Avatar className="size-40 border border-white/20 rounded-full shadow-lg ring-4 ring-white/25">
                 <AvatarImage alt={DATA.name} src={DATA.avatarUrl} />
                 <AvatarFallback>{DATA.initials}</AvatarFallback>
               </Avatar>
@@ -56,6 +58,7 @@ export default function Page() {
           </div>
         </div>
       </section>
+      <div className="mx-auto flex w-full max-w-3xl flex-col gap-28 px-6">
       <section id="about">
         <div className="flex min-h-0 flex-col gap-y-4">
           <BlurFade delay={BLUR_FADE_DELAY * 3}>
@@ -134,6 +137,7 @@ export default function Page() {
           <ContactSection />
         </BlurFade>
       </section>
+      </div>
     </main>
   );
 }

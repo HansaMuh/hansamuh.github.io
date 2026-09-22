@@ -11,7 +11,7 @@ export default function ContactSection() {
     <div className="flex flex-col items-center gap-12 sm:flex-row sm:items-center sm:gap-16">
       {/* Point a phone at the code, or take the handle. The column is a fixed width so
           the code and the pill under it line up exactly. */}
-      <div className="flex w-36 max-w-full shrink-0 flex-col gap-3">
+      <div className="flex w-28 max-w-full shrink-0 flex-col gap-3">
         <img
           src={share.qr}
           alt={`QR code for ${share.label}`}

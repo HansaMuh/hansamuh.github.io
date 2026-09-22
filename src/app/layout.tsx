@@ -87,9 +87,11 @@ export default function RootLayout({
           <TooltipProvider delayDuration={0}>
             <PageGrid />
             <Navbar navbar={DATA.navbar} />
-            <div className="relative z-10 max-w-3xl mx-auto pt-32 sm:pt-40 px-6">
+            <div className="relative z-10">
               {children}
-              <Footer />
+              <div className="max-w-3xl mx-auto px-6">
+                <Footer />
+              </div>
             </div>
           </TooltipProvider>
         </ThemeProvider>

@@ -39,6 +39,8 @@ function handleNavClick(event: React.MouseEvent<HTMLAnchorElement>, href: string
 // is on screen, until the visitor scrolls on their own (wheel, touch or keys).
 function useActiveSection(hrefs: string[]) {
   const [active, setActive] = useState<string | null>(null);
+  // The menu goes see-through while it physically overlaps the banner behind the hero.
+  const [onBanner, setOnBanner] = useState(true);
 
   useEffect(() => {
     let frame = 0;
@@ -49,6 +51,9 @@ function useActiveSection(hrefs: string[]) {
       const menu = document.querySelector('nav[aria-label="Main menu"] > div');
       const top = menu ? menu.getBoundingClientRect().bottom : 0;
       const bottom = window.innerHeight;
+
+      const heroBox = document.querySelector<HTMLElement>("#hero")?.getBoundingClientRect();
+      setOnBanner(heroBox ? heroBox.bottom > top : false);
 
       if (clicked) {
         const box = document.querySelector(clicked)?.getBoundingClientRect();
@@ -107,10 +112,18 @@ function useActiveSection(hrefs: string[]) {
     };
   }, [hrefs]);
 
-  return active;
+  return { active, onBanner };
 }
 
-function NavLink({ item, active = false }: { item: NavItem; active?: boolean }) {
+function NavLink({
+  item,
+  active = false,
+  onBanner = false,
+}: {
+  item: NavItem;
+  active?: boolean;
+  onBanner?: boolean;
+}) {
   const ItemIcon = ICONS[item.icon];
   return (
     <Tooltip>
@@ -127,7 +140,9 @@ function NavLink({ item, active = false }: { item: NavItem; active?: boolean }) 
               "rounded-full cursor-pointer size-full p-0 border transition-colors",
               active
                 ? "bg-highlight text-highlight-foreground border-highlight"
-                : "bg-card text-foreground hover:bg-muted border-border"
+                : onBanner
+                  ? "bg-transparent text-white border-white/40 hover:bg-white/15"
+                  : "bg-card text-foreground hover:bg-muted border-border"
             )}
           >
             <ItemIcon className="size-full" />
@@ -146,18 +161,22 @@ function NavLink({ item, active = false }: { item: NavItem; active?: boolean }) 
   );
 }
 
-function DockSeparator({ className }: { className?: string }) {
+function DockSeparator({ className, onBanner }: { className?: string; onBanner?: boolean }) {
   return (
     <Separator
       orientation="vertical"
-      className={cn("h-2/3 my-auto w-px shrink-0 bg-border", className)}
+      className={cn(
+        "h-2/3 my-auto w-px shrink-0",
+        onBanner ? "bg-white/40" : "bg-border",
+        className
+      )}
     />
   );
 }
 
 export default function Navbar({ navbar }: { navbar: Resume["navbar"] }) {
   const [sectionHrefs] = useState(() => navbar.sections.map((item) => item.href));
-  const active = useActiveSection(sectionHrefs);
+  const { active, onBanner } = useActiveSection(sectionHrefs);
 
   return (
     <nav
@@ -168,18 +187,23 @@ export default function Navbar({ navbar }: { navbar: Resume["navbar"] }) {
       <Dock
         baseSize={44}
         magnification={60}
-        className="pointer-events-auto relative h-15 p-2 w-max max-w-full items-start flex gap-2 border bg-card/90 backdrop-blur-3xl shadow-[0_0_10px_3px] shadow-primary/5 max-sm:overflow-x-auto max-sm:justify-start max-sm:[scrollbar-width:none]"
+        className={cn(
+          "pointer-events-auto relative h-15 p-2 w-max max-w-full items-start flex gap-2 transition-colors max-sm:overflow-x-auto max-sm:justify-start max-sm:[scrollbar-width:none]",
+          onBanner
+            ? "border-transparent bg-transparent"
+            : "border bg-card/90 backdrop-blur-3xl shadow-[0_0_10px_3px] shadow-primary/5"
+        )}
       >
         {navbar.top.map((item) => (
-          <NavLink key={item.href} item={item} active={item.href === active} />
+          <NavLink key={item.href} item={item} active={item.href === active} onBanner={onBanner} />
         ))}
-        <DockSeparator />
+        <DockSeparator onBanner={onBanner} />
         {navbar.sections.map((item) => (
-          <NavLink key={item.href} item={item} active={item.href === active} />
+          <NavLink key={item.href} item={item} active={item.href === active} onBanner={onBanner} />
         ))}
         {/* The clock is desktop-only, so its divider goes with it. */}
-        <DockSeparator className="hidden sm:block" />
-        <WibClock />
+        <DockSeparator className="hidden sm:block" onBanner={onBanner} />
+        <WibClock className={onBanner ? "text-white" : undefined} />
       </Dock>
     </nav>
   );

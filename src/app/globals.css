@@ -329,3 +329,29 @@
 .prose a {
   color: var(--foreground);
 }
+
+/* Scrollbar: thin, and the thumb follows the phase like everything else. The standard
+   properties cover Firefox and current Chrome; the webkit block is what gives the thumb
+   its rounded shape. Unlayered so the utilities cannot win over it. */
+html {
+  scrollbar-width: thin;
+  scrollbar-color: var(--foreground) transparent;
+}
+
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--foreground);
+  border-radius: 9999px;
+}
+
+::-webkit-scrollbar-corner {
+  background: transparent;
+}

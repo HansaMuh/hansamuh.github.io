@@ -41,9 +41,9 @@ export function CopyPill({ label, url }: { label: string; url: string }) {
         type="button"
         onClick={copy}
         aria-label={`Copy ${label}`}
-        className="flex w-full items-center justify-between gap-2 rounded-full bg-foreground px-3 py-1.5 text-xs font-medium text-background transition-colors hover:bg-foreground/90 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2"
+        className="flex w-full items-center justify-center gap-1.5 rounded-full bg-foreground px-3 py-1.5 text-xs font-medium text-background transition-colors hover:bg-foreground/90 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2"
       >
-        <span ref={labelRef} className="truncate">
+        <span ref={labelRef}>
           {label}
         </span>
         {result === "copied" ? (

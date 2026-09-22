@@ -26,7 +26,7 @@ export default function WebsitesSection({ social }: { social: Resume["contact"][
                   target={isExternal ? "_blank" : undefined}
                   rel={isExternal ? "noopener noreferrer" : undefined}
                   aria-label={item.name}
-                  className="flex size-13 items-center justify-center rounded-xl text-foreground transition-transform hover:-translate-y-0.5 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2"
+                  className="flex size-13 items-center justify-center rounded-xl transition-transform hover:-translate-y-0.5 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2"
                 >
                   <SocialIcon className="size-8" aria-hidden />
                 </a>

@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useState } from "react";
+import { cn } from "@/lib/utils";
 
 const formatter = new Intl.DateTimeFormat("en-GB", {
   timeZone: "Asia/Jakarta",
@@ -10,7 +11,7 @@ const formatter = new Intl.DateTimeFormat("en-GB", {
   hour12: false,
 });
 
-export function WibClock() {
+export function WibClock({ className }: { className?: string }) {
   // Starts empty so the static HTML never bakes in the build time.
   const [time, setTime] = useState<string | null>(null);
 
@@ -23,12 +24,15 @@ export function WibClock() {
 
   return (
     <div
-      className="hidden sm:flex h-11 shrink-0 items-center gap-1 px-2 text-sm font-medium tabular-nums text-foreground"
+      className={cn(
+        "hidden sm:flex h-11 shrink-0 items-center gap-1 px-2 text-sm font-medium tabular-nums text-foreground",
+        className
+      )}
       aria-label={time ? `Jakarta time ${time} WIB` : "Jakarta time"}
       role="timer"
     >
       <time>{time ?? "--:--:--"}</time>
-      <span className="text-xs text-muted-foreground">WIB</span>
+      <span className="text-xs opacity-70">WIB</span>
     </div>
   );
 }
