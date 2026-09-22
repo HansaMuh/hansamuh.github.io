@@ -2,6 +2,7 @@ import Footer from "@/components/footer";
 import Navbar from "@/components/navbar";
 import { PageGrid } from "@/components/page-grid";
 import { DayNight } from "@/components/day-night";
+import { MotionProvider } from "@/components/motion-provider";
 import { ThemeProvider } from "@/components/theme-provider";
 import { TooltipProvider } from "@/components/ui/tooltip";
 import { DATA, META_DESCRIPTION } from "@/data/resume";
@@ -84,6 +85,7 @@ export default function RootLayout({
       >
         <ThemeProvider attribute="class" defaultTheme="light" enableSystem={false}>
           <DayNight />
+          <MotionProvider>
           <TooltipProvider delayDuration={0}>
             <PageGrid />
             <Navbar navbar={DATA.navbar} />
@@ -94,6 +96,7 @@ export default function RootLayout({
               </div>
             </div>
           </TooltipProvider>
+          </MotionProvider>
         </ThemeProvider>
       </body>
     </html>

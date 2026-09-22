@@ -90,7 +90,7 @@ const styles = {
 export async function GET() {
     try {
         const fontData = await getOgFontData();
-        const imageUrl = await getOgAvatarSrc(DATA.avatarUrl);
+        const imageUrl = await getOgAvatarSrc(DATA.ogAvatarUrl);
 
         return new ImageResponse(
             (

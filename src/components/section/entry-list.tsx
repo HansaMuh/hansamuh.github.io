@@ -1,8 +1,7 @@
-/* eslint-disable @next/next/no-img-element */
-"use client";
-import { useState, type ReactNode } from "react";
+import type { ReactNode } from "react";
 import Markdown from "react-markdown";
 import { Badge } from "@/components/ui/badge";
+import { EntryLogo } from "@/components/section/entry-logo";
 
 export interface TimelineItem {
   id: string;
@@ -14,27 +13,9 @@ export interface TimelineItem {
   link?: { href: string; label: string; icon?: ReactNode };
 }
 
-function LogoImage({ src, alt }: { src: string; alt: string }) {
-  const [imageError, setImageError] = useState(false);
-
-  if (!src || imageError) {
-    return (
-      <div className="size-8 md:size-10 p-1 border dark:border-white/35 rounded-full shadow ring-2 ring-border dark:ring-white/35 bg-muted flex-none" />
-    );
-  }
-
-  return (
-    <img
-      src={src}
-      alt={alt}
-      className="size-8 md:size-10 p-1 border dark:border-white/35 rounded-full shadow ring-2 ring-border dark:ring-white/35 overflow-hidden object-contain bg-white flex-none"
-      onError={() => setImageError(true)}
-    />
-  );
-}
-
 // Shared by Work Experience and Certifications. Everything is visible from the start:
-// nothing here is worth a click to reveal.
+// nothing here is worth a click to reveal. A server component: the markdown renders at
+// build time, and only the logo (EntryLogo) runs in the browser.
 export default function EntryList({ items }: { items: TimelineItem[] }) {
   return (
     <ul className="w-full grid gap-6">
@@ -42,7 +23,7 @@ export default function EntryList({ items }: { items: TimelineItem[] }) {
         <li key={item.id} className="grid gap-2">
           <div className="flex items-center gap-x-3 justify-between w-full text-left">
             <div className="flex items-center gap-x-3 flex-1 min-w-0">
-              <LogoImage src={item.logoUrl} alt={item.subtitle} />
+              <EntryLogo src={item.logoUrl} alt={item.subtitle} />
               <div className="flex-1 min-w-0 gap-0.5 flex flex-col">
                 <div className="font-semibold leading-none">{item.title}</div>
                 <div className="font-sans text-sm text-muted-foreground">{item.subtitle}</div>
@@ -63,7 +44,7 @@ export default function EntryList({ items }: { items: TimelineItem[] }) {
                 href={item.link.href}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="rounded-md focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2"
+                className="inline-flex min-h-6 items-center rounded-md focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2"
               >
                 <Badge
                   className="flex items-center gap-1.5 text-xs bg-foreground text-background hover:bg-foreground/90"

@@ -1,4 +1,5 @@
 import BlurFade from "@/components/magicui/blur-fade";
+import Markdown from "react-markdown";
 import { ProjectCard } from "@/components/project-card";
 import { DATA } from "@/data/resume";
 import { ICONS } from "@/data/icons";
@@ -20,7 +21,7 @@ export default function ProjectsSection() {
                         <ProjectCard
                             key={project.title}
                             title={project.title}
-                            description={project.description}
+                            description={<Markdown>{project.description}</Markdown>}
                             dates={project.dates}
                             tags={project.technologies.map((tech) => {
                                 const TechIcon = ICONS[tech.icon];
@@ -28,6 +29,7 @@ export default function ProjectsSection() {
                             })}
                             thumbnail={project.thumbnail}
                             previews={project.previews}
+                            poster={project.poster}
                             links={project.links.map((link) => {
                                 const LinkIcon = ICONS[link.icon];
                                 return { ...link, icon: <LinkIcon className="size-3" /> };

@@ -1,6 +1,5 @@
 import BlurFade from "@/components/magicui/blur-fade";
 import BlurFadeText from "@/components/magicui/blur-fade-text";
-import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { DATA } from "@/data/resume";
 import { ICONS } from "@/data/icons";
 import Markdown from "react-markdown";
@@ -39,10 +38,18 @@ export default function Page() {
               />
             </div>
             <BlurFade delay={BLUR_FADE_DELAY} className="order-1 md:order-2">
-              <Avatar className="size-40 border border-white/20 rounded-full shadow-lg ring-4 ring-white/25">
-                <AvatarImage alt={DATA.name} src={DATA.avatarUrl} />
-                <AvatarFallback>{DATA.initials}</AvatarFallback>
-              </Avatar>
+              {/* A plain <img>, not Radix's Avatar: that one only inserts the photo after
+                  JavaScript has loaded it, so the browser could not start the request
+                  until hydration. This is the page's LCP element on phones. */}
+              {/* eslint-disable-next-line @next/next/no-img-element */}
+              <img
+                src={DATA.avatarUrl}
+                alt={DATA.name}
+                width={160}
+                height={160}
+                fetchPriority="high"
+                className="size-40 shrink-0 rounded-full border border-white/20 object-cover shadow-lg ring-4 ring-white/25"
+              />
             </BlurFade>
           </div>
           <BlurFade delay={BLUR_FADE_DELAY * 2} className="mt-10">

@@ -18,6 +18,8 @@ export default function ContactSection() {
           <img
             src={share.qr}
             alt={`QR code for ${share.label}`}
+            loading="lazy"
+            decoding="async"
             className="size-full rounded-[4px]"
           />
         </div>

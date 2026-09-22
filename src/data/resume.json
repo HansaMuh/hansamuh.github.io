@@ -5,7 +5,8 @@
   "location": "Jakarta, Indonesia",
   "description": "Software engineer. Passionate & impact-driven — always.\nBuilding enterprise apps, scripting clients, and automations is my enjoyment.",
   "summary": "A proactive Software Engineer, with a strong passion for software development and software architecture consulting. Softwares and tools that makes people’s lives better are my favorite things to build. Enterprise apps, scripting clients, automations - All of them! I enjoy working across the stack to get them up and running!\n\nIn July 2026, I went to finish my Bachelor’s Degree in Computer Science and graduate from [BINUS University](https://binus.ac.id). As much as I am happy to be free (maybe?), I’m still grinding for cool projects and professional certificates. These keeps me up in the current tech trend.",
-  "avatarUrl": "/me.png",
+  "avatarUrl": "/me.webp",
+  "ogAvatarUrl": "/me-og.jpg",
   "status": [
     {
       "label": "Building",
@@ -306,6 +307,7 @@
         }
       ],
       "thumbnail": "/videos/Mapper-card.mp4",
+      "poster": "/videos/Mapper-card-poster.webp",
       "previews": [
         "/videos/Mapper.mp4"
       ]

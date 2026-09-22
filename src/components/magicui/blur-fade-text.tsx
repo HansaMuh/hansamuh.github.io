@@ -1,7 +1,9 @@
 "use client";
 
 import { cn } from "@/lib/utils";
-import { motion, Variants } from "motion/react";
+import { m, Variants } from "motion/react";
+// Local change: renders `m.*` instead of `motion.*` so the animation features load once,
+// through the LazyMotion provider in layout.tsx, instead of in every component.
 import { useMemo } from "react";
 
 interface BlurFadeTextProps {
@@ -43,7 +45,7 @@ const BlurFadeText = ({
             visible: { y: 0, opacity: 1, filter: "blur(0px)" },
           };
           return (
-            <motion.span
+            <m.span
               key={i}
               initial="hidden"
               animate="visible"
@@ -57,7 +59,7 @@ const BlurFadeText = ({
               style={{ width: char.trim() === "" ? "0.2em" : "auto" }}
             >
               {char}
-            </motion.span>
+            </m.span>
           );
         })}
       </div>
@@ -66,7 +68,7 @@ const BlurFadeText = ({
 
   return (
     <div className="flex">
-      <motion.span
+      <m.span
         initial="hidden"
         animate="visible"
         variants={combinedVariants}
@@ -78,7 +80,7 @@ const BlurFadeText = ({
         className={cn("inline-block", className)}
       >
         {text}
-      </motion.span>
+      </m.span>
     </div>
   );
 };

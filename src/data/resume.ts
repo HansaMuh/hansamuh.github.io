@@ -15,6 +15,8 @@ const resumeSchema = z.object({
   description: z.string(),
   summary: z.string(),
   avatarUrl: z.string(),
+  // The OG image renderer (satori) cannot decode WebP, so it gets its own PNG or JPEG.
+  ogAvatarUrl: z.string(),
   status: z.array(
     z.object({ label: z.string(), detail: z.string() }),
   ).default([]),
@@ -56,6 +58,8 @@ const resumeSchema = z.object({
       thumbnail: z.string().optional(),
       /** Ordered list the preview panel walks. Images and videos, told apart by extension. */
       previews: z.array(z.string()).default([]),
+      /** Still frame for a video thumbnail, shown until the clip plays. */
+      poster: z.string().optional(),
     }),
   ),
   certifications: z.array(

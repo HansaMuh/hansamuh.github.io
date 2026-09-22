@@ -1,6 +1,8 @@
 "use client";
 
-import { AnimatePresence, motion, useInView, Variants } from "motion/react";
+import { AnimatePresence, m, useInView, Variants } from "motion/react";
+// Local change: renders `m.*` instead of `motion.*` so the animation features load once,
+// through the LazyMotion provider in layout.tsx, instead of in every component.
 import { useRef } from "react";
 
 interface BlurFadeProps {
@@ -41,7 +43,7 @@ const BlurFade = ({
   const combinedVariants = variant || defaultVariants;
   return (
     <AnimatePresence>
-      <motion.div
+      <m.div
         ref={ref}
         initial="hidden"
         animate={isInView ? "visible" : "hidden"}
@@ -55,7 +57,7 @@ const BlurFade = ({
         className={className}
       >
         {children}
-      </motion.div>
+      </m.div>
     </AnimatePresence>
   );
 };

@@ -8,20 +8,23 @@ import {
   TooltipContent,
   TooltipTrigger,
 } from "@/components/ui/tooltip";
+import { useEffect, useRef } from "react";
 import Link from "next/link";
-import Markdown from "react-markdown";
 import { ProjectPreview } from "@/components/project-preview";
 import { isVideo } from "@/lib/media";
 
 interface Props {
   title: string;
-  description: string;
+  /** Rendered on the server by the section, so no markdown parser ships here. */
+  description: React.ReactNode;
   dates: string;
   tags: readonly { name: string; icon: React.ReactNode }[];
   /** Card frame artwork. Falls back to the first preview when absent. */
   thumbnail?: string;
   /** Ordered list the preview panel walks. */
   previews?: readonly string[];
+  /** Still shown in the frame before a video thumbnail starts playing. */
+  poster?: string;
   links?: readonly {
     icon: React.ReactNode;
     type: string;
@@ -37,6 +40,7 @@ export function ProjectCard({
   tags,
   thumbnail,
   previews = [],
+  poster,
   links,
   className,
 }: Props) {
@@ -59,18 +63,16 @@ export function ProjectCard({
           <div className="aspect-video w-full overflow-hidden bg-muted">
             {frame ? (
               frameIsVideo ? (
-                <video
-                  src={frame}
-                  className="size-full object-cover"
-                  autoPlay
-                  loop
-                  muted
-                  playsInline
-                  preload="metadata"
-                />
+                <CardVideo src={frame} poster={poster} />
               ) : (
                 /* eslint-disable-next-line @next/next/no-img-element */
-                <img src={frame} alt="" className="size-full object-cover" />
+                <img
+                  src={frame}
+                  alt=""
+                  loading="lazy"
+                  decoding="async"
+                  className="size-full object-cover"
+                />
               )
             ) : null}
           </div>
@@ -84,6 +86,7 @@ export function ProjectCard({
                 target="_blank"
                 rel="noopener noreferrer"
                 onClick={(e) => e.stopPropagation()}
+                className="inline-flex min-h-6 items-center"
               >
                 <Badge
                   className="flex items-center gap-1.5 text-xs bg-foreground text-background hover:bg-foreground/90"
@@ -104,7 +107,7 @@ export function ProjectCard({
           <time className="text-xs text-muted-foreground">{dates}</time>
         </div>
         <div className="text-sm flex-1 prose prose-sm max-w-full text-pretty font-sans leading-relaxed text-muted-foreground dark:prose-invert">
-          <Markdown>{description}</Markdown>
+          {description}
         </div>
         {/* Logos only; the name lives in the tooltip and the accessible label. */}
         {tags && tags.length > 0 && (
@@ -114,6 +117,7 @@ export function ProjectCard({
                 <Tooltip>
                   <TooltipTrigger asChild>
                     <span
+                      role="img"
                       tabIndex={0}
                       aria-label={tag.name}
                       className="flex size-9 items-center justify-center rounded-sm focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2"
@@ -136,5 +140,40 @@ export function ProjectCard({
         )}
       </div>
     </div>
+  );
+}
+
+// Plays only while it is on screen: it used to autoplay from the first paint, fetching
+// its clip before anyone scrolled that far. Reduced motion keeps the poster still.
+function CardVideo({ src, poster }: { src: string; poster?: string }) {
+  const ref = useRef<HTMLVideoElement>(null);
+
+  useEffect(() => {
+    const video = ref.current;
+    if (!video) return;
+    video.muted = true;
+    if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) void video.play().catch(() => {});
+        else video.pause();
+      },
+      { threshold: 0.25 },
+    );
+    observer.observe(video);
+    return () => observer.disconnect();
+  }, []);
+
+  return (
+    <video
+      ref={ref}
+      src={src}
+      poster={poster}
+      className="size-full object-cover"
+      loop
+      muted
+      playsInline
+      preload="none"
+    />
   );
 }

@@ -1,7 +1,9 @@
 "use client";
 
 import { cn } from "@/lib/utils";
-import { motion, type MotionValue, useMotionValue, useSpring, useTransform } from "motion/react";
+import { m, type MotionValue, useMotionValue, useSpring, useTransform } from "motion/react";
+// Local change: renders `m.*` instead of `motion.*` so the animation features load once,
+// through the LazyMotion provider in layout.tsx, instead of in every component.
 import { createContext, useContext, useRef, type ReactNode } from "react";
 
 interface DockProps {
@@ -38,13 +40,13 @@ const Dock = ({ className, children, magnification = DEFAULT_MAGNIFICATION, dist
 
   return (
     <DockContext.Provider value={{ mouseX, magnification, distance, baseSize }}>
-      <motion.div
+      <m.div
         onMouseMove={(e) => mouseX.set(e.pageX)}
         onMouseLeave={() => mouseX.set(Infinity)}
         className={cn("mx-auto w-max h-full flex items-end justify-center overflow-visible rounded-full border", className)}
       >
         {children}
-      </motion.div>
+      </m.div>
     </DockContext.Provider>
   );
 };
@@ -75,18 +77,18 @@ const DockIcon = ({ className, children }: DockIconProps) => {
   );
 
   return (
-    <motion.div
+    <m.div
       ref={ref}
       style={{ width: containerSize, height: containerSize }}
       className={cn("relative flex aspect-square items-center justify-center rounded-full shrink-0", className)}
     >
-      <motion.div
+      <m.div
         style={{ width: iconSize, height: iconSize }}
         className="flex items-center justify-center"
       >
         {children}
-      </motion.div>
-    </motion.div>
+      </m.div>
+    </m.div>
   );
 };
 
