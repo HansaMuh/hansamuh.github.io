@@ -10,7 +10,7 @@ export default function CertificationsSection({
 }) {
   return (
     <div className="flex min-h-0 flex-col gap-y-8">
-      <SectionHeader title="Certifications" subtitle="Checked by someone else." />
+      <SectionHeader title="Certifications" subtitle="These are proofs that I am professionally legit. Actual proofs." />
       <EntryList
         items={certifications.map((item) => ({
           id: item.name,

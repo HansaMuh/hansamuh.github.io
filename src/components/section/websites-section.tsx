@@ -13,7 +13,7 @@ export default function WebsitesSection({ social }: { social: Resume["contact"][
   const websites = Object.values(social).filter((item) => item.websites);
 
   return (
-    <ul className="flex flex-wrap gap-4">
+    <ul className="flex flex-wrap justify-center gap-4">
       {websites.map((item) => {
         const isExternal = item.url.startsWith("http");
         const SocialIcon = ICONS[item.icon];

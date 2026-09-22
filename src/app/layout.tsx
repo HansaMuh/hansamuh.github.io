@@ -4,7 +4,7 @@ import { PageGrid } from "@/components/page-grid";
 import { DayNight } from "@/components/day-night";
 import { ThemeProvider } from "@/components/theme-provider";
 import { TooltipProvider } from "@/components/ui/tooltip";
-import { DATA } from "@/data/resume";
+import { DATA, META_DESCRIPTION } from "@/data/resume";
 import { cn } from "@/lib/utils";
 import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
@@ -25,13 +25,13 @@ const geistMono = Geist_Mono({
 export const metadata: Metadata = {
   metadataBase: new URL(DATA.url),
   title: {
-    default: DATA.name,
+    default: "Portfolio | hansamuh",
     template: `%s | ${DATA.name}`,
   },
-  description: DATA.description,
+  description: META_DESCRIPTION,
   openGraph: {
     title: `${DATA.name}`,
-    description: DATA.description,
+    description: META_DESCRIPTION,
     url: DATA.url,
     siteName: `${DATA.name}`,
     locale: "en_US",

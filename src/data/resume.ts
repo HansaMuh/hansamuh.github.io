@@ -102,3 +102,7 @@ export type Resume = z.infer<typeof resumeSchema>;
 
 // Parsed at import time so a typo in resume.json fails the build instead of the page.
 export const DATA: Resume = resumeSchema.parse(resume);
+
+// The description carries a line break for the hero. Metadata and the OG tags want one
+// line, so they read this instead of the raw field.
+export const META_DESCRIPTION = DATA.description.replace(/\s+/g, " ").trim();

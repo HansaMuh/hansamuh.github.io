@@ -11,7 +11,6 @@ import ProjectsSection from "@/components/section/projects-section";
 import StatusSection from "@/components/section/status-section";
 import WebsitesSection from "@/components/section/websites-section";
 import WorkSection from "@/components/section/work-section";
-import { DisappearingWord } from "@/components/disappearing-word";
 import { Marquee } from "@/components/magicui/marquee";
 import { HeroBanner } from "@/components/hero-banner";
 
@@ -30,13 +29,11 @@ export default function Page() {
             <div className="gap-3 flex flex-col order-2 md:order-1">
               <BlurFade delay={BLUR_FADE_DELAY} yOffset={8}>
                 <h1 className="text-3xl font-semibold tracking-tighter sm:text-4xl lg:text-5xl">
-                  I make tedious work
-                  <br />
-                  quietly <DisappearingWord />.
+                  Sup! The name&rsquo;s Raihan.
                 </h1>
               </BlurFade>
               <BlurFadeText
-                className="max-w-[600px] md:text-lg lg:text-xl"
+                className="max-w-[600px] whitespace-pre-line md:text-lg lg:text-xl"
                 delay={BLUR_FADE_DELAY}
                 text={DATA.description}
               />
@@ -60,9 +57,9 @@ export default function Page() {
       </section>
       <div className="mx-auto flex w-full max-w-3xl flex-col gap-28 px-6">
       <section id="about">
-        <div className="flex min-h-0 flex-col gap-y-4">
+        <div className="flex min-h-0 flex-col gap-y-8">
           <BlurFade delay={BLUR_FADE_DELAY * 3}>
-            <SectionHeader title="About Me" subtitle="The short version." />
+            <SectionHeader title="About Me" subtitle="Well, there&rsquo;s so much about me, but I am..." />
           </BlurFade>
           <BlurFade delay={BLUR_FADE_DELAY * 4}>
             <div className="prose max-w-full text-pretty font-sans leading-relaxed text-muted-foreground dark:prose-invert">
@@ -74,9 +71,9 @@ export default function Page() {
         </div>
       </section>
       <section id="work">
-        <div className="flex min-h-0 flex-col gap-y-6">
+        <div className="flex min-h-0 flex-col gap-y-8">
           <BlurFade delay={BLUR_FADE_DELAY * 5}>
-            <SectionHeader title="Work Experience" subtitle="Where I’ve shipped so far." />
+            <SectionHeader title="Work Experience" subtitle="I&rsquo;m unemployed! Wait, that sounds like a self-burn. Anyway..." />
           </BlurFade>
           <BlurFade delay={BLUR_FADE_DELAY * 6}>
             <WorkSection work={DATA.work} />
@@ -84,9 +81,9 @@ export default function Page() {
         </div>
       </section>
       <section id="tech-stack">
-        <div className="flex min-h-0 flex-col gap-y-4">
+        <div className="flex min-h-0 flex-col gap-y-8">
           <BlurFade delay={BLUR_FADE_DELAY * 9}>
-            <SectionHeader title="Tech Stack" subtitle="What I reach for." />
+            <SectionHeader title="Tech Stack" subtitle="Cool stuff for my cool works. In fact, .NET is my playground!" />
           </BlurFade>
           <BlurFade delay={BLUR_FADE_DELAY * 10}>
             {/* The marquee repeats every chip, so it's hidden from screen readers; this list isn't. */}

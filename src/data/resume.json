@@ -5,34 +5,34 @@
   "url": "https://hansamuh.github.io",
   "location": "Jakarta, Indonesia",
   "locationLink": "https://www.google.com/maps/place/Jakarta",
-  "description": "I’m Raihan, a software engineer who builds full-stack apps and back-office tools, and automates the boring parts on the side.",
-  "summary": "I studied Computer Science at [BINUS University](https://binus.ac.id), majoring in Software Engineering, and graduated in 2026 with a 3.66 GPA. The software I like building most takes a chore off someone’s desk.\n\nA year at Bank Central Asia, a bachelor’s thesis and a few tools for a game community taught me to turn messy requirements into tools people rely on. I do my best work in hands-on teams, and in 2023 mine reached the Top 14 of the Marketeers Innovation Challenge.\n\nBINUS University · 2026 · Jakarta, Indonesia",
+  "description": "Software engineer. Passionate & impact-driven — always.\nBuilding enterprise apps, scripting clients, and automations is my enjoyment.",
+  "summary": "A proactive Software Engineer, with a strong passion for software development and software architecture consulting. Softwares and tools that makes people’s lives better are my favorite things to build. Enterprise apps, scripting clients, automations - All of them! I enjoy working across the stack to get them up and running!\n\nIn July 2026, I went to finish my Bachelor’s Degree in Computer Science and graduate from [BINUS University](https://binus.ac.id). As much as I am happy to be free (maybe?), I’m still grinding for cool projects and professional certificates. These keeps me up in the current tech trend.",
   "avatarUrl": "/me.png",
   "status": [
     {
       "icon": "code",
       "label": "Building",
-      "detail": "Building [Mystrose](https://github.com/GentleGanku/Mystrose)"
+      "detail": "Working on [Mystrose](https://github.com/GentleGanku/Mystrose)!"
     },
     {
       "icon": "graduation",
       "label": "Studying",
-      "detail": "Studying at [Amazon](https://www.coursera.org/professional-certificates/amazon-junior-software-developer), [Meta](https://www.coursera.org/specializations/meta-full-stack-developer) and [Microsoft](https://www.coursera.org/professional-certificates/microsoft-full-stack-developer)"
+      "detail": "Completing [Amazon’s professional certificate](https://www.coursera.org/professional-certificates/amazon-junior-software-developer)!"
     },
     {
       "icon": "briefcase2",
       "label": "Job hunting",
-      "detail": "Job hunting in [Indonesia](https://www.linkedin.com/in/muh-raihan-saputra/)"
+      "detail": "Looking for [SWE jobs](https://www.linkedin.com/in/muh-raihan-saputra/)!"
     },
     {
       "icon": "music",
       "label": "Listening",
-      "detail": "Lofi from [Chillhop](https://www.youtube.com/@ChillhopMusic)"
+      "detail": "Listening to [Chillhop Radio](https://www.youtube.com/@ChillhopMusic)!"
     },
     {
       "icon": "gamepad",
       "label": "Playing",
-      "detail": "Playing [DragonFable](https://www.dragonfable.com/)"
+      "detail": "Playing [DragonFable](https://www.dragonfable.com/), the RPG game!"
     }
   ],
   "skills": [
