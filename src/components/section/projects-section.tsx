@@ -29,9 +29,6 @@ export default function ProjectsSection() {
                             })}
                             thumbnail={project.thumbnail}
                             previews={project.previews}
-                            previewUrl={(project.links.find((link) => link.type === "Website")?.href ?? project.href)
-                                .replace(/^https?:\/\//, "")
-                                .replace(/\/$/, "")}
                             links={project.links.map((link) => {
                                 const LinkIcon = ICONS[link.icon];
                                 return { ...link, icon: <LinkIcon className="size-3" /> };

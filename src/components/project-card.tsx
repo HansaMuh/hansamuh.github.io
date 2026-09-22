@@ -1,7 +1,6 @@
 "use client";
 
 import { Badge } from "@/components/ui/badge";
-import { Safari } from "@/components/magicui/safari";
 import { cn } from "@/lib/utils";
 import {
   Tooltip,
@@ -25,8 +24,6 @@ interface Props {
   thumbnail?: string;
   /** Ordered list the preview panel walks. */
   previews?: readonly string[];
-  /** Address shown in the Safari frame's URL bar. */
-  previewUrl?: string;
   links?: readonly {
     icon: React.ReactNode;
     type: string;
@@ -44,7 +41,6 @@ export function ProjectCard({
   link,
   thumbnail,
   previews = [],
-  previewUrl,
   links,
   className,
 }: Props) {
@@ -61,15 +57,27 @@ export function ProjectCard({
       )}
     >
       <div className="relative shrink-0">
-        {/* The frame used to be a hidden duplicate of the project link. It is the preview
-            trigger now, so it is a real button and reachable by keyboard. */}
+        {/* The artwork runs edge to edge: no device mock. The whole frame is the preview
+            trigger, a real button and reachable by keyboard. */}
         <ProjectPreview title={title} previews={previews}>
-          <Safari
-            url={previewUrl}
-            imageSrc={frameIsVideo ? undefined : frame}
-            videoSrc={frameIsVideo ? frame : undefined}
-            className="drop-shadow-sm"
-          />
+          <div className="aspect-video w-full overflow-hidden bg-muted">
+            {frame ? (
+              frameIsVideo ? (
+                <video
+                  src={frame}
+                  className="size-full object-cover"
+                  autoPlay
+                  loop
+                  muted
+                  playsInline
+                  preload="metadata"
+                />
+              ) : (
+                /* eslint-disable-next-line @next/next/no-img-element */
+                <img src={frame} alt="" className="size-full object-cover" />
+              )
+            ) : null}
+          </div>
         </ProjectPreview>
         {links && links.length > 0 && (
           <div className="absolute bottom-3 right-3 flex flex-wrap gap-2">

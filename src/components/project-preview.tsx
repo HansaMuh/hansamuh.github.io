@@ -1,15 +1,20 @@
 "use client";
 
 import { useEffect, useRef, useState, type ReactNode } from "react";
-import { ChevronLeftIcon, ChevronRightIcon } from "lucide-react";
+import { ChevronLeftIcon, ChevronRightIcon, XIcon } from "lucide-react";
 import {
   Dialog,
+  DialogClose,
   DialogContent,
   DialogTitle,
   DialogTrigger,
 } from "@/components/ui/dialog";
 import { isVideo } from "@/lib/media";
 import { cn } from "@/lib/utils";
+
+// The same shape as a main menu button: a 44px circle on the card surface.
+const PANEL_BUTTON =
+  "flex size-11 shrink-0 items-center justify-center rounded-full border border-border bg-card text-foreground transition-colors hover:bg-muted focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2";
 
 // The card's frame is the trigger; this walks that project's preview list. Radix gives
 // the focus trap, Esc and the scroll lock, so only the paging is ours.
@@ -45,6 +50,8 @@ export function ProjectPreview({
     }
   }, [current]);
 
+  // Window-level, because focus can land on <body>: clicking an arrow that then disables
+  // itself blurs it, and a keydown on body never bubbles down into the dialog.
   useEffect(() => {
     if (!open) return;
     const onKey = (event: KeyboardEvent) => {
@@ -72,48 +79,53 @@ export function ProjectPreview({
         <button
           type="button"
           aria-label={`Open ${title} preview`}
-          className="block w-full cursor-zoom-in bg-muted px-4 pt-4 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-inset"
+          className="block w-full cursor-zoom-in focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-inset"
         >
           {children}
         </button>
       </DialogTrigger>
-      <DialogContent className="max-w-[min(64rem,95vw)] gap-3 p-4 sm:p-5">
-        <DialogTitle className="text-xl font-bold">{title}</DialogTitle>
-        {/* The arrows flank the media on a wide screen. On a phone they would eat most of
-            the width, so the media takes its own line and they sit underneath. */}
-        <div className="flex flex-wrap items-center justify-center gap-2">
+      <DialogContent
+        showCloseButton={false}
+        className="max-w-[min(64rem,95vw)] gap-4 p-4 sm:p-5"
+      >
+        {/* Title and controls sit outside the media, which gets the whole content box. */}
+        <div className="flex items-center justify-between gap-3">
+          <DialogTitle className="text-xl font-bold">{title}</DialogTitle>
+          <DialogClose className={PANEL_BUTTON} aria-label="Close preview">
+            <XIcon className="size-5" aria-hidden />
+          </DialogClose>
+        </div>
+        <div className="flex w-full items-center justify-center overflow-hidden rounded-lg">
+          {isVideo(current) ? (
+            <video
+              ref={videoRef}
+              key={current}
+              src={current}
+              controls
+              playsInline
+              muted
+              className="max-h-[65vh] w-full"
+            />
+          ) : (
+            /* eslint-disable-next-line @next/next/no-img-element */
+            <img
+              key={current}
+              src={current}
+              alt={`${title} preview ${index + 1} of ${previews.length}`}
+              className="max-h-[65vh] w-full object-contain"
+            />
+          )}
+        </div>
+        <div className="flex items-center justify-center gap-3">
           <PageButton
             direction="previous"
             disabled={!hasPrevious}
             onClick={() => setIndex(index - 1)}
-            className="order-2 sm:order-1"
           />
-          <div className="order-1 flex w-full min-w-0 items-center justify-center sm:order-2 sm:w-auto sm:flex-1">
-            {isVideo(current) ? (
-              <video
-                ref={videoRef}
-                key={current}
-                src={current}
-                controls
-                playsInline
-                muted
-                className="max-h-[70vh] w-full rounded-lg"
-              />
-            ) : (
-              /* eslint-disable-next-line @next/next/no-img-element */
-              <img
-                key={current}
-                src={current}
-                alt={`${title} preview ${index + 1} of ${previews.length}`}
-                className="max-h-[70vh] w-full rounded-lg object-contain"
-              />
-            )}
-          </div>
           <PageButton
             direction="next"
             disabled={!hasNext}
             onClick={() => setIndex(index + 1)}
-            className="order-3"
           />
         </div>
       </DialogContent>
@@ -125,12 +137,10 @@ function PageButton({
   direction,
   disabled,
   onClick,
-  className,
 }: {
   direction: "previous" | "next";
   disabled: boolean;
   onClick: () => void;
-  className?: string;
 }) {
   const Icon = direction === "previous" ? ChevronLeftIcon : ChevronRightIcon;
   return (
@@ -140,8 +150,8 @@ function PageButton({
       disabled={disabled}
       aria-label={`${direction === "previous" ? "Previous" : "Next"} preview`}
       className={cn(
-        "flex size-9 shrink-0 items-center justify-center rounded-full border border-border transition-colors hover:bg-muted disabled:cursor-not-allowed disabled:opacity-40 disabled:hover:bg-transparent focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2",
-        className
+        PANEL_BUTTON,
+        "disabled:cursor-not-allowed disabled:opacity-40 disabled:hover:bg-card"
       )}
     >
       <Icon className="size-5" aria-hidden />
