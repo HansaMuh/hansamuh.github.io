@@ -9,22 +9,19 @@ const navItem = z.object({ href: z.string().startsWith("#"), icon, label: z.stri
 
 const resumeSchema = z.object({
   name: z.string(),
-  nickname: z.string(),
   initials: z.string(),
   url: z.url(),
   location: z.string(),
-  locationLink: z.string(),
   description: z.string(),
   summary: z.string(),
   avatarUrl: z.string(),
   status: z.array(
-    z.object({ icon, label: z.string(), detail: z.string() }),
+    z.object({ label: z.string(), detail: z.string() }),
   ).default([]),
   skills: z.array(technology),
   navbar: z.object({ top: z.array(navItem), sections: z.array(navItem) }),
   contact: z.object({
     email: z.string(),
-    tel: z.string(),
     // Shown as a QR plus a copyable link in the contact section.
     share: z.object({ label: z.string(), url: z.string(), qr: z.string() }),
     social: z.record(
@@ -40,9 +37,6 @@ const resumeSchema = z.object({
   work: z.array(
     z.object({
       company: z.string(),
-      href: z.string(),
-      badges: z.array(z.string()),
-      location: z.string(),
       title: z.string(),
       logoUrl: z.string(),
       start: z.string(),
@@ -50,22 +44,10 @@ const resumeSchema = z.object({
       description: z.string(),
     }),
   ),
-  education: z.array(
-    z.object({
-      school: z.string(),
-      href: z.string(),
-      degree: z.string(),
-      logoUrl: z.string(),
-      start: z.string(),
-      end: z.string(),
-    }),
-  ).default([]),
   projects: z.array(
     z.object({
       title: z.string(),
-      href: z.string(),
       dates: z.string(),
-      active: z.boolean(),
       description: z.string(),
       technologies: z.array(technology),
       links: z.array(z.object({ type: z.string(), href: z.string(), icon })),
@@ -84,19 +66,6 @@ const resumeSchema = z.object({
       logoUrl: z.string(),
       date: z.string(),
       description: z.string(),
-    }),
-  ).default([]),
-  hackathons: z.array(
-    z.object({
-      title: z.string(),
-      dates: z.string(),
-      location: z.string(),
-      description: z.string(),
-      image: z.string(),
-      mlh: z.string().optional(),
-      win: z.string().optional(),
-      icon: z.string().optional(),
-      links: z.array(z.object({ title: z.string(), href: z.string(), icon })),
     }),
   ).default([]),
 });

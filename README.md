@@ -1,47 +1,50 @@
-<div align="center">
-<img alt="Portfolio" src="https://github.com/dillionverma/portfolio/assets/16860528/57ffca81-3f0a-4425-b31d-094f61725455" width="90%">
-</div>
+# hansamuh.github.io
 
-# Portfolio [![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/clone?repository-url=https%3A%2F%2Fgithub.com%2Fdillionverma%2Fportfolio)
+My personal portfolio, live at **[hansamuh.github.io](https://hansamuh.github.io)**.
 
-Built with next.js, [shadcn/ui](https://ui.shadcn.com/), and [magic ui](https://magicui.design/), deployed on Vercel.
+## Stack
 
-# Features
+- [Next.js](https://nextjs.org) 16 (App Router), exported as static files
+- React 19 and TypeScript
+- Tailwind CSS v4, [shadcn/ui](https://ui.shadcn.com) and Radix primitives
+- [Magic UI](https://magicui.design) for the marquee and the flickering grid
+- [zod](https://zod.dev) to validate the site's content at build time
 
-- Setup only takes a few minutes by editing the [single config file](./src/data/resume.json)
-- Built using Next.js 14, React, Typescript, Shadcn/UI, TailwindCSS, Framer Motion, Magic UI
-- Includes a blog
-- Responsive for different devices
-- Optimized for Next.js and Vercel
+## Running it
 
-# Getting Started Locally
+Requires Node 22 or later.
 
-1. Clone this repository to your local machine:
+```bash
+npm install
+npm run dev        # http://localhost:3000
+```
 
-   ```bash
-   git clone https://github.com/dillionverma/portfolio
-   ```
+To check the real deploy artifact rather than the dev server:
 
-2. Move to the cloned directory
+```bash
+npm run build      # writes the static site to out/
+npx serve out
+```
 
-   ```bash
-   cd portfolio
-   ```
+`npm run lint` runs ESLint. There is no test suite; `npm run build` doubles as the type check and the content check.
 
-3. Install dependencies:
+## Editing the content
 
-   ```bash
-   npm install
-   ```
+Everything personal lives in [`src/data/resume.json`](./src/data/resume.json): the introduction, status lines, work history, skills, projects, certifications and contact links.
 
-4. Start the local Server:
+The file is validated against a schema in [`src/data/resume.ts`](./src/data/resume.ts) when the site builds, so a missing or mistyped field fails the build with the path to the problem instead of breaking the page.
 
-   ```bash
-   npm run dev
-   ```
+- **Icons** are referenced by name. The allowed names are the keys of `ICONS` in [`src/data/icons.tsx`](./src/data/icons.tsx); register a new icon there before using it.
+- **Project artwork** goes in `public/`. Each project lists its `previews` (the images or videos shown in the preview panel, in order) and an optional `thumbnail`, a lighter copy for the card.
 
-5. Open the [Config file](./src/data/resume.json) and make changes
+## Deployment
 
-# License
+Every push to `main` runs lint and build in GitHub Actions ([`deploy.yml`](./.github/workflows/deploy.yml)) and publishes `out/` to GitHub Pages. In the repository settings, Pages must be set to deploy from **GitHub Actions**.
 
-Licensed under the [MIT license](https://github.com/dillionverma/portfolio/blob/main/LICENSE.md).
+## Credits
+
+Built on [Dillion Verma's portfolio template](https://github.com/dillionverma/portfolio) and components from [Magic UI](https://magicui.design). The banner loop is by [Chillhop Music](https://chillhop.com).
+
+## License
+
+[MIT](./LICENSE).

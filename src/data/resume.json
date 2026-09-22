@@ -1,36 +1,29 @@
 {
   "name": "Muhammad Raihan Saputra",
-  "nickname": "Raihan",
   "initials": "MR",
   "url": "https://hansamuh.github.io",
   "location": "Jakarta, Indonesia",
-  "locationLink": "https://www.google.com/maps/place/Jakarta",
   "description": "Software engineer. Passionate & impact-driven — always.\nBuilding enterprise apps, scripting clients, and automations is my enjoyment.",
   "summary": "A proactive Software Engineer, with a strong passion for software development and software architecture consulting. Softwares and tools that makes people’s lives better are my favorite things to build. Enterprise apps, scripting clients, automations - All of them! I enjoy working across the stack to get them up and running!\n\nIn July 2026, I went to finish my Bachelor’s Degree in Computer Science and graduate from [BINUS University](https://binus.ac.id). As much as I am happy to be free (maybe?), I’m still grinding for cool projects and professional certificates. These keeps me up in the current tech trend.",
   "avatarUrl": "/me.png",
   "status": [
     {
-      "icon": "code",
       "label": "Building",
       "detail": "Working on [Mystrose](https://github.com/GentleGanku/Mystrose)!"
     },
     {
-      "icon": "graduation",
       "label": "Studying",
       "detail": "Completing [Amazon’s professional certificate](https://www.coursera.org/professional-certificates/amazon-junior-software-developer)!"
     },
     {
-      "icon": "briefcase2",
       "label": "Job hunting",
       "detail": "Looking for [SWE jobs](https://linkedin.com/in/muh-raihan-saputra)!"
     },
     {
-      "icon": "music",
       "label": "Listening",
       "detail": "Listening to [Chillhop Radio](https://www.youtube.com/@ChillhopMusic)!"
     },
     {
-      "icon": "gamepad",
       "label": "Playing",
       "detail": "Playing [DragonFable](https://www.dragonfable.com/), the ultimate RPG game!"
     }
@@ -139,7 +132,6 @@
   },
   "contact": {
     "email": "muh.raihan.saputra@protonmail.com",
-    "tel": "",
     "share": {
       "label": "@mraihanspt",
       "url": "https://threads.com/@mraihanspt",
@@ -181,9 +173,6 @@
   "work": [
     {
       "company": "Bank Central Asia",
-      "href": "https://www.bca.co.id",
-      "badges": [],
-      "location": "Jakarta, Indonesia",
       "title": "Application Developer Intern",
       "logoUrl": "/logos/bca.svg",
       "start": "February 2025",
@@ -194,9 +183,7 @@
   "projects": [
     {
       "title": "SEMA",
-      "href": "https://github.com/HansaMuh/SEMA",
       "dates": "April 2026 - July 2026",
-      "active": false,
       "description": "A mobile-first web app that turns household electricity readings into bill projections and saving recommendations. Developed for bachelor’s thesis research on Decision Support Systems.",
       "technologies": [
         {
@@ -243,9 +230,7 @@
     },
     {
       "title": "Mystrose",
-      "href": "https://github.com/GentleGanku/Mystrose",
       "dates": "August 2023 - November 2025",
-      "active": false,
       "description": "A desktop client that lets AdventureQuest Worlds players automate gameplay with visual block-based scripting system, run by the multi-level syntax interpreter I built.",
       "technologies": [
         {
@@ -275,9 +260,7 @@
     },
     {
       "title": "Signtro",
-      "href": "https://github.com/wilbertyg/Signtro",
       "dates": "September 2024 - November 2024",
-      "active": false,
       "description": "A web-based platform for learning Sign Language, which combines courses and a dictionary with camera-based gesture guide. Built the interface and content flow for courses, and integrated the gesture recognition module into the application.",
       "technologies": [
         {
@@ -303,9 +286,7 @@
     },
     {
       "title": "Mapper",
-      "href": "https://github.com/GentleGanku/MapReader",
       "dates": "January 2023 - September 2024",
-      "active": false,
       "description": "An API client designed for developers in extracting and providing in-game map data from AdventureQuest Worlds. Implemented a timed scanning algorithm that is used to automate the data extraction inside the game.",
       "technologies": [
         {

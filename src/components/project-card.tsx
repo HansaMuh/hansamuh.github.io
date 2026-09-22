@@ -15,11 +15,9 @@ import { isVideo } from "@/lib/media";
 
 interface Props {
   title: string;
-  href?: string;
   description: string;
   dates: string;
   tags: readonly { name: string; icon: React.ReactNode }[];
-  link?: string;
   /** Card frame artwork. Falls back to the first preview when absent. */
   thumbnail?: string;
   /** Ordered list the preview panel walks. */
@@ -34,11 +32,9 @@ interface Props {
 
 export function ProjectCard({
   title,
-  href,
   description,
   dates,
   tags,
-  link,
   thumbnail,
   previews = [],
   links,
