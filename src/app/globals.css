@@ -99,7 +99,7 @@
 
 :root {
   --radius: 0.625rem;
-  --background: oklch(1 0 0);
+  --background: #f5f3ef;
   --foreground: oklch(0.145 0 0);
   --card: oklch(1 0 0);
   --card-foreground: oklch(0.145 0 0);
@@ -109,7 +109,8 @@
   --primary-foreground: oklch(0.985 0 0);
   --secondary: oklch(0.97 0 0);
   --secondary-foreground: oklch(0.205 0 0);
-  --muted: oklch(0.97 0 0);
+  /* A step darker than the stock 0.97, which would vanish against the warm page. */
+  --muted: oklch(0.93 0 0);
   /* Text is one colour per phase: no grey tier anywhere on the page. */
   --muted-foreground: oklch(0.145 0 0);
   --accent: oklch(0.97 0 0);
@@ -138,10 +139,10 @@
 }
 
 .dark {
-  /* Night (18:00-05:59 WIB): black page, yellow accent. */
-  --background: #000000;
+  /* Night (18:00-05:59 WIB): deep blue-black page, yellow accent. */
+  --background: #05070e;
   --foreground: oklch(0.985 0 0);
-  --card: #0d0d0d;
+  --card: #0c1018;
   --card-foreground: oklch(0.985 0 0);
   --popover: oklch(0.205 0 0);
   --popover-foreground: oklch(0.985 0 0);
@@ -149,7 +150,7 @@
   --primary-foreground: oklch(0.205 0 0);
   --secondary: oklch(0.269 0 0);
   --secondary-foreground: oklch(0.985 0 0);
-  --muted: oklch(0.269 0 0);
+  --muted: oklch(0.269 0.02 260);
   --muted-foreground: oklch(0.985 0 0);
   --accent: oklch(0.269 0 0);
   --accent-foreground: oklch(0.985 0 0);
@@ -207,8 +208,10 @@
     }
   }
 
-  /* Keeps section headings clear of the fixed top menu. */
-  main > section[id] {
+  /* Keeps section headings clear of the fixed top menu. Not `main > section[id]`:
+     the sections sit inside a column wrapper, so a child selector misses them and a
+     menu click parks the header behind the menu. */
+  section[id] {
     scroll-margin-top: 7rem;
   }
 
@@ -335,7 +338,7 @@
    its rounded shape. Unlayered so the utilities cannot win over it. */
 html {
   scrollbar-width: thin;
-  scrollbar-color: var(--foreground) transparent;
+  scrollbar-color: var(--highlight) transparent;
 }
 
 ::-webkit-scrollbar {
@@ -348,7 +351,7 @@ html {
 }
 
 ::-webkit-scrollbar-thumb {
-  background: var(--foreground);
+  background: var(--highlight);
   border-radius: 9999px;
 }
 

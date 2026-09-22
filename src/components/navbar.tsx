@@ -190,7 +190,7 @@ export default function Navbar({ navbar }: { navbar: Resume["navbar"] }) {
         className={cn(
           "pointer-events-auto relative h-15 p-2 w-max max-w-full items-start flex gap-2 transition-colors max-sm:overflow-x-auto max-sm:justify-start max-sm:[scrollbar-width:none]",
           onBanner
-            ? "border-transparent bg-transparent"
+            ? "border-white/25 bg-black/30 backdrop-blur-md"
             : "border bg-card/90 backdrop-blur-3xl shadow-[0_0_10px_3px] shadow-primary/5"
         )}
       >

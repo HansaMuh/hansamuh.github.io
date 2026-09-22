@@ -41,10 +41,14 @@ export function HeroBanner() {
         preload="auto"
         tabIndex={-1}
       />
-      {/* The clip runs from deep blue to neon. Measured against the brightest frames,
-          50% left the small text at 4.0:1 on the neon hotspots; 60% clears AA on every
-          pixel sampled across the loop. */}
-      <div className="absolute inset-0 bg-black/60" />
+      {/* Two layers instead of one flat scrim. The base is what the open edges of the
+          clip get, so more of the artwork shows; the ellipse adds depth behind the text
+          column, where white type has to stay above 4.5:1 on every frame of the loop.
+          The band is horizontal because the text is a centred column: the free space is
+          at the left and right, not above and below. Phones get a flat second layer
+          instead, since there the text spans the full width. */}
+      <div className="absolute inset-0 bg-black/35" />
+      <div className="absolute inset-0 bg-black/40 sm:bg-transparent sm:bg-[linear-gradient(to_right,transparent_0%,rgba(0,0,0,0.38)_18%,rgba(0,0,0,0.38)_82%,transparent_100%)]" />
       <div className="absolute inset-x-0 top-0 h-28 backdrop-blur-[3px] [mask-image:linear-gradient(to_bottom,black,transparent)]" />
       <div className="absolute inset-x-0 bottom-0 h-28 backdrop-blur-[3px] [mask-image:linear-gradient(to_top,black,transparent)]" />
       <svg

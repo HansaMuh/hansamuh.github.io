@@ -3,10 +3,22 @@
 export default function SectionHeader({
   title,
   subtitle,
+  titleHidden = false,
 }: {
   title: string;
   subtitle?: string;
+  /** Keeps the heading in the outline for screen readers but shows only the subtitle. */
+  titleHidden?: boolean;
 }) {
+  if (titleHidden) {
+    return (
+      <div className="text-center">
+        <h2 className="sr-only">{title}</h2>
+        {subtitle && <p className="text-sm font-semibold">{subtitle}</p>}
+      </div>
+    );
+  }
+
   return (
     <div className="flex flex-col items-center gap-3 text-center">
       <div className="flex w-full items-center">
