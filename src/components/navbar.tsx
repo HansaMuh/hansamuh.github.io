@@ -65,9 +65,10 @@ function useActiveSection(hrefs: string[]) {
       if (hero) {
         const box = hero.getBoundingClientRect();
         const fits = box.top >= top - 1 && box.bottom <= bottom + 1;
-        // On phones the hero is taller than the screen, so it counts while its start
-        // is still above the fold and it covers everything below.
-        const fills = box.top > 0 && box.bottom >= bottom;
+        // The hero is taller than the screen on every size now, so it mostly counts by
+        // covering it: its start at or above the menu, and still covering the bottom.
+        // `box.top > 0` was wrong here, because at rest the hero starts at exactly 0.
+        const fills = box.top <= top + 1 && box.bottom >= bottom;
         if (fits || fills) return setActive("#top");
       }
 

@@ -22,7 +22,7 @@
     {
       "icon": "briefcase2",
       "label": "Job hunting",
-      "detail": "Looking for [SWE jobs](https://www.linkedin.com/in/muh-raihan-saputra/)!"
+      "detail": "Looking for [SWE jobs](https://linkedin.com/in/muh-raihan-saputra)!"
     },
     {
       "icon": "music",
@@ -32,7 +32,7 @@
     {
       "icon": "gamepad",
       "label": "Playing",
-      "detail": "Playing [DragonFable](https://www.dragonfable.com/), the RPG game!"
+      "detail": "Playing [DragonFable](https://www.dragonfable.com/), the ultimate RPG game!"
     }
   ],
   "skills": [
@@ -142,7 +142,7 @@
     "tel": "",
     "share": {
       "label": "@mraihanspt",
-      "url": "https://www.threads.net/",
+      "url": "https://threads.com/@mraihanspt",
       "qr": "/qr-threads.png"
     },
     "social": {
@@ -154,7 +154,7 @@
       },
       "LinkedIn": {
         "name": "LinkedIn",
-        "url": "https://www.linkedin.com/in/muh-raihan-saputra",
+        "url": "https://linkedin.com/in/muh-raihan-saputra",
         "icon": "linkedin",
         "websites": true
       },
@@ -166,7 +166,7 @@
       },
       "Threads": {
         "name": "Threads",
-        "url": "https://www.threads.net/",
+        "url": "https://threads.com/@mraihanspt",
         "icon": "threads",
         "websites": true
       },
@@ -188,7 +188,7 @@
       "logoUrl": "/logos/bca.svg",
       "start": "February 2025",
       "end": "February 2026",
-      "description": "Built back-office tools for asset and budget management in OutSystems, JavaScript and Microsoft SQL Server, used by 100+ employees across divisions. Shipped a batch update that imports 200+ asset records from one Excel file in about 24 seconds, and a cash advance dashboard that enforces spending limits across a 6-stage approval flow."
+      "description": "Joined as an Application Developer Intern under the Operation Strategy and Development Group, specifically in the Branch Banking Experience Design bureau.\n\n- Collaborated within the Agile team to develop back-office inventory for asset and budget management.\n- Implemented a Batch Update feature that replaces record-by-record entry by using a Microsoft Excel (.XLSX) file import.\n- Implemented a Cash Advance Management dashboard that enforces spending limits and audit trails across wallets."
     }
   ],
   "projects": [
@@ -197,7 +197,7 @@
       "href": "https://github.com/HansaMuh/SEMA",
       "dates": "April 2026 - July 2026",
       "active": false,
-      "description": "A mobile-first way for households to see their postpaid electricity bill coming before the cycle closes. My bachelor’s thesis, evaluated with 76 users.",
+      "description": "A mobile-first web app that turns household electricity readings into bill projections and saving recommendations. Developed for bachelor’s thesis research on Decision Support Systems.",
       "technologies": [
         {
           "name": "React",
@@ -236,15 +236,17 @@
           "icon": "github"
         }
       ],
-      "image": "",
-      "video": ""
+      "thumbnail": "/snapshots/SEMA-card.webp",
+      "previews": [
+        "/snapshots/SEMA.png"
+      ]
     },
     {
       "title": "Mystrose",
       "href": "https://github.com/GentleGanku/Mystrose",
       "dates": "August 2023 - November 2025",
       "active": false,
-      "description": "A desktop client that lets AdventureQuest Worlds players automate gameplay with visual script blocks, run by an interpreter I wrote.",
+      "description": "A desktop client that lets AdventureQuest Worlds players automate gameplay with visual block-based scripting system, run by the multi-level syntax interpreter I built.",
       "technologies": [
         {
           "name": "C#",
@@ -266,15 +268,17 @@
           "icon": "github"
         }
       ],
-      "image": "",
-      "video": ""
+      "thumbnail": "/snapshots/Mystrose-card.webp",
+      "previews": [
+        "/snapshots/Mystrose.png"
+      ]
     },
     {
       "title": "Signtro",
       "href": "https://github.com/wilbertyg/Signtro",
       "dates": "September 2024 - November 2024",
       "active": false,
-      "description": "Sign language lessons with a camera-based gesture guide. My part: the course interface, the content flow and the gesture recognition hookup.",
+      "description": "A web-based platform for learning Sign Language, which combines courses and a dictionary with camera-based gesture guide. Built the interface and content flow for courses, and integrated the gesture recognition module into the application.",
       "technologies": [
         {
           "name": "React",
@@ -292,15 +296,17 @@
           "icon": "github"
         }
       ],
-      "image": "",
-      "video": ""
+      "thumbnail": "/snapshots/Signtro-card.webp",
+      "previews": [
+        "/snapshots/Signtro.png"
+      ]
     },
     {
       "title": "Mapper",
       "href": "https://github.com/GentleGanku/MapReader",
       "dates": "January 2023 - September 2024",
       "active": false,
-      "description": "Pulls hard-to-reach cell and pad labels out of AdventureQuest Worlds maps in seconds, ready for Mystrose and other community tools.",
+      "description": "An API client designed for developers in extracting and providing in-game map data from AdventureQuest Worlds. Implemented a timed scanning algorithm that is used to automate the data extraction inside the game.",
       "technologies": [
         {
           "name": "ActionScript 3",
@@ -318,8 +324,10 @@
           "icon": "github"
         }
       ],
-      "image": "",
-      "video": ""
+      "thumbnail": "/videos/Mapper-card.mp4",
+      "previews": [
+        "/videos/Mapper.mp4"
+      ]
     }
   ],
   "certifications": [

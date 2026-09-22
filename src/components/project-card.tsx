@@ -11,6 +11,8 @@ import {
 } from "@/components/ui/tooltip";
 import Link from "next/link";
 import Markdown from "react-markdown";
+import { ProjectPreview } from "@/components/project-preview";
+import { isVideo } from "@/lib/media";
 
 interface Props {
   title: string;
@@ -19,8 +21,10 @@ interface Props {
   dates: string;
   tags: readonly { name: string; icon: React.ReactNode }[];
   link?: string;
-  image?: string;
-  video?: string;
+  /** Card frame artwork. Falls back to the first preview when absent. */
+  thumbnail?: string;
+  /** Ordered list the preview panel walks. */
+  previews?: readonly string[];
   /** Address shown in the Safari frame's URL bar. */
   previewUrl?: string;
   links?: readonly {
@@ -38,32 +42,35 @@ export function ProjectCard({
   dates,
   tags,
   link,
-  image,
-  video,
+  thumbnail,
+  previews = [],
   previewUrl,
   links,
   className,
 }: Props) {
+  const frame = thumbnail || previews[0];
+  const frameIsVideo = !!frame && isVideo(frame);
+
   return (
     <div
       className={cn(
-        "flex flex-col h-full rounded-xl border border-border bg-card text-card-foreground overflow-hidden hover:ring-2 hover:ring-muted transition-all duration-200",
+        "relative flex flex-col h-full rounded-xl border border-border bg-card text-card-foreground overflow-hidden",
+        "transition-[transform,box-shadow] duration-200 hover:z-10 hover:scale-[1.03] hover:shadow-lg hover:ring-2 hover:ring-muted",
+        "motion-reduce:transition-none motion-reduce:hover:scale-100",
         className
       )}
     >
       <div className="relative shrink-0">
-        <Link
-          href={href || "#"}
-          target="_blank"
-          rel="noopener noreferrer"
-          className="block bg-muted px-4 pt-4"
-          // Same destination as the title's arrow link, so keep it out of the tab order.
-          tabIndex={-1}
-          aria-hidden
-        >
-          {/* A browser frame around the preview; the screen stays empty until a screenshot is added. */}
-          <Safari url={previewUrl} imageSrc={image || undefined} videoSrc={video || undefined} className="drop-shadow-sm" />
-        </Link>
+        {/* The frame used to be a hidden duplicate of the project link. It is the preview
+            trigger now, so it is a real button and reachable by keyboard. */}
+        <ProjectPreview title={title} previews={previews}>
+          <Safari
+            url={previewUrl}
+            imageSrc={frameIsVideo ? undefined : frame}
+            videoSrc={frameIsVideo ? frame : undefined}
+            className="drop-shadow-sm"
+          />
+        </ProjectPreview>
         {links && links.length > 0 && (
           <div className="absolute bottom-3 right-3 flex flex-wrap gap-2">
             {links.map((link, idx) => (
@@ -92,7 +99,7 @@ export function ProjectCard({
           <h3 className="font-semibold">{title}</h3>
           <time className="text-xs text-muted-foreground">{dates}</time>
         </div>
-        <div className="text-xs flex-1 prose max-w-full text-pretty font-sans leading-relaxed text-muted-foreground dark:prose-invert">
+        <div className="text-sm flex-1 prose prose-sm max-w-full text-pretty font-sans leading-relaxed text-muted-foreground dark:prose-invert">
           <Markdown>{description}</Markdown>
         </div>
         {/* Logos only; the name lives in the tooltip and the accessible label. */}

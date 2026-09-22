@@ -1,6 +1,5 @@
 import Markdown from "react-markdown";
 import type { Resume } from "@/data/resume";
-import SectionHeader from "@/components/section/section-header";
 
 // Short lines side by side, each on a single line from sm up: the items size to their
 // own text and flex wrapping centres each row. Phones keep the full width and wrap.
@@ -9,8 +8,10 @@ export default function StatusSection({ status }: { status: Resume["status"] }) 
 
   return (
     <div className="flex flex-col gap-y-8">
-      <SectionHeader title="Status" subtitle="Right now, I&rsquo;m currently..." titleHidden />
-      <ul className="flex flex-wrap justify-center gap-x-3 gap-y-2">
+      <h2 className="text-center text-base font-semibold md:text-lg lg:text-xl">
+        Currently...
+      </h2>
+      <ul className="flex flex-wrap justify-center gap-x-6 gap-y-3">
         {status.map((item) => (
           <li
             key={item.label}

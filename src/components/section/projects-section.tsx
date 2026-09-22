@@ -27,8 +27,8 @@ export default function ProjectsSection() {
                                 const TechIcon = ICONS[tech.icon];
                                 return { name: tech.name, icon: <TechIcon className="size-7" /> };
                             })}
-                            image={project.image}
-                            video={project.video}
+                            thumbnail={project.thumbnail}
+                            previews={project.previews}
                             previewUrl={(project.links.find((link) => link.type === "Website")?.href ?? project.href)
                                 .replace(/^https?:\/\//, "")
                                 .replace(/\/$/, "")}

@@ -69,8 +69,11 @@ const resumeSchema = z.object({
       description: z.string(),
       technologies: z.array(technology),
       links: z.array(z.object({ type: z.string(), href: z.string(), icon })),
-      image: z.string(),
-      video: z.string(),
+      /** Shown in the card frame. Falls back to previews[0] when absent: it exists so the
+       *  card can load a lighter copy than the panel. */
+      thumbnail: z.string().optional(),
+      /** Ordered list the preview panel walks. Images and videos, told apart by extension. */
+      previews: z.array(z.string()).default([]),
     }),
   ),
   certifications: z.array(

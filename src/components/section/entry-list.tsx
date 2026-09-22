@@ -1,6 +1,7 @@
 /* eslint-disable @next/next/no-img-element */
 "use client";
 import { useState, type ReactNode } from "react";
+import Markdown from "react-markdown";
 import { Badge } from "@/components/ui/badge";
 
 export interface TimelineItem {
@@ -52,7 +53,11 @@ export default function EntryList({ items }: { items: TimelineItem[] }) {
             </span>
           </div>
           <div className="ml-13 flex flex-col items-start gap-3">
-            <p className="text-xs sm:text-sm text-muted-foreground">{item.description}</p>
+            {/* Markdown so an entry can carry a bulleted list; a plain sentence still
+                renders as a single paragraph. */}
+            <div className="text-sm text-muted-foreground [&_p+ul]:mt-2 [&_ul]:list-disc [&_ul]:space-y-1 [&_ul]:pl-5">
+              <Markdown>{item.description}</Markdown>
+            </div>
             {item.link && (
               <a
                 href={item.link.href}

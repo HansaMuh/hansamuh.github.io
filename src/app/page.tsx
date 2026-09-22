@@ -21,7 +21,7 @@ export default function Page() {
     <main className="min-h-dvh flex flex-col gap-28 relative">
       <section
         id="hero"
-        className="relative min-h-dvh text-white"
+        className="relative min-h-[calc(100dvh+7rem)] text-white"
       >
         <HeroBanner />
         <div className="relative z-10 mx-auto flex w-full max-w-3xl flex-col px-6 pt-32 pb-40 sm:pt-40 sm:pb-48">
@@ -48,7 +48,7 @@ export default function Page() {
           <BlurFade delay={BLUR_FADE_DELAY * 2} className="mt-10">
             <WebsitesSection social={DATA.contact.social} />
           </BlurFade>
-          <div id="status" className="mt-16">
+          <div id="status" className="mt-24">
             <BlurFade delay={BLUR_FADE_DELAY * 3}>
               <StatusSection status={DATA.status} />
             </BlurFade>
@@ -62,7 +62,7 @@ export default function Page() {
             <SectionHeader title="About Me" subtitle="Well, there&rsquo;s so much about me, but I am..." />
           </BlurFade>
           <BlurFade delay={BLUR_FADE_DELAY * 4}>
-            <div className="prose max-w-full text-pretty font-sans leading-relaxed text-muted-foreground dark:prose-invert">
+            <div className="prose prose-sm max-w-full text-sm text-pretty font-sans leading-relaxed text-muted-foreground dark:prose-invert">
               <Markdown>
                 {DATA.summary}
               </Markdown>
