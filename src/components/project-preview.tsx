@@ -84,18 +84,22 @@ export function ProjectPreview({
           {children}
         </button>
       </DialogTrigger>
+      {/* No panel: the attachment is the box, and everything else floats on the backdrop.
+          The width is explicit rather than shrink-wrapped, because an <img> capped by
+          max-height still reports its natural width for fit-content sizing, which would
+          leave the header wider than the picture. All three rows share this width, so
+          their edges line up by construction. */}
       <DialogContent
         showCloseButton={false}
-        className="max-w-[min(64rem,95vw)] gap-4 p-4 sm:p-5"
+        className="flex w-[min(90vw,calc(70vh*16/9))] max-w-none flex-col gap-3 border-0 bg-transparent p-0 shadow-none"
       >
-        {/* Title and controls sit outside the media, which gets the whole content box. */}
-        <div className="flex items-center justify-between gap-3">
-          <DialogTitle className="text-xl font-bold">{title}</DialogTitle>
+        <div className="flex w-full items-center justify-between gap-4">
+          <DialogTitle className="text-xl font-bold text-white">{title}</DialogTitle>
           <DialogClose className={PANEL_BUTTON} aria-label="Close preview">
             <XIcon className="size-5" aria-hidden />
           </DialogClose>
         </div>
-        <div className="flex w-full items-center justify-center overflow-hidden rounded-lg">
+        <div className="w-full overflow-hidden rounded-lg">
           {isVideo(current) ? (
             <video
               ref={videoRef}
@@ -104,7 +108,7 @@ export function ProjectPreview({
               controls
               playsInline
               muted
-              className="max-h-[65vh] w-full"
+              className="block h-auto max-h-[70vh] w-full"
             />
           ) : (
             /* eslint-disable-next-line @next/next/no-img-element */
@@ -112,11 +116,11 @@ export function ProjectPreview({
               key={current}
               src={current}
               alt={`${title} preview ${index + 1} of ${previews.length}`}
-              className="max-h-[65vh] w-full object-contain"
+              className="block h-auto max-h-[70vh] w-full object-contain"
             />
           )}
         </div>
-        <div className="flex items-center justify-center gap-3">
+        <div className="flex w-full items-center justify-center gap-3">
           <PageButton
             direction="previous"
             disabled={!hasPrevious}
