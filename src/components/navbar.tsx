@@ -4,12 +4,7 @@ import { useEffect, useState } from "react";
 import { Dock, DockIcon } from "@/components/magicui/dock";
 import { WibClock } from "@/components/wib-clock";
 import { Separator } from "@/components/ui/separator";
-import {
-  Tooltip,
-  TooltipArrow,
-  TooltipContent,
-  TooltipTrigger,
-} from "@/components/ui/tooltip";
+import { Tooltip, TooltipArrow, TooltipContent, TooltipTrigger } from "@/components/ui/tooltip";
 import type { Resume } from "@/data/resume";
 import { ICONS } from "@/data/icons";
 import { scrollToSection, smoothScrollTo } from "@/lib/smooth-scroll";
@@ -134,16 +129,16 @@ function NavLink({
           onClick={(event) => handleNavClick(event, item.href)}
           aria-label={item.label}
           aria-current={active ? "location" : undefined}
-          className="rounded-full focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2"
+          className="rounded-full focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:outline-none"
         >
           <DockIcon
             className={cn(
-              "rounded-full cursor-pointer size-full p-0 border transition-colors",
+              "size-full cursor-pointer rounded-full border p-0 transition-colors",
               active
-                ? "bg-highlight text-highlight-foreground border-highlight"
+                ? "border-highlight bg-highlight text-highlight-foreground"
                 : onBanner
-                  ? "bg-transparent text-white border-white/40 hover:bg-white/15"
-                  : "bg-card text-foreground hover:bg-muted border-border"
+                  ? "border-white/40 bg-transparent text-white hover:bg-white/15"
+                  : "border-border bg-card text-foreground hover:bg-muted",
             )}
           >
             <ItemIcon className="size-full" />
@@ -153,7 +148,7 @@ function NavLink({
       <TooltipContent
         side="bottom"
         sideOffset={8}
-        className="rounded-xl bg-primary text-primary-foreground px-4 py-2 text-sm shadow-[0_10px_40px_-10px_rgba(0,0,0,0.3)]"
+        className="rounded-xl bg-primary px-4 py-2 text-sm text-primary-foreground shadow-[0_10px_40px_-10px_rgba(0,0,0,0.3)]"
       >
         <p>{item.label}</p>
         <TooltipArrow className="fill-primary" />
@@ -167,9 +162,9 @@ function DockSeparator({ className, onBanner }: { className?: string; onBanner?:
     <Separator
       orientation="vertical"
       className={cn(
-        "h-2/3 my-auto w-px shrink-0",
+        "my-auto h-2/3 w-px shrink-0",
         onBanner ? "bg-white/40" : "bg-border",
-        className
+        className,
       )}
     />
   );
@@ -189,10 +184,10 @@ export default function Navbar({ navbar }: { navbar: Resume["navbar"] }) {
         baseSize={44}
         magnification={60}
         className={cn(
-          "pointer-events-auto relative h-15 p-2 w-max max-w-full items-start flex gap-2 transition-colors max-sm:overflow-x-auto max-sm:justify-start max-sm:[scrollbar-width:none]",
+          "pointer-events-auto relative flex h-15 w-max max-w-full items-start gap-2 p-2 transition-colors max-sm:justify-start max-sm:overflow-x-auto max-sm:[scrollbar-width:none]",
           onBanner
             ? "border-white/25 bg-black/30 backdrop-blur-md"
-            : "border bg-card/90 backdrop-blur-3xl shadow-[0_0_10px_3px] shadow-primary/5"
+            : "border bg-card/90 shadow-[0_0_10px_3px] shadow-primary/5 backdrop-blur-3xl",
         )}
       >
         {navbar.top.map((item) => (

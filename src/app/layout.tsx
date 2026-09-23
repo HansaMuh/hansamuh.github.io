@@ -6,6 +6,7 @@ import { MotionProvider } from "@/components/motion-provider";
 import { ThemeProvider } from "@/components/theme-provider";
 import { TooltipProvider } from "@/components/ui/tooltip";
 import { DATA, META_DESCRIPTION } from "@/data/resume";
+import { BANNER_WAIT_SCRIPT } from "@/lib/banner";
 import { cn } from "@/lib/utils";
 import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
@@ -75,27 +76,29 @@ export default function RootLayout({
             __html: `(function(){try{var p=new URLSearchParams(location.search).get("phase");var night;if(p==="night"||p==="dark"){night=true}else if(p==="day"||p==="light"){night=false}else{var h=Number(new Intl.DateTimeFormat("en-GB",{timeZone:"Asia/Jakarta",hour:"2-digit",hour12:false}).format(new Date()));night=h<6||h>=18}document.documentElement.classList.toggle("dark",night);document.documentElement.style.colorScheme=night?"dark":"light";localStorage.setItem("theme",night?"dark":"light");}catch(e){}})();`,
           }}
         />
+        {/* Holds the hero on the plain page colour until the banner still is ready. */}
+        <script dangerouslySetInnerHTML={{ __html: BANNER_WAIT_SCRIPT }} />
       </head>
       <body
         className={cn(
-          "min-h-screen bg-background font-sans antialiased relative",
+          "relative min-h-screen bg-background font-sans antialiased",
           geist.variable,
-          geistMono.variable
+          geistMono.variable,
         )}
       >
         <ThemeProvider attribute="class" defaultTheme="light" enableSystem={false}>
           <DayNight />
           <MotionProvider>
-          <TooltipProvider delayDuration={0}>
-            <PageGrid />
-            <Navbar navbar={DATA.navbar} />
-            <div className="relative z-10">
-              {children}
-              <div className="max-w-3xl mx-auto px-6">
-                <Footer />
+            <TooltipProvider delayDuration={0}>
+              <PageGrid />
+              <Navbar navbar={DATA.navbar} />
+              <div className="relative z-10">
+                {children}
+                <div className="mx-auto max-w-3xl px-6">
+                  <Footer />
+                </div>
               </div>
-            </div>
-          </TooltipProvider>
+            </TooltipProvider>
           </MotionProvider>
         </ThemeProvider>
       </body>

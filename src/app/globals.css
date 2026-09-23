@@ -48,54 +48,66 @@
   --animate-shimmer-slide: shimmer-slide var(--speed) ease-in-out infinite alternate;
   --animate-spin-around: spin-around calc(var(--speed) * 2) infinite linear;
   @keyframes marquee {
-  from {
-    transform: translateX(0);
+    from {
+      transform: translateX(0);
     }
-  to {
-    transform: translateX(calc(-100% - var(--gap)));
+    to {
+      transform: translateX(calc(-100% - var(--gap)));
     }
   }
   @keyframes marquee-vertical {
-  from {
-    transform: translateY(0);
+    from {
+      transform: translateY(0);
     }
-  to {
-    transform: translateY(calc(-100% - var(--gap)));
+    to {
+      transform: translateY(calc(-100% - var(--gap)));
     }
   }
   @keyframes shine {
-  0% {
-    background-position: 0% 0%;}
-  50% {
-    background-position: 100% 100%;}
-  to {
-    background-position: 0% 0%;}}
+    0% {
+      background-position: 0% 0%;
+    }
+    50% {
+      background-position: 100% 100%;
+    }
+    to {
+      background-position: 0% 0%;
+    }
+  }
   @keyframes shimmer-slide {
-  to {
-    transform: translate(calc(100cqw - 100%), 0);
+    to {
+      transform: translate(calc(100cqw - 100%), 0);
     }
   }
   @keyframes spin-around {
-  0% {
-    transform: translateZ(0) rotate(0);
+    0% {
+      transform: translateZ(0) rotate(0);
     }
-  15%, 35% {
-    transform: translateZ(0) rotate(90deg);
+    15%,
+    35% {
+      transform: translateZ(0) rotate(90deg);
     }
-  65%, 85% {
-    transform: translateZ(0) rotate(270deg);
+    65%,
+    85% {
+      transform: translateZ(0) rotate(270deg);
     }
-  100% {
-    transform: translateZ(0) rotate(360deg);
+    100% {
+      transform: translateZ(0) rotate(360deg);
     }
   }
-  --animate-shiny-text: shiny-text 8s infinite
-;
+  --animate-shiny-text: shiny-text 8s infinite;
   @keyframes shiny-text {
-  0%, 90%, 100% {
-    background-position: calc(-100% - var(--shiny-width)) 0;}
-  30%, 60% {
-    background-position: calc(100% + var(--shiny-width)) 0;}}}
+    0%,
+    90%,
+    100% {
+      background-position: calc(-100% - var(--shiny-width)) 0;
+    }
+    30%,
+    60% {
+      background-position: calc(100% + var(--shiny-width)) 0;
+    }
+  }
+}
 
 :root {
   --radius: 0.625rem;
@@ -213,6 +225,39 @@
      menu click parks the header behind the menu. */
   section[id] {
     scroll-margin-top: 7rem;
+  }
+
+  /* The load-in fade (BlurFade and BlurFadeText set the variables per element). Pure CSS
+     so it runs from first paint: the motion version waited for hydration, which held the
+     hero text invisible for seconds on a slow phone. Only the start is declared; the end
+     is the element's own style. Without JavaScript the content is simply visible.
+     The start opacity is 0.01, not 0, on purpose: Chrome skips text painted at opacity 0
+     for Largest Contentful Paint, and a compositor-run fade never repaints it, so the
+     hero tagline went unrecorded in most loads and LCP fell to whatever painted later. */
+  @keyframes blur-fade {
+    from {
+      opacity: 0.01;
+      translate: 0 var(--blur-fade-y);
+      filter: blur(var(--blur-fade-blur));
+    }
+  }
+  /* Until the banner still has decoded (`banner-wait`, set by the head script in
+     src/lib/banner.ts), the hero stays the plain page colour: the banner and its scrim
+     are hidden, and the hero's fades wait. Paused also holds the animation delay, so the
+     stagger plays in full once the banner is in. `visibility` rather than opacity, so the
+     text is repainted when it appears and LCP is recorded then, not while it is hidden. */
+  html.banner-wait [data-hero-banner] {
+    opacity: 0;
+  }
+  html.banner-wait #hero .blur-fade {
+    visibility: hidden;
+    animation-play-state: paused;
+  }
+
+  @media (prefers-reduced-motion: no-preference) {
+    .blur-fade {
+      animation: blur-fade var(--blur-fade-duration) ease-out var(--blur-fade-delay) both;
+    }
   }
 }
 

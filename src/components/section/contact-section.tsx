@@ -29,26 +29,18 @@ export default function ContactSection() {
         {/* Sized like a section header: 20px title, 14px body. No pill, and the copy
             stays upright and left aligned, because it is prose and not a caption. */}
         <h2 className="text-xl font-bold">Get in touch!</h2>
-        <p className="text-pretty text-sm">
-          I may be introverted, but I&rsquo;m always happy to have conversations
-          with people in the industry! Contact me on {" "}
-          <Link
-            href={share.url}
-            target="_blank"
-            rel="noopener noreferrer"
-            className={linkClass}
-          >
+        <p className="text-sm text-pretty">
+          I may be introverted, but I&rsquo;m always happy to have conversations with people in the
+          industry! Contact me on{" "}
+          <Link href={share.url} target="_blank" rel="noopener noreferrer" className={linkClass}>
             Threads
           </Link>{" "}
           for opportunities. Who knows what kind of future awaits for us? Or...
         </p>
-        <p className="text-pretty text-sm">
-          Reach me on email if you prefer being professional. I&rsquo;d still
-          appreciate it. It&rsquo;s that simple, of course:{" "}
-          <Link
-            href={`mailto:${email}`}
-            className={linkClass}
-          >
+        <p className="text-sm text-pretty">
+          Reach me on email if you prefer being professional. I&rsquo;d still appreciate it.
+          It&rsquo;s that simple, of course:{" "}
+          <Link href={`mailto:${email}`} className={linkClass}>
             {email}
           </Link>
           .

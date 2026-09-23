@@ -31,7 +31,7 @@ export function PageGrid() {
     <div
       key={night ? "night" : "day"}
       aria-hidden
-      className="pointer-events-none absolute inset-x-0 bottom-0 z-0 h-56 animate-in fade-in duration-700 [mask-image:linear-gradient(to_top,black_10%,transparent)]"
+      className="pointer-events-none absolute inset-x-0 bottom-0 z-0 h-56 animate-in [mask-image:linear-gradient(to_top,black_10%,transparent)] duration-700 fade-in"
     >
       <FlickeringGrid
         squareSize={4}

@@ -8,9 +8,7 @@ export default function StatusSection({ status }: { status: Resume["status"] }) 
 
   return (
     <div className="flex flex-col gap-y-8">
-      <h2 className="text-center text-base font-semibold md:text-lg lg:text-xl">
-        Currently...
-      </h2>
+      <h2 className="text-center text-base font-semibold md:text-lg lg:text-xl">Currently...</h2>
       <ul className="flex flex-wrap justify-center gap-x-6 gap-y-3">
         {status.map((item) => (
           <li

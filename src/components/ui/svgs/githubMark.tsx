@@ -4,13 +4,7 @@ import type { SVGProps } from "react";
 // colour, so it reads black on the white page and white on the black one. The registry
 // mark it replaced had a hardcoded near-black fill and vanished at night.
 const GithubMark = ({ className, ...props }: SVGProps<SVGSVGElement>) => (
-  <svg
-    viewBox="0 0 1024 1024"
-    role="img"
-    aria-label="GitHub"
-    className={className}
-    {...props}
-  >
+  <svg viewBox="0 0 1024 1024" role="img" aria-label="GitHub" className={className} {...props}>
     <path
       fill="currentColor"
       fillRule="evenodd"

@@ -18,18 +18,18 @@ export interface TimelineItem {
 // build time, and only the logo (EntryLogo) runs in the browser.
 export default function EntryList({ items }: { items: TimelineItem[] }) {
   return (
-    <ul className="w-full grid gap-6">
+    <ul className="grid w-full gap-6">
       {items.map((item) => (
         <li key={item.id} className="grid gap-2">
-          <div className="flex items-center gap-x-3 justify-between w-full text-left">
-            <div className="flex items-center gap-x-3 flex-1 min-w-0">
+          <div className="flex w-full items-center justify-between gap-x-3 text-left">
+            <div className="flex min-w-0 flex-1 items-center gap-x-3">
               <EntryLogo src={item.logoUrl} alt={item.subtitle} />
-              <div className="flex-1 min-w-0 gap-0.5 flex flex-col">
-                <div className="font-semibold leading-none">{item.title}</div>
+              <div className="flex min-w-0 flex-1 flex-col gap-0.5">
+                <div className="leading-none font-semibold">{item.title}</div>
                 <div className="font-sans text-sm text-muted-foreground">{item.subtitle}</div>
               </div>
             </div>
-            <span className="text-xs tabular-nums text-muted-foreground text-right flex-none">
+            <span className="flex-none text-right text-xs text-muted-foreground tabular-nums">
               {item.dates}
             </span>
           </div>
@@ -44,10 +44,10 @@ export default function EntryList({ items }: { items: TimelineItem[] }) {
                 href={item.link.href}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="inline-flex min-h-6 items-center rounded-md focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2"
+                className="inline-flex min-h-6 items-center rounded-md focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:outline-none"
               >
                 <Badge
-                  className="flex items-center gap-1.5 text-xs bg-foreground text-background hover:bg-foreground/90"
+                  className="flex items-center gap-1.5 bg-foreground text-xs text-background hover:bg-foreground/90"
                   variant="default"
                 >
                   {item.link.icon}

@@ -39,13 +39,11 @@ export function CopyPill({ label, url }: { label: string; url: string }) {
     <>
       <button
         type="button"
-        onClick={copy}
+        onClick={() => void copy()}
         aria-label={`Copy ${label}`}
-        className="flex w-full items-center justify-center gap-1.5 rounded-full bg-foreground px-3 py-1.5 text-xs font-medium text-background transition-colors hover:bg-foreground/90 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2"
+        className="flex w-full items-center justify-center gap-1.5 rounded-full bg-foreground px-3 py-1.5 text-xs font-medium text-background transition-colors hover:bg-foreground/90 focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:outline-none"
       >
-        <span ref={labelRef}>
-          {label}
-        </span>
+        <span ref={labelRef}>{label}</span>
         {result === "copied" ? (
           <CheckIcon className="size-3.5 shrink-0" aria-hidden />
         ) : (
@@ -54,9 +52,7 @@ export function CopyPill({ label, url }: { label: string; url: string }) {
       </button>
       <span aria-live="polite" className="sr-only">
         {result === "copied" ? "Link copied" : ""}
-        {result === "selected"
-          ? "Link selected, press Control or Command and C to copy"
-          : ""}
+        {result === "selected" ? "Link selected, press Control or Command and C to copy" : ""}
       </span>
     </>
   );

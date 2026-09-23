@@ -17,15 +17,12 @@ const BLUR_FADE_DELAY = 0.04;
 
 export default function Page() {
   return (
-    <main className="min-h-dvh flex flex-col gap-28 relative">
-      <section
-        id="hero"
-        className="relative min-h-[calc(100dvh+7rem)] text-white"
-      >
+    <main className="relative flex min-h-dvh flex-col gap-28">
+      <section id="hero" className="relative min-h-[calc(100dvh+7rem)] text-white">
         <HeroBanner />
         <div className="relative z-10 mx-auto flex w-full max-w-3xl flex-col px-6 pt-32 pb-40 sm:pt-40 sm:pb-48">
-          <div className="gap-2 gap-y-6 flex flex-col md:flex-row justify-between">
-            <div className="gap-3 flex flex-col order-2 md:order-1">
+          <div className="flex flex-col justify-between gap-2 gap-y-6 md:flex-row">
+            <div className="order-2 flex flex-col gap-3 md:order-1">
               <BlurFade delay={BLUR_FADE_DELAY} yOffset={8}>
                 <h1 className="text-3xl font-semibold tracking-tighter sm:text-4xl lg:text-5xl">
                   Sup! The name&rsquo;s Raihan.
@@ -40,7 +37,7 @@ export default function Page() {
             <BlurFade delay={BLUR_FADE_DELAY} className="order-1 md:order-2">
               {/* A plain <img>, not Radix's Avatar: that one only inserts the photo after
                   JavaScript has loaded it, so the browser could not start the request
-                  until hydration. This is the page's LCP element on phones. */}
+                  until hydration, 2.2s late on a phone. */}
               {/* eslint-disable-next-line @next/next/no-img-element */}
               <img
                 src={DATA.avatarUrl}
@@ -63,84 +60,98 @@ export default function Page() {
         </div>
       </section>
       <div className="mx-auto flex w-full max-w-3xl flex-col gap-28 px-6">
-      <section id="about">
-        <div className="flex min-h-0 flex-col gap-y-8">
-          <BlurFade delay={BLUR_FADE_DELAY * 3}>
-            <SectionHeader title="About Me" subtitle="Well, there&rsquo;s so much about me, but I am..." />
+        <section id="about">
+          <div className="flex min-h-0 flex-col gap-y-8">
+            <BlurFade delay={BLUR_FADE_DELAY * 3}>
+              <SectionHeader
+                title="About Me"
+                subtitle="Well, there&rsquo;s so much about me, but I am..."
+              />
+            </BlurFade>
+            <BlurFade delay={BLUR_FADE_DELAY * 4}>
+              <div className="prose prose-sm max-w-full font-sans text-sm leading-relaxed text-pretty text-muted-foreground dark:prose-invert">
+                <Markdown>{DATA.summary}</Markdown>
+              </div>
+            </BlurFade>
+          </div>
+        </section>
+        <section id="work">
+          <div className="flex min-h-0 flex-col gap-y-8">
+            <BlurFade delay={BLUR_FADE_DELAY * 5}>
+              <SectionHeader
+                title="Work Experience"
+                subtitle="I&rsquo;m unemployed! Wait, that sounds like a self-burn. Anyway..."
+              />
+            </BlurFade>
+            <BlurFade delay={BLUR_FADE_DELAY * 6}>
+              <WorkSection work={DATA.work} />
+            </BlurFade>
+          </div>
+        </section>
+        <section id="tech-stack">
+          <div className="flex min-h-0 flex-col gap-y-8">
+            <BlurFade delay={BLUR_FADE_DELAY * 9}>
+              <SectionHeader
+                title="Tech Stack"
+                subtitle="Cool stuff for my cool works. In fact, .NET is my playground!"
+              />
+            </BlurFade>
+            <BlurFade delay={BLUR_FADE_DELAY * 10}>
+              {/* The marquee repeats every chip, so it's hidden from screen readers; this list isn't. */}
+              <ul className="sr-only">
+                {DATA.skills.map((skill) => (
+                  <li key={skill.name}>{skill.name}</li>
+                ))}
+              </ul>
+              <div
+                aria-hidden
+                className="flex flex-col gap-1 [mask-image:linear-gradient(to_right,transparent,black_8%,black_92%,transparent)]"
+              >
+                {[
+                  DATA.skills.slice(0, Math.ceil(DATA.skills.length / 2)),
+                  DATA.skills.slice(Math.ceil(DATA.skills.length / 2)),
+                ].map((row, rowIndex) => (
+                  <Marquee
+                    key={rowIndex}
+                    pauseOnHover
+                    reverse={rowIndex === 1}
+                    className="p-1 [--duration:35s] [--gap:0.5rem]"
+                  >
+                    {row.map((skill) => {
+                      const SkillIcon = ICONS[skill.icon];
+                      return (
+                        <div
+                          key={skill.name}
+                          className="flex h-8 w-fit items-center gap-2 rounded-xl border border-border bg-background px-4 ring-2 ring-border/20"
+                        >
+                          <SkillIcon className="size-4 shrink-0" />
+                          <span className="text-sm font-medium whitespace-nowrap text-foreground">
+                            {skill.name}
+                          </span>
+                        </div>
+                      );
+                    })}
+                  </Marquee>
+                ))}
+              </div>
+            </BlurFade>
+          </div>
+        </section>
+        <section id="projects">
+          <BlurFade delay={BLUR_FADE_DELAY * 11}>
+            <ProjectsSection />
           </BlurFade>
-          <BlurFade delay={BLUR_FADE_DELAY * 4}>
-            <div className="prose prose-sm max-w-full text-sm text-pretty font-sans leading-relaxed text-muted-foreground dark:prose-invert">
-              <Markdown>
-                {DATA.summary}
-              </Markdown>
-            </div>
+        </section>
+        <section id="certifications">
+          <BlurFade delay={BLUR_FADE_DELAY * 13}>
+            <CertificationsSection certifications={DATA.certifications} />
           </BlurFade>
-        </div>
-      </section>
-      <section id="work">
-        <div className="flex min-h-0 flex-col gap-y-8">
-          <BlurFade delay={BLUR_FADE_DELAY * 5}>
-            <SectionHeader title="Work Experience" subtitle="I&rsquo;m unemployed! Wait, that sounds like a self-burn. Anyway..." />
+        </section>
+        <section id="contact">
+          <BlurFade delay={BLUR_FADE_DELAY * 16}>
+            <ContactSection />
           </BlurFade>
-          <BlurFade delay={BLUR_FADE_DELAY * 6}>
-            <WorkSection work={DATA.work} />
-          </BlurFade>
-        </div>
-      </section>
-      <section id="tech-stack">
-        <div className="flex min-h-0 flex-col gap-y-8">
-          <BlurFade delay={BLUR_FADE_DELAY * 9}>
-            <SectionHeader title="Tech Stack" subtitle="Cool stuff for my cool works. In fact, .NET is my playground!" />
-          </BlurFade>
-          <BlurFade delay={BLUR_FADE_DELAY * 10}>
-            {/* The marquee repeats every chip, so it's hidden from screen readers; this list isn't. */}
-            <ul className="sr-only">
-              {DATA.skills.map((skill) => (
-                <li key={skill.name}>{skill.name}</li>
-              ))}
-            </ul>
-            <div
-              aria-hidden
-              className="flex flex-col gap-1 [mask-image:linear-gradient(to_right,transparent,black_8%,black_92%,transparent)]"
-            >
-              {[
-                DATA.skills.slice(0, Math.ceil(DATA.skills.length / 2)),
-                DATA.skills.slice(Math.ceil(DATA.skills.length / 2)),
-              ].map((row, rowIndex) => (
-                <Marquee key={rowIndex} pauseOnHover reverse={rowIndex === 1} className="[--duration:35s] [--gap:0.5rem] p-1">
-                  {row.map((skill) => {
-                    const SkillIcon = ICONS[skill.icon];
-                    return (
-                      <div
-                        key={skill.name}
-                        className="border bg-background border-border ring-2 ring-border/20 rounded-xl h-8 w-fit px-4 flex items-center gap-2"
-                      >
-                        <SkillIcon className="size-4 shrink-0" />
-                        <span className="text-foreground text-sm font-medium whitespace-nowrap">{skill.name}</span>
-                      </div>
-                    );
-                  })}
-                </Marquee>
-              ))}
-            </div>
-          </BlurFade>
-        </div>
-      </section>
-      <section id="projects">
-        <BlurFade delay={BLUR_FADE_DELAY * 11}>
-          <ProjectsSection />
-        </BlurFade>
-      </section>
-      <section id="certifications">
-        <BlurFade delay={BLUR_FADE_DELAY * 13}>
-          <CertificationsSection certifications={DATA.certifications} />
-        </BlurFade>
-      </section>
-      <section id="contact">
-        <BlurFade delay={BLUR_FADE_DELAY * 16}>
-          <ContactSection />
-        </BlurFade>
-      </section>
+        </section>
       </div>
     </main>
   );

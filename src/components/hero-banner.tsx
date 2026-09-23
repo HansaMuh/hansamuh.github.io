@@ -1,5 +1,6 @@
 "use client";
 
+import { BANNER_POSTER as POSTER } from "@/lib/banner";
 import { useEffect, useRef } from "react";
 
 // The backdrop for the first screen: a looping clip with a scrim over it, a soft blur
@@ -7,8 +8,7 @@ import { useEffect, useRef } from "react";
 // It is absolutely positioned inside #hero, so its height follows the hero exactly and
 // it never needs 100vw, which would count the scrollbar and push the page sideways.
 const SRC = "/videos/Fall26_Chillhop.com_banner-web.mp4";
-// The clip's first frame, so the handover to the moving video does not jump.
-const POSTER = "/videos/banner-poster.webp";
+// POSTER is the clip's first frame, so the handover to the moving video does not jump.
 const WIDE = "(min-width: 640px)";
 
 export function HeroBanner() {
@@ -25,8 +25,8 @@ export function HeroBanner() {
     const reduced = window.matchMedia("(prefers-reduced-motion: reduce)");
     const wide = window.matchMedia(WIDE).matches;
     const saveData =
-      (navigator as Navigator & { connection?: { saveData?: boolean } }).connection
-        ?.saveData === true;
+      (navigator as Navigator & { connection?: { saveData?: boolean } }).connection?.saveData ===
+      true;
     let released = wide;
 
     const apply = () => {
@@ -71,7 +71,13 @@ export function HeroBanner() {
   }, []);
 
   return (
-    <div aria-hidden className="absolute inset-0 overflow-hidden">
+    // data-hero-banner: hidden while <html> has `banner-wait` (see src/lib/banner.ts), then
+    // the still and its scrim fade in together instead of the scrim showing first as grey.
+    <div
+      aria-hidden
+      data-hero-banner
+      className="absolute inset-0 overflow-hidden transition-opacity duration-400 ease-out motion-reduce:transition-none"
+    >
       <video
         ref={videoRef}
         className="size-full object-cover"
@@ -93,8 +99,8 @@ export function HeroBanner() {
           instead, since there the text spans the full width. */}
       <div className="absolute inset-0 bg-black/35" />
       <div className="absolute inset-0 bg-black/40 sm:bg-transparent sm:bg-[linear-gradient(to_right,transparent_0%,rgba(0,0,0,0.38)_18%,rgba(0,0,0,0.38)_82%,transparent_100%)]" />
-      <div className="absolute inset-x-0 top-0 h-28 backdrop-blur-[3px] [mask-image:linear-gradient(to_bottom,black,transparent)]" />
-      <div className="absolute inset-x-0 bottom-0 h-28 backdrop-blur-[3px] [mask-image:linear-gradient(to_top,black,transparent)]" />
+      <div className="absolute inset-x-0 top-0 h-28 [mask-image:linear-gradient(to_bottom,black,transparent)] backdrop-blur-[3px]" />
+      <div className="absolute inset-x-0 bottom-0 h-28 [mask-image:linear-gradient(to_top,black,transparent)] backdrop-blur-[3px]" />
       <svg
         className="absolute inset-x-0 bottom-0 h-12 w-full sm:h-20"
         viewBox="0 0 1440 120"

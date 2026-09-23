@@ -2,12 +2,7 @@
 
 import { Badge } from "@/components/ui/badge";
 import { cn } from "@/lib/utils";
-import {
-  Tooltip,
-  TooltipArrow,
-  TooltipContent,
-  TooltipTrigger,
-} from "@/components/ui/tooltip";
+import { Tooltip, TooltipArrow, TooltipContent, TooltipTrigger } from "@/components/ui/tooltip";
 import { useEffect, useRef } from "react";
 import Link from "next/link";
 import { ProjectPreview } from "@/components/project-preview";
@@ -50,10 +45,10 @@ export function ProjectCard({
   return (
     <div
       className={cn(
-        "relative flex flex-col h-full rounded-xl border border-border bg-card text-card-foreground overflow-hidden",
+        "relative flex h-full flex-col overflow-hidden rounded-xl border border-border bg-card text-card-foreground",
         "transition-[transform,box-shadow] duration-200 hover:z-10 hover:scale-[1.03] hover:shadow-lg hover:ring-2 hover:ring-muted",
         "motion-reduce:transition-none motion-reduce:hover:scale-100",
-        className
+        className,
       )}
     >
       <div className="relative shrink-0">
@@ -78,7 +73,7 @@ export function ProjectCard({
           </div>
         </ProjectPreview>
         {links && links.length > 0 && (
-          <div className="absolute bottom-3 right-3 flex flex-wrap gap-2">
+          <div className="absolute right-3 bottom-3 flex flex-wrap gap-2">
             {links.map((link, idx) => (
               <Link
                 href={link.href}
@@ -89,7 +84,7 @@ export function ProjectCard({
                 className="inline-flex min-h-6 items-center"
               >
                 <Badge
-                  className="flex items-center gap-1.5 text-xs bg-foreground text-background hover:bg-foreground/90"
+                  className="flex items-center gap-1.5 bg-foreground text-xs text-background hover:bg-foreground/90"
                   variant="default"
                 >
                   {link.icon}
@@ -100,18 +95,18 @@ export function ProjectCard({
           </div>
         )}
       </div>
-      <div className="p-6 flex flex-col gap-3 flex-1">
+      <div className="flex flex-1 flex-col gap-3 p-6">
         <div className="flex flex-col gap-1">
           {/* No corner arrow here: the Website / Source badges already lead out. */}
           <h3 className="font-semibold">{title}</h3>
           <time className="text-xs text-muted-foreground">{dates}</time>
         </div>
-        <div className="text-sm flex-1 prose prose-sm max-w-full text-pretty font-sans leading-relaxed text-muted-foreground dark:prose-invert">
+        <div className="prose prose-sm max-w-full flex-1 font-sans text-sm leading-relaxed text-pretty text-muted-foreground dark:prose-invert">
           {description}
         </div>
         {/* Logos only; the name lives in the tooltip and the accessible label. */}
         {tags && tags.length > 0 && (
-          <ul className="flex flex-wrap items-center gap-2.5 mt-auto">
+          <ul className="mt-auto flex flex-wrap items-center gap-2.5">
             {tags.map((tag) => (
               <li key={tag.name}>
                 <Tooltip>
@@ -120,7 +115,7 @@ export function ProjectCard({
                       role="img"
                       tabIndex={0}
                       aria-label={tag.name}
-                      className="flex size-9 items-center justify-center rounded-sm focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2"
+                      className="flex size-9 items-center justify-center rounded-sm focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:outline-none"
                     >
                       {tag.icon}
                     </span>
@@ -128,7 +123,7 @@ export function ProjectCard({
                   <TooltipContent
                     side="top"
                     sideOffset={6}
-                    className="rounded-lg bg-primary text-primary-foreground px-3 py-1.5 text-xs"
+                    className="rounded-lg bg-primary px-3 py-1.5 text-xs text-primary-foreground"
                   >
                     <p>{tag.name}</p>
                     <TooltipArrow className="fill-primary" />

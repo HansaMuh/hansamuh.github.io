@@ -25,8 +25,8 @@ export function WibClock({ className }: { className?: string }) {
   return (
     <div
       className={cn(
-        "hidden sm:flex h-11 shrink-0 items-center gap-1 px-2 text-sm font-medium tabular-nums text-foreground",
-        className
+        "hidden h-11 shrink-0 items-center gap-1 px-2 text-sm font-medium text-foreground tabular-nums sm:flex",
+        className,
       )}
       aria-label={time ? `Jakarta time ${time} WIB` : "Jakarta time"}
       role="timer"

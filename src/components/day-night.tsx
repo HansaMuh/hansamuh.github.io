@@ -49,7 +49,7 @@ export function DayNight() {
         if (timeout) clearTimeout(timeout);
         timeout = setTimeout(
           () => document.documentElement.classList.remove("theme-switching"),
-          FADE_MS
+          FADE_MS,
         );
       }
       setTheme(phase);

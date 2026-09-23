@@ -9,7 +9,7 @@ export function EntryLogo({ src, alt }: { src: string; alt: string }) {
 
   if (!src || imageError) {
     return (
-      <div className="size-8 md:size-10 p-1 border dark:border-white/35 rounded-full shadow ring-2 ring-border dark:ring-white/35 bg-muted flex-none" />
+      <div className="size-8 flex-none rounded-full border bg-muted p-1 shadow ring-2 ring-border md:size-10 dark:border-white/35 dark:ring-white/35" />
     );
   }
 
@@ -19,7 +19,7 @@ export function EntryLogo({ src, alt }: { src: string; alt: string }) {
       alt={alt}
       loading="lazy"
       decoding="async"
-      className="size-8 md:size-10 p-1 border dark:border-white/35 rounded-full shadow ring-2 ring-border dark:ring-white/35 overflow-hidden object-contain bg-white flex-none"
+      className="size-8 flex-none overflow-hidden rounded-full border bg-white object-contain p-1 shadow ring-2 ring-border md:size-10 dark:border-white/35 dark:ring-white/35"
       onError={() => setImageError(true)}
     />
   );

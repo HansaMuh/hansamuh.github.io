@@ -2,12 +2,7 @@
 
 import type { Resume } from "@/data/resume";
 import { ICONS } from "@/data/icons";
-import {
-  Tooltip,
-  TooltipArrow,
-  TooltipContent,
-  TooltipTrigger,
-} from "@/components/ui/tooltip";
+import { Tooltip, TooltipArrow, TooltipContent, TooltipTrigger } from "@/components/ui/tooltip";
 
 export default function WebsitesSection({ social }: { social: Resume["contact"]["social"] }) {
   const websites = Object.values(social).filter((item) => item.websites);
@@ -26,7 +21,7 @@ export default function WebsitesSection({ social }: { social: Resume["contact"][
                   target={isExternal ? "_blank" : undefined}
                   rel={isExternal ? "noopener noreferrer" : undefined}
                   aria-label={item.name}
-                  className="flex size-13 items-center justify-center rounded-xl transition-transform hover:-translate-y-0.5 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2"
+                  className="flex size-13 items-center justify-center rounded-xl transition-transform hover:-translate-y-0.5 focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:outline-none"
                 >
                   <SocialIcon className="size-8" aria-hidden />
                 </a>
@@ -34,7 +29,7 @@ export default function WebsitesSection({ social }: { social: Resume["contact"][
               <TooltipContent
                 side="bottom"
                 sideOffset={8}
-                className="rounded-xl bg-primary text-primary-foreground px-4 py-2 text-sm shadow-[0_10px_40px_-10px_rgba(0,0,0,0.3)]"
+                className="rounded-xl bg-primary px-4 py-2 text-sm text-primary-foreground shadow-[0_10px_40px_-10px_rgba(0,0,0,0.3)]"
               >
                 <p>{item.name}</p>
                 <TooltipArrow className="fill-primary" />

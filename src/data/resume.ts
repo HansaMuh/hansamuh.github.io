@@ -17,9 +17,7 @@ const resumeSchema = z.object({
   avatarUrl: z.string(),
   // The OG image renderer (satori) cannot decode WebP, so it gets its own PNG or JPEG.
   ogAvatarUrl: z.string(),
-  status: z.array(
-    z.object({ label: z.string(), detail: z.string() }),
-  ).default([]),
+  status: z.array(z.object({ label: z.string(), detail: z.string() })).default([]),
   skills: z.array(technology),
   navbar: z.object({ top: z.array(navItem), sections: z.array(navItem) }),
   contact: z.object({
@@ -62,16 +60,18 @@ const resumeSchema = z.object({
       poster: z.string().optional(),
     }),
   ),
-  certifications: z.array(
-    z.object({
-      name: z.string(),
-      issuer: z.string(),
-      href: z.string(),
-      logoUrl: z.string(),
-      date: z.string(),
-      description: z.string(),
-    }),
-  ).default([]),
+  certifications: z
+    .array(
+      z.object({
+        name: z.string(),
+        issuer: z.string(),
+        href: z.string(),
+        logoUrl: z.string(),
+        date: z.string(),
+        description: z.string(),
+      }),
+    )
+    .default([]),
 });
 
 export type Resume = z.infer<typeof resumeSchema>;

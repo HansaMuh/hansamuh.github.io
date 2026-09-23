@@ -225,9 +225,7 @@
         }
       ],
       "thumbnail": "/snapshots/SEMA-card.webp",
-      "previews": [
-        "/snapshots/SEMA.png"
-      ]
+      "previews": ["/snapshots/SEMA.png"]
     },
     {
       "title": "Mystrose",
@@ -255,9 +253,7 @@
         }
       ],
       "thumbnail": "/snapshots/Mystrose-card.webp",
-      "previews": [
-        "/snapshots/Mystrose.png"
-      ]
+      "previews": ["/snapshots/Mystrose.png"]
     },
     {
       "title": "Signtro",
@@ -281,9 +277,7 @@
         }
       ],
       "thumbnail": "/snapshots/Signtro-card.webp",
-      "previews": [
-        "/snapshots/Signtro.png"
-      ]
+      "previews": ["/snapshots/Signtro.png"]
     },
     {
       "title": "Mapper",
@@ -308,9 +302,7 @@
       ],
       "thumbnail": "/videos/Mapper-card.mp4",
       "poster": "/videos/Mapper-card-poster.webp",
-      "previews": [
-        "/videos/Mapper.mp4"
-      ]
+      "previews": ["/videos/Mapper.mp4"]
     }
   ],
   "certifications": [

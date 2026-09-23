@@ -79,7 +79,7 @@ export function ProjectPreview({
         <button
           type="button"
           aria-label={`Open ${title} preview`}
-          className="block w-full cursor-zoom-in focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-inset"
+          className="block w-full cursor-zoom-in focus-visible:ring-2 focus-visible:ring-ring focus-visible:outline-none focus-visible:ring-inset"
         >
           {children}
         </button>
@@ -126,11 +126,7 @@ export function ProjectPreview({
             disabled={!hasPrevious}
             onClick={() => setIndex(index - 1)}
           />
-          <PageButton
-            direction="next"
-            disabled={!hasNext}
-            onClick={() => setIndex(index + 1)}
-          />
+          <PageButton direction="next" disabled={!hasNext} onClick={() => setIndex(index + 1)} />
         </div>
       </DialogContent>
     </Dialog>
@@ -155,7 +151,7 @@ function PageButton({
       aria-label={`${direction === "previous" ? "Previous" : "Next"} preview`}
       className={cn(
         PANEL_BUTTON,
-        "disabled:cursor-not-allowed disabled:opacity-40 disabled:hover:bg-card"
+        "disabled:cursor-not-allowed disabled:opacity-40 disabled:hover:bg-card",
       )}
     >
       <Icon className="size-5" aria-hidden />

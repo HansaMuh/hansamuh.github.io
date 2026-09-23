@@ -8,37 +8,35 @@ import SectionHeader from "@/components/section/section-header";
 const BLUR_FADE_DELAY = 0.04;
 
 export default function ProjectsSection() {
-    return (
-        <div className="flex min-h-0 flex-col gap-y-8">
-            <SectionHeader title="My Projects" subtitle="Behold, my grand designs! Latest ones, at least!" />
-            <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 max-w-[800px] mx-auto auto-rows-fr">
-                {DATA.projects.map((project, id) => (
-                    <BlurFade
-                        key={project.title}
-                        delay={BLUR_FADE_DELAY * 12 + id * 0.05}
-                        className="h-full"
-                    >
-                        <ProjectCard
-                            key={project.title}
-                            title={project.title}
-                            description={<Markdown>{project.description}</Markdown>}
-                            dates={project.dates}
-                            tags={project.technologies.map((tech) => {
-                                const TechIcon = ICONS[tech.icon];
-                                return { name: tech.name, icon: <TechIcon className="size-7" /> };
-                            })}
-                            thumbnail={project.thumbnail}
-                            previews={project.previews}
-                            poster={project.poster}
-                            links={project.links.map((link) => {
-                                const LinkIcon = ICONS[link.icon];
-                                return { ...link, icon: <LinkIcon className="size-3" /> };
-                            })}
-                        />
-                    </BlurFade>
-                ))}
-            </div>
-        </div>
-    );
+  return (
+    <div className="flex min-h-0 flex-col gap-y-8">
+      <SectionHeader
+        title="My Projects"
+        subtitle="Behold, my grand designs! Latest ones, at least!"
+      />
+      <div className="mx-auto grid max-w-[800px] auto-rows-fr grid-cols-1 gap-6 sm:grid-cols-2">
+        {DATA.projects.map((project, id) => (
+          <BlurFade key={project.title} delay={BLUR_FADE_DELAY * 12 + id * 0.05} className="h-full">
+            <ProjectCard
+              key={project.title}
+              title={project.title}
+              description={<Markdown>{project.description}</Markdown>}
+              dates={project.dates}
+              tags={project.technologies.map((tech) => {
+                const TechIcon = ICONS[tech.icon];
+                return { name: tech.name, icon: <TechIcon className="size-7" /> };
+              })}
+              thumbnail={project.thumbnail}
+              previews={project.previews}
+              poster={project.poster}
+              links={project.links.map((link) => {
+                const LinkIcon = ICONS[link.icon];
+                return { ...link, icon: <LinkIcon className="size-3" /> };
+              })}
+            />
+          </BlurFade>
+        ))}
+      </div>
+    </div>
+  );
 }
-

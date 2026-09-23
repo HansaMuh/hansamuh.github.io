@@ -26,7 +26,7 @@ npm run build      # writes the static site to out/
 npx serve out
 ```
 
-`npm run lint` runs ESLint. There is no test suite; `npm run build` doubles as the type check and the content check.
+`npm run lint` runs ESLint with type-aware rules, and `npm run format` applies Prettier (`npm run format:check` only reports). CI runs the format check, lint and build on every push. There is no test suite; `npm run build` doubles as the type check and the content check.
 
 ## Editing the content
 

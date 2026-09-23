@@ -1,0 +1,9 @@
+# Commit and check out text files with LF, whatever the local autocrlf setting, so the
+# formatter and git agree on line endings across Windows and the Linux CI.
+* text=auto eol=lf
+
+*.png binary
+*.jpg binary
+*.webp binary
+*.mp4 binary
+*.ttf binary
