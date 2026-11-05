@@ -1,12 +1,6 @@
-import Footer from "@/components/footer";
-import Navbar from "@/components/navbar";
-import { PageGrid } from "@/components/page-grid";
 import { DayNight } from "@/components/day-night";
-import { MotionProvider } from "@/components/motion-provider";
 import { ThemeProvider } from "@/components/theme-provider";
-import { TooltipProvider } from "@/components/ui/tooltip";
 import { DATA, META_DESCRIPTION } from "@/data/resume";
-import { BANNER_WAIT_SCRIPT } from "@/lib/banner";
 import { cn } from "@/lib/utils";
 import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
@@ -76,8 +70,6 @@ export default function RootLayout({
             __html: `(function(){try{var p=new URLSearchParams(location.search).get("phase");var night;if(p==="night"||p==="dark"){night=true}else if(p==="day"||p==="light"){night=false}else{var h=Number(new Intl.DateTimeFormat("en-GB",{timeZone:"Asia/Jakarta",hour:"2-digit",hour12:false}).format(new Date()));night=h<6||h>=18}document.documentElement.classList.toggle("dark",night);document.documentElement.style.colorScheme=night?"dark":"light";localStorage.setItem("theme",night?"dark":"light");}catch(e){}})();`,
           }}
         />
-        {/* Holds the hero on the plain page colour until the banner still is ready. */}
-        <script dangerouslySetInnerHTML={{ __html: BANNER_WAIT_SCRIPT }} />
       </head>
       <body
         className={cn(
@@ -88,18 +80,9 @@ export default function RootLayout({
       >
         <ThemeProvider attribute="class" defaultTheme="light" enableSystem={false}>
           <DayNight />
-          <MotionProvider>
-            <TooltipProvider delayDuration={0}>
-              <PageGrid />
-              <Navbar navbar={DATA.navbar} />
-              <div className="relative z-10">
-                {children}
-                <div className="mx-auto max-w-3xl px-6">
-                  <Footer />
-                </div>
-              </div>
-            </TooltipProvider>
-          </MotionProvider>
+          {/* The portfolio frame (menu, grid, footer) lives in SiteChrome, so pages
+              like /cv/ can stand on their own. */}
+          {children}
         </ThemeProvider>
       </body>
     </html>

@@ -12,10 +12,22 @@ import WebsitesSection from "@/components/section/websites-section";
 import WorkSection from "@/components/section/work-section";
 import { Marquee } from "@/components/magicui/marquee";
 import { HeroBanner } from "@/components/hero-banner";
+import { SiteChrome } from "@/components/site-chrome";
 
 const BLUR_FADE_DELAY = 0.04;
 
+// The frame comes from SiteChrome here, not from a (site) route group: Next 16.1's static
+// export nests a group's prefetch file where the client does not look for it, so every
+// link to "/" logged a 404.
 export default function Page() {
+  return (
+    <SiteChrome>
+      <Home />
+    </SiteChrome>
+  );
+}
+
+function Home() {
   return (
     <main className="relative flex min-h-dvh flex-col gap-28">
       <section id="hero" className="relative min-h-[calc(100dvh+7rem)] text-white">
